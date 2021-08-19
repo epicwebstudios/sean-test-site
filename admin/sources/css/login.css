@@ -1,0 +1,33 @@
+body {
+	position: relative;
+}
+
+.login_box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 400px;
+	padding: 15px;
+	transform: translate(-50%,-50%);
+	background-color: #FFF;
+	border-radius: 5px;
+	box-shadow: 0 0 15px rgba(0,0,0,.15);
+}
+
+.login_box .logo {
+	margin-bottom: 15px;
+}
+
+.login_box .logo img {
+	display: block;
+	margin: auto;
+}
+
+.login_box .row {
+	margin: 10px 20px;
+}
+
+.login_box input[type="text"],
+.login_box input[type="password"] {
+	width: 100%;
+}

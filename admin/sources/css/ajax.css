@@ -1,0 +1,20 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background-color: #FFF;
+}
+
+html, body {
+	min-width: 10px;
+	height: auto;
+}
+
+table {
+	font-size: 12px;
+}
+
+.contain {
+	padding: 20px;
+}
