@@ -25,8 +25,7 @@
 		<meta name="description" content="<? if($page['description']){ echo $page['description']; } else { echo $settings['description']; } ?>" />
 		
 		<? if($settings['image']){ ?><link rel="image_src" href="<? mainURL(); ?>/uploads/<? echo $settings['image']; ?>" /><? } ?>
-        <link rel="alternate" href="<? echo returnURL().'/'.$_GET['act']; ?>" hreflang="en-us" />
-		<link rel="canonical" href="<?= returnURL().'/'.$_GET['act'] ?>" />
+		<link rel="canonical" href="<? echo $page['canonical']; ?>" />
 
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 		<?	

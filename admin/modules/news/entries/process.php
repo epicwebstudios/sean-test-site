@@ -16,6 +16,7 @@
 				'date'				=> process_date_time( 'post_date', 'post_time' ),
 				'summary'			=> $_POST['summary'],
 				'entry'				=> $_POST['entry'],
+				'canonical'			=> $_POST['canonical'],
 				'status'			=> $_POST['status'],
 				'og_title'			=> $_POST['og_title'],
 				'og_description'	=> $_POST['og_description'],

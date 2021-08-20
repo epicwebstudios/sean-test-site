@@ -58,6 +58,13 @@
                 </td>
 			</tr>
 			<tr>
+				<td class="left">Canonical URL:</td>
+				<td class="right">
+                	<? field_text( 'canonical', $info['canonical'] ); ?>
+					<div>If this entry duplicates the content of another page or website, enter the original URL here. Otherwise, leave blank.</div>
+                </td>
+			</tr>
+			<tr>
 				<td class="left">Status:</td>
 				<td class="right">
                 	<?

@@ -73,6 +73,10 @@
 					if( $record['og_image'] != '' ){
 						$page['og_image']		= $record['og_image'];
 					}
+					
+					if( $record['canonical'] != '' ){
+						$page['canonical']		= $record['canonical'];
+					}
 
 					if ($page['banner']) {
 						$page['banner_button']      = false;

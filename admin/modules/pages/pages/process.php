@@ -24,6 +24,7 @@
 				'body_close'		=> $_POST['body_close'],
 				'template'			=> $_POST['template'],
 				'description'		=> $_POST['description'],
+				'canonical'			=> $_POST['canonical'],
 				'protect'			=> $_POST['protect'],
 				'status'			=> $_POST['status'],
 				'modified'			=> time(),

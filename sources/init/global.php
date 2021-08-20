@@ -170,6 +170,19 @@
 			}
 		}
 		
+		if( $info['canonical'] == '' ){
+			$uri = $_GET['act'];
+			$uri = str_replace( '"', '', $uri );
+			$uri = str_replace( "'", '', $uri );
+			$uri = html_entity_decode( $uri );
+			$uri = explode( '>', $uri );
+			$uri = $uri[0];
+			$uri = explode( '<', $uri );
+			$uri = $uri[0];
+			$uri = strip_tags( $uri );
+			$info['canonical'] = returnURL().'/'.$uri;
+		}
+		
 		if( $info ){
 			return $info;
 		} else {
