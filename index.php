@@ -1,7 +1,7 @@
 <?
 
 	//----------------------------------------
-	// epicPlatform v3.7.0
+	// epicPlatform v3.7.1
 	// (c) Epic Web Studios, LLC
 	//----------------------------------------
 	// For the latest releases, please visit:
