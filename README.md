@@ -1,6 +1,6 @@
 # README #
 
-epicPlatform v3.7.1
+epicPlatform
 
 ### Documentation ###
 

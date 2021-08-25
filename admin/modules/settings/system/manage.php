@@ -14,14 +14,6 @@
 
 
 <script>
-
-	function update_build(){
-		$( '#build' ).val( '<? echo date( 'Ymd' ); ?>' );
-	}
-
-	function update_date(){
-		$( '#date' ).val( '<? echo date( 'm/d/Y' ); ?>' );
-	}
 	
 	function update_cache(){
 		var timestamp = Math.round( new Date().getTime() / 1000 );
@@ -47,28 +39,6 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td class="left">Current Version:</td>
-				<td class="right">
-                	<? field_text( 'version', $info['version'], 'width: 50px;' ); ?>
-                </td>
-			</tr>
-			<tr>
-				<td class="left">Current Build:</td>
-				<td class="right">
-					<? field_text( 'build', $info['build'], 'width: 85px;' ); ?>
-                    &nbsp;
-                    <a href="#" onclick="update_build(); return false;">Set to Today</a>
-				</td>
-			</tr>
-			<tr>
-				<td class="left">Build Date:</td>
-				<td class="right">
-					<? field_text( 'date', $info['date'], 'width: 85px;' ); ?>
-                    &nbsp;
-                    <a href="#" onclick="update_date(); return false;">Set to Today</a>
-				</td>
-			</tr>
 			<tr>
 				<td class="left">Cache Refresh:</td>
 				<td class="right">

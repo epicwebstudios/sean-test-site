@@ -27,6 +27,8 @@
 	
 	function generate_menu( $parent, $items, $children, $allowed, $level = 0, $output = false ){
 		
+		global $user;
+		
 		$class = 'navigation_menu';
 		if( $level > 0 ){ $class = 'dropdown level_'.$level; }
 		
@@ -35,40 +37,42 @@
 			if( is_array($children[$parent]) ){
 				foreach( $children[$parent] as $item ){
 					if( in_array($item, $allowed) ){
+						if( $items[$item]['status'] == '1' ){
 						
-						$id			= $items[$item]['id'];
-						$name		= $items[$item]['name'];
-						$link		= '#';
-						$target		= '';
-						$onclick 	= 'return false;';
-					
-						$class = 'item level_'.$level;
-						if( is_array($children[$id]) > 0 ){
-							$class .= ' has_children';
-						}
-						
-						if( $items[$item]['external'] ){
-							$link		= $items[$item]['link'];
-							$target		= $items[$item]['target'];
-							$onclick 	= '';
-						} else if( $items[$item]['page'] ){
-							$link		= '?a='.$id;
+							$id			= $items[$item]['id'];
+							$name		= $items[$item]['name'];
+							$link		= '#';
 							$target		= '';
-							$onclick 	= '';
-						}
-						
-						$output .= '<div class="'.$class.'">';
-							
-							$output .= '<a href="'.$link.'" onclick="'.$onclick.'" target="'.$target.'" class="level_'.$level.'">';
-								$output .= $name;
-							$output .= '</a>';
-							
+							$onclick 	= 'return false;';
+
+							$class = 'item level_'.$level;
 							if( is_array($children[$id]) > 0 ){
-								$output = generate_menu( $id, $items, $children, $allowed, ($level+1), $output );
+								$class .= ' has_children';
 							}
-							
-						$output .= '</div>';
+
+							if( $items[$item]['external'] ){
+								$link		= $items[$item]['link'];
+								$target		= $items[$item]['target'];
+								$onclick 	= '';
+							} else if( $items[$item]['page'] ){
+								$link		= '?a='.$id;
+								$target		= '';
+								$onclick 	= '';
+							}
+
+							$output .= '<div class="'.$class.'">';
+
+								$output .= '<a href="'.$link.'" onclick="'.$onclick.'" target="'.$target.'" class="level_'.$level.'">';
+									$output .= $name;
+								$output .= '</a>';
+
+								if( is_array($children[$id]) > 0 ){
+									$output = generate_menu( $id, $items, $children, $allowed, ($level+1), $output );
+								}
+
+							$output .= '</div>';
 					
+						}
 					}
 				}
 			}

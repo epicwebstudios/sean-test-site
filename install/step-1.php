@@ -42,10 +42,10 @@
 			
 			$contents  = '';
 			$contents .= '<?' . "\n";
-				$contents .= "\t" . '$'."db['host']".' = "'.$host.'";' . "\n";
-				$contents .= "\t" . '$'."db['user']".' = "'.$user.'";' . "\n";
-				$contents .= "\t" . '$'."db['pass']".' = "'.$pass.'";' . "\n";
-				$contents .= "\t" . '$'."db['db']".' = "'.$database.'";' . "\n";
+				$contents .= "\t" . '$'."db['host']".' = \''.$host.'\';' . "\n";
+				$contents .= "\t" . '$'."db['user']".' = \''.$user.'\';' . "\n";
+				$contents .= "\t" . '$'."db['pass']".' = \''.$pass.'\';' . "\n";
+				$contents .= "\t" . '$'."db['db']".' = \''.$database.'\';' . "\n";
 			$contents .= '' . "\n";
 			
 			file_put_contents( $file, $contents );

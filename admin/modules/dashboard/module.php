@@ -47,7 +47,7 @@
             <div>&nbsp;</div>
             <div>&nbsp;</div>
             
-            <div><img src="https://www.epicwebstudios.com/platform/update/check.php?v=<? echo $system['version']; ?>" /></div>
+            <div><img src="https://www.epicwebstudios.com/platform/update/check.php?v=<? echo EP_VERSION; ?>" /></div>
             
         </div>
     </div>

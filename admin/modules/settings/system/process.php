@@ -11,9 +11,6 @@
 		// -- Set values
 		
 			$values = array(
-				'version'		=> $_POST['version'],
-				'build'			=> $_POST['build'],
-				'date'			=> $_POST['date'],
 				'cache_refresh'	=> $_POST['cache_refresh'],
 			);
 		

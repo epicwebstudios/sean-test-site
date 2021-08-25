@@ -56,6 +56,11 @@
                         ?>
                     </td>
                 
+                    <td>
+                        <? if( $info['status'] == '1' ){ echo '<b class="tc_green">Active / Visible</b>'; } ?>
+                        <? if( $info['status'] == '0' ){ echo '<b class="tc_red">Inactive / Hidden</b>'; } ?>
+                    </td>
+                
                 
                 <? // Column output end ?>
     

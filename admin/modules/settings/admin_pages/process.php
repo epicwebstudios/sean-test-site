@@ -16,6 +16,7 @@
 				'external'	=> $_POST['external'],
 				'target'	=> $_POST['target'],
 				'page'		=> $_POST['page'],
+				'status'	=> $_POST['status'],
 			);
 		
 		// -- End set values

@@ -56,7 +56,7 @@
                     </div>
                     
                     <div class="version">
-                    	Currently running on epicPlatform <? echo $system['version']; ?>
+                    	Currently running on epicPlatform <? echo EP_VERSION; ?>
                     </div>
                     
                 </div>

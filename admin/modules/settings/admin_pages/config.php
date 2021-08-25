@@ -28,6 +28,7 @@
 	$columns = array(
 		array( 'title' => 'Page Name',	'sort' => false, 	'width' => 0 ),
 		array( 'title' => 'Links To', 	'sort' => false, 	'width' => 0 ),
+		array( 'title' => 'Links To', 	'sort' => false, 	'width' => 0 ),
 	);
 	
 	
