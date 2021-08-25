@@ -107,7 +107,7 @@ CREATE TABLE `admin_pages` (
 -- Dumping data for table `admin_pages`
 --
 
-INSERT INTO `admin_pages` (`id`, `parent`, `name`, `link`, `external`, `target`, `page`, `order`, `module`) VALUES
+INSERT INTO `admin_pages` (`id`, `parent`, `name`, `link`, `external`, `target`, `page`, `order`, `module`, `status`) VALUES
 (40, -1, 'Administrator Action Logs', '', 0, '', 'settings/admin_logs/module.php', 0, 0, 1),
 (1, 0, 'Home', '', 0, '', 'dashboard/module.php', 1, 0, 1),
 (2, 0, 'Settings', '', 0, '', '', 2, 0, 1),

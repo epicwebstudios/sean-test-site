@@ -1,5 +1,8 @@
 <?
 
+
+	define( 'EP_VERSION', '3.7.2' );
+
 	date_default_timezone_set( 'America/New_York' );
 
 	require_once dirname( __FILE__ ).'/php54.compatibility.php';
