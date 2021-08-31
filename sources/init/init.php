@@ -27,6 +27,10 @@
 
 	// Retrieve the information of the current called page.
 	$page = getPage( $_GET['act'] );
+
+
+	// Add default admin bar button
+	add_to_admin_bar( 'Edit Page', '/admin/?a=13&act=edit&i='.$page['id'] );
 	
 	
 	// Handle page preview

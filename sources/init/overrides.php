@@ -15,7 +15,9 @@
 				preg_match_all( "/\{".$shortcode."}(.*?)\{\/".$shortcode."\}/", $page['content'], $snippets );
 				$snippet_id = $snippets[1][0];
 				
-				$record = mysql_fetch_assoc( mysql_query( "SELECT `first`, `middle`, `last`, `bio`, `photo` FROM `m_staff` WHERE `permalink` = '".$request[1]."' LIMIT 1" ) );
+				$record = mysql_fetch_assoc( mysql_query( "SELECT `id`, `first`, `middle`, `last`, `bio`, `photo` FROM `m_staff` WHERE `permalink` = '".$request[1]."' LIMIT 1" ) );
+				
+				add_to_admin_bar( 'Edit Staff Member', '/admin/?a=48&act=edit&i='.$record['id'] );
 				
 				$page['title'] 			= $record['first'].' '.$record['middle'].' '.$record['last'];
 				$page['description'] 	= summary( strip_tags($record['bio']), 158 );
@@ -58,6 +60,8 @@
 				} else {
 					
 					$record = mysql_fetch_assoc( mysql_query("SELECT `id`, `name`, `summary`, `og_title`, `og_description`, `og_image` FROM `m_news_entries` WHERE `permalink` = '".$request[1]."' LIMIT 1") );
+									
+					add_to_admin_bar( 'Edit News Entry', '/admin/?a=35&act=edit&i='.$record['id'] );
 					
 					$page['title'] 			= $record['name'];
 					$page['description'] 	= summary( strip_tags($record['summary']), 158 );
@@ -114,6 +118,8 @@
 						
 					$record 	= mysql_fetch_assoc( mysql_query("SELECT `id`, `name`, `description` FROM `m_photo_galleries` WHERE `permalink` = '".$request[1]."' LIMIT 1") );
 					$default 	= mysql_fetch_assoc( mysql_query("SELECT `filename` FROM `m_photo_photos` WHERE `gallery` = '".$record['id']."' ORDER BY `order` ASC LIMIT 1") );
+									
+					add_to_admin_bar( 'Edit Gallery', '/admin/?a=37&act=edit&i='.$record['id'] );
 					
 					$page['title'] 			= $record['name'];
 					$page['description'] 	= summary( strip_tags( $record['description'] ), 158 );

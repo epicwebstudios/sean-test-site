@@ -1,3 +1,18 @@
+function add_to_admin_bar( button_text, link ){
+	
+	var output = '';
+	
+	output += '<a href="' + link + '" target="_blank" class="button">';
+		output += button_text;
+	output += '</a>';
+	
+	$( '#admin_bar' ).append( output );
+	
+	return;
+	
+}
+
+
 function size_footer(){
 	var height = $( '.footer' ).outerHeight();
 	$( '.site_container' ).css( 'padding-bottom', height );

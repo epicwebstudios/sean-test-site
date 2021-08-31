@@ -1239,8 +1239,70 @@
 			return $needle !== '' && mb_strpos($haystack, $needle) !== false;
 		}
 	}
+
+
+	function is_admin(){
+		
+		$user = $_COOKIE['admin_user'];
+		$pass = $_COOKIE['admin_pass'];
+		
+		if( !$user || !$pass ){
+			return false;
+		}
+		
+		$check = mysql_num_rows( mysql_query( "SELECT `id` FROM `administrators` WHERE `id` = '".$user."' AND `password` = '".$pass."' LIMIT 1" ) );
+		
+		if( $check <= 0 ){
+			return false;
+		}
+		
+		return true;
+		
+	}
+
+
+	function admin_bar(){
+		
+		global $admin_bar;
+		
+		if( !is_admin() ){ return false; }
+		
+		$output .= '<div id="admin_bar" class="ca">';
+		
+			$output .= '<div class="r">';
+				$output .= '<a href="#" class="button" title="Hide Admin Bar" onclick="$(\'#admin_bar\').hide(); return false;">Hide</a>';
+			$output .= '</div>';
+		
+			$output .= '<a href="/admin/" target="_blank" title="Go to Administrative Control Panel" class="logo">';
+				$output .= '<img src="/admin/images/ep-icon.png">';
+			$output .= '</a>';
+		
+			foreach( $admin_bar as $btn ){
+				$output .= '<a href="'.$btn['link'].'" target="_blank" class="button">';
+					$output .= $btn['button_text'];
+				$output .= '</a>';
+			}
+		
+		$output .= '</div>';
+		
+		echo $output;
+		
+	}
+
+
+	function add_to_admin_bar( $button_text, $link ){
+		
+		global $admin_bar;
+		
+		$admin_bar[] = array(
+			'button_text' => $button_text,
+			'link' => $link
+		);
+		
+	}
 	
 
+	$admin_bar	= array();
 	$settings 	= siteSettings();
 	$system 	= systemInfo();
 	
