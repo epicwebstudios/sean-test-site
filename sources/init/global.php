@@ -1265,12 +1265,18 @@
 		
 		global $admin_bar;
 		
-		if( !is_admin() ){ return false; }
+		if( !is_admin() ){ echo ''; return; }
+
+		$admin_bar_status = !isset($_COOKIE['admin_bar']) || filter_var($_COOKIE['admin_bar'], FILTER_VALIDATE_BOOLEAN);
+
+		$output = '';
+
+		$output .= '<a id="admin_bar_show" href="#" onclick="$(\'#admin_bar\').fadeIn(); $(this).fadeOut(); document.cookie = \'admin_bar=1\'; return false;" style="'.($admin_bar_status?'display:none;':'').'">&#9660;</a>';
+
+		$output .= '<div id="admin_bar" class="ca" style="'.(!$admin_bar_status?'display:none;':'').'">';
 		
-		$output .= '<div id="admin_bar" class="ca">';
-		
-			$output .= '<div class="r">';
-				$output .= '<a href="#" class="button" title="Hide Admin Bar" onclick="$(\'#admin_bar\').hide(); return false;">Hide</a>';
+			$output .= '<div class="r" style="line-height:1;">';
+				$output .= '<a href="#" class="admin-bar-hide" title="Hide Admin Bar" onclick="$(\'#admin_bar\').fadeOut(); $(\'#admin_bar_show\').fadeIn(); document.cookie = \'admin_bar=0\'; return false;">&times;</a>';
 			$output .= '</div>';
 		
 			$output .= '<a href="/admin/" target="_blank" title="Go to Administrative Control Panel" class="logo">';
@@ -1284,6 +1290,20 @@
 			}
 		
 		$output .= '</div>';
+
+		$output .= '
+			<script>
+				jQuery_defer(function() {
+					$(window).on("scroll", function() {$("#admin_bar").fadeOut(); $("#admin_bar_show").fadeIn();});
+				});
+			</script>
+			<style>
+				#admin_bar{position:fixed;z-index:99999;width:100%;}
+				#admin_bar .admin-bar-hide{color:white;text-decoration:none;font-size:21px;font-weight:600;line-height:1;}
+				#admin_bar .admin-bar-hide:focus{outline:0;}
+				#admin_bar_show{position:fixed;right:0;top:0;color:white;line-height:1;text-decoration:none;background-color:#2369A3;z-index:99999;padding:0.5em;text-align:center;}
+				#admin_bar_show:focus{outline:0;}
+			</style>';
 		
 		echo $output;
 		

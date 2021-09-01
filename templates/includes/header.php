@@ -1,6 +1,6 @@
+<? admin_bar(); ?>
 <? notification_popups(); ?>
 <? notification_banners(); ?>
-<? admin_bar(); ?>
 <div class="header">
     <div class="wrapper">
         <div><? horizontal_menu( 1 ); ?></div>
