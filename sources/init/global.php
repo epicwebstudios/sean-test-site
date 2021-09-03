@@ -1267,42 +1267,72 @@
 		
 		if( !is_admin() ){ echo ''; return; }
 
-		$admin_bar_status = !isset($_COOKIE['admin_bar']) || filter_var($_COOKIE['admin_bar'], FILTER_VALIDATE_BOOLEAN);
+		$admin_bar_status   = !isset($_COOKIE['admin_bar']) || filter_var($_COOKIE['admin_bar'], FILTER_VALIDATE_BOOLEAN);
+		$admin_bar_class    = !$admin_bar_status ? 'closed' : '';
 
 		$output = '';
 
-		$output .= '<a id="admin_bar_show" href="#" onclick="$(\'#admin_bar\').fadeIn(); $(this).fadeOut(); document.cookie = \'admin_bar=1\'; return false;" style="'.($admin_bar_status?'display:none;':'').'">&#9660;</a>';
+		$output .= '<div id="admin_bar" class="admin-bar '.$admin_bar_class.'">';
 
-		$output .= '<div id="admin_bar" class="ca" style="'.(!$admin_bar_status?'display:none;':'').'">';
+			$output .= '<div class="admin-bar-left">';
 		
-			$output .= '<div class="r" style="line-height:1;">';
-				$output .= '<a href="#" class="admin-bar-hide" title="Hide Admin Bar" onclick="$(\'#admin_bar\').fadeOut(); $(\'#admin_bar_show\').fadeIn(); document.cookie = \'admin_bar=0\'; return false;">&times;</a>';
-			$output .= '</div>';
-		
-			$output .= '<a href="/admin/" target="_blank" title="Go to Administrative Control Panel" class="logo">';
-				$output .= '<img src="/admin/images/ep-icon.png">';
-			$output .= '</a>';
-		
-			foreach( $admin_bar as $btn ){
-				$output .= '<a href="'.$btn['link'].'" target="_blank" class="button">';
-					$output .= $btn['button_text'];
+				$output .= '<a href="/admin/" target="_blank" title="Go to Administrative Control Panel" class="logo">';
+					$output .= '<img src="/admin/images/ep-icon.png">';
 				$output .= '</a>';
-			}
-		
+
+				$output .= '<div class="admin-bar-items">';
+
+					foreach( $admin_bar as $btn ){
+						$output .= '<a href="'.$btn['link'].'" target="_blank" class="button admin-bar-item">';
+							$output .= $btn['button_text'];
+						$output .= '</a>';
+					}
+
+				$output .= '</div>';
+
+			$output .= '</div>';
+
+			$output .= '<div class="admin-bar-right">';
+
+				$output .= '<div class="admin-bar-show-hide">';
+					$output .= '<div class="admin-bar-icon admin-bar-icon-close" title="Hide Admin Bar">&times;</div>';
+					$output .= '<div class="admin-bar-icon admin-bar-icon-open" title="Show Admin Bar">&#9656;</div>';
+				$output .= '</div>';
+
+			$output .= '</div>';
+
 		$output .= '</div>';
 
 		$output .= '
 			<script>
 				jQuery_defer(function() {
-					$(window).on("scroll", function() {$("#admin_bar").fadeOut(); $("#admin_bar_show").fadeIn();});
+				    $(".admin-bar-show-hide").on("click", function() {
+				        const $admin_bar = $(".admin-bar .admin-bar-items").parents(".admin-bar");
+				        
+				        if ($admin_bar.hasClass("closed")) {
+				            $admin_bar.removeClass("closed");
+				            document.cookie = "admin_bar=1";
+				        } else {
+				            $admin_bar.addClass("closed");
+				            document.cookie = "admin_bar=0";
+				        }
+				    });
 				});
 			</script>
 			<style>
-				#admin_bar{position:fixed;z-index:99999;width:100%;}
-				#admin_bar .admin-bar-hide{color:white;text-decoration:none;font-size:21px;font-weight:600;line-height:1;}
-				#admin_bar .admin-bar-hide:focus{outline:0;}
-				#admin_bar_show{position:fixed;right:0;top:0;color:white;line-height:1;text-decoration:none;background-color:#2369A3;z-index:99999;padding:0.5em;text-align:center;}
-				#admin_bar_show:focus{outline:0;}
+				.admin-bar{display:flex;align-items:center;position:fixed;z-index:99999;width:100%;padding:0 !important;transition:all 0.2s;}
+				.admin-bar.closed{width:auto;opacity:0.8;}
+				.admin-bar.closed:hover{opacity:1;}
+				.admin-bar.closed .admin-bar-items{width:0;overflow:hidden;}
+				.admin-bar.closed .admin-bar-items .admin-bar-item{padding:0;margin:0;overflow:hidden;display:none !important;}
+				.admin-bar.closed .admin-bar-show-hide .admin-bar-icon-close{display:none;}
+				.admin-bar.closed .admin-bar-show-hide .admin-bar-icon-open{display:block;}
+				.admin-bar .logo{margin:0 !important;}
+				.admin-bar .admin-bar-left{width:calc(100% - 30px);}
+				.admin-bar .admin-bar-right{text-align:center;width:30px;}
+				.admin-bar .admin-bar-items{display:inline-block;}
+				.admin-bar .admin-bar-show-hide{color:white;text-decoration:none;font-size:21px;font-weight:600;line-height:1;width:100%;cursor:pointer;}
+				.admin-bar .admin-bar-show-hide .admin-bar-icon-open{display:none;}
 			</style>';
 		
 		echo $output;
