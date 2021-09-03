@@ -35,6 +35,18 @@
 		$file 		= basename( $file );
 		if( file_exists($base_file) ){ $modified = filemtime( $base_file ); }
 		$cache_file = $cache_path.'/'.$modified.'.'.$mode.'.'.$width.'.'.$height.'.'.$file;
+		$extension	= explode( '.', $file );
+		$extension	= strtolower( end( $file ) );
+
+
+	// Check for SVG...
+		if( file_exists($base_file) ){
+			if( ($extension == 'svg') || (mime_content_type($base_file) == 'image/svg+xml') ){
+				header( 'Content-type: image/svg+xml' );
+				echo file_get_contents( $base_file );
+				die();
+			}
+		}
 		
 	
 	// Clear width/height if set to auto...	

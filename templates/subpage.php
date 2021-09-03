@@ -12,7 +12,6 @@
             <!-- Page Content -->
             <div class="page page_<? echo $page['id']; ?>">
                 <? require_once BASE_DIR.'/modules/banner/module.php'; ?>
-				
                 <? parsePage( $page['content'] ); ?>
             </div>
             
