@@ -1318,22 +1318,7 @@
 				        }
 				    });
 				});
-			</script>
-			<style>
-				.admin-bar{display:flex;align-items:center;position:fixed;z-index:99999;width:100%;padding:0 !important;transition:all 0.2s;}
-				.admin-bar.closed{width:auto;opacity:0.8;}
-				.admin-bar.closed:hover{opacity:1;}
-				.admin-bar.closed .admin-bar-items{width:0;overflow:hidden;}
-				.admin-bar.closed .admin-bar-items .admin-bar-item{padding:0;margin:0;overflow:hidden;display:none !important;}
-				.admin-bar.closed .admin-bar-show-hide .admin-bar-icon-close{display:none;}
-				.admin-bar.closed .admin-bar-show-hide .admin-bar-icon-open{display:block;}
-				.admin-bar .logo{margin:0 !important;}
-				.admin-bar .admin-bar-left{width:calc(100% - 30px);}
-				.admin-bar .admin-bar-right{text-align:center;width:30px;}
-				.admin-bar .admin-bar-items{display:inline-block;}
-				.admin-bar .admin-bar-show-hide{color:white;text-decoration:none;font-size:21px;font-weight:600;line-height:1;width:100%;cursor:pointer;}
-				.admin-bar .admin-bar-show-hide .admin-bar-icon-open{display:none;}
-			</style>';
+			</script>';
 		
 		echo $output;
 		

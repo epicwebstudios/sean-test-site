@@ -1120,7 +1120,7 @@ CREATE TABLE `stylesheets` (
 INSERT INTO `stylesheets` (`id`, `url`, `limit`, `editor`, `order`, `status`) VALUES
 (1, '//css.ewsapi.com/icons/icons.min.css', '1', 1, 1, 1),
 (2, '//css.ewsapi.com/reset/reset.min.css', '1', 1, 2, 1),
-(3, '//css.ewsapi.com/global/global.v3.css', '1', 1, 3, 1),
+(3, '//css.ewsapi.com/global/global.v4.css', '1', 1, 3, 1),
 (4, 'default.modules.css', '1', 0, 4, 1),
 (5, 'stylesheet.css', '1', 1, 5, 1),
 (6, 'responsive.css', '1', 0, 6, 1);
