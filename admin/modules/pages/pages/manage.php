@@ -107,7 +107,7 @@
             <tr>
                 <td class="left">Banner Media Type:</td>
                 <td class="right">
-                    <? field_select( 'banner_type', array(0 => 'Image', 1 => 'Video',), $info['banner_type'] ); ?>
+                    <? field_select( 'banner_type', array(2 => 'None', 0 => 'Image', 1 => 'Video'), $info['banner_type'] ); ?>
                 </td>
             </tr>
             <tr class="banner-type-setting banner-type-setting-0">
