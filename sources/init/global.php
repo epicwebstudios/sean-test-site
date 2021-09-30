@@ -1265,25 +1265,60 @@
 		
 		global $admin_bar;
 		
-		if( !is_admin() ){ return false; }
+		if( !is_admin() ){ echo ''; return; }
+
+		$admin_bar_status   = !isset($_COOKIE['admin_bar']) || filter_var($_COOKIE['admin_bar'], FILTER_VALIDATE_BOOLEAN);
+		$admin_bar_class    = !$admin_bar_status ? 'closed' : '';
+
+		$output = '';
+
+		$output .= '<div id="admin_bar" class="admin-bar '.$admin_bar_class.'">';
+
+			$output .= '<div class="admin-bar-left">';
 		
-		$output .= '<div id="admin_bar" class="ca">';
-		
-			$output .= '<div class="r">';
-				$output .= '<a href="#" class="button" title="Hide Admin Bar" onclick="$(\'#admin_bar\').hide(); return false;">Hide</a>';
-			$output .= '</div>';
-		
-			$output .= '<a href="/admin/" target="_blank" title="Go to Administrative Control Panel" class="logo">';
-				$output .= '<img src="/admin/images/ep-icon.png">';
-			$output .= '</a>';
-		
-			foreach( $admin_bar as $btn ){
-				$output .= '<a href="'.$btn['link'].'" target="_blank" class="button">';
-					$output .= $btn['button_text'];
+				$output .= '<a href="/admin/" target="_blank" title="Go to Administrative Control Panel" class="logo">';
+					$output .= '<img src="/admin/images/ep-icon.png">';
 				$output .= '</a>';
-			}
-		
+
+				$output .= '<div class="admin-bar-items">';
+
+					foreach( $admin_bar as $btn ){
+						$output .= '<a href="'.$btn['link'].'" target="_blank" class="button admin-bar-item">';
+							$output .= $btn['button_text'];
+						$output .= '</a>';
+					}
+
+				$output .= '</div>';
+
+			$output .= '</div>';
+
+			$output .= '<div class="admin-bar-right">';
+
+				$output .= '<div class="admin-bar-show-hide">';
+					$output .= '<div class="admin-bar-icon admin-bar-icon-close" title="Hide Admin Bar">&times;</div>';
+					$output .= '<div class="admin-bar-icon admin-bar-icon-open" title="Show Admin Bar">&#9656;</div>';
+				$output .= '</div>';
+
+			$output .= '</div>';
+
 		$output .= '</div>';
+
+		$output .= '
+			<script>
+				jQuery_defer(function() {
+				    $(".admin-bar-show-hide").on("click", function() {
+				        const $admin_bar = $(".admin-bar .admin-bar-items").parents(".admin-bar");
+				        
+				        if ($admin_bar.hasClass("closed")) {
+				            $admin_bar.removeClass("closed");
+				            document.cookie = "admin_bar=1";
+				        } else {
+				            $admin_bar.addClass("closed");
+				            document.cookie = "admin_bar=0";
+				        }
+				    });
+				});
+			</script>';
 		
 		echo $output;
 		
