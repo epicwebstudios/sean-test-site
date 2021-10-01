@@ -37,5 +37,7 @@
 		<? endif; ?>
 	<? endif; ?>
 
-	<div class="banner-overlay"></div>
+    <? if ($banner_overlay) : ?>
+        <div class="banner-overlay"></div>
+    <? endif; ?>
 </div>

@@ -7,6 +7,7 @@
 		$banner_supertitle  = $page['banner_supertitle'];
         $banner_subtitle    = $page['banner_subtitle'];
         $banner_type        = $page['banner_type'];
+		$banner_overlay     = $page['banner_overlay'];
         $banner_image       = null;
         $banner_video_html  = null;
         $banner_video_image = null;

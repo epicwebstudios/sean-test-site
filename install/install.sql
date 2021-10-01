@@ -865,6 +865,7 @@ CREATE TABLE `pages` (
   `og_image` varchar(150) NOT NULL,
   `banner` int(1) NOT NULL,
   `banner_type` int(1) NOT NULL,
+  `banner_overlay` int(1) NOT NULL,
   `banner_image` varchar(255) NOT NULL,
   `banner_title` varchar(255) NOT NULL,
   `banner_supertitle` varchar(255) NOT NULL,
@@ -1095,7 +1096,7 @@ INSERT INTO `shortcodes` (`id`, `name`, `type`, `table`, `id_col`, `name_col`, `
 (12, 'Resources Module (Grid)', 1, 'm_resource_categories', 'id', 'name', 'resources-module-grid', '#? $_GET[\'resources_display_type\'] = \'grid\'; $_GET[\'resources_category_id\'] = \"', '\"; require BASE_DIR.\"/modules/resources/module.php\"; ?#', '', 1),
 (13, 'FAQ Module', 1, 'm_faq_categories', 'id', 'name', 'faq-module', '#? $_GET[\'faq_category_id\'] = \'', '\'; require BASE_DIR.\"/modules/faq/module.php\"; ?#', '', 1),
 (14, 'CTA Module', 1, 'm_cta_categories', 'id', 'name', 'cta-module', '#? $cta_category_id = \'', '\'; require BASE_DIR . \'/modules/cta/module.php\' ?#', '', 1),
-(15, 'CTA Module (Single)', 1, 'm_cta', 'id', 'name', 'cta-module-single', '#? $cta_id = \'', '\'; require BASE_DIR.\"/modules/cta/module.php\"; ?#', '', 1),
+(15, 'CTA Module (Single)', 1, 'm_cta', 'id', 'name', 'cta-module-single', '#? $cta_view = \'single\'; $cta_id = \'', '\'; require BASE_DIR.\"/modules/cta/module.php\"; ?#', '', 1),
 (16, 'Social Module', 2, '', '', '', 'social-module', '', '', '#? require BASE_DIR . \'/modules/social/module.php\' ?#', 1);
 
 -- --------------------------------------------------------
