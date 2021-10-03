@@ -15,8 +15,6 @@
 
         <link rel="canonical" href="<? echo $page['canonical']; ?>" />
 
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
 		<?	
 			ico_settings();
 			load_stylesheets();

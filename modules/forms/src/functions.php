@@ -12,6 +12,9 @@
 		}
 	
 		$form = mysql_fetch_assoc( mysql_query( "SELECT * FROM `m_forms` WHERE `id` = '".$form_id."' LIMIT 1" ) );
+
+		if ($form['recaptcha'])
+			require_once __DIR__.'/recaptcha.html';
 		
 		if( ($form['id']) && ($form['status'] == '1') ){
 			
