@@ -65,6 +65,8 @@
 			
 		mysql_query( "UPDATE `".$database[0]."` ".$set." WHERE `id` = '".$id."' LIMIT 1" );
 		echo mysql_error();
+
+		update_robots();
 			
 		log_action( 'Edited '.$item );
 		log_message( $item_capital.' has been edited successfully.', 'success', $item_capital.' Edited' );

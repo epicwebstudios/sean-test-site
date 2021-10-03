@@ -36,7 +36,7 @@
 			<tr>
 				<td class="left">Filename:</td>
 				<td class="right">
-                	<? field_text( 'url', $info['url'] ); ?>
+                	<? field_text( 'url', $info['url'], 'font-family:monospace;' ); ?>
                     <div>If the JavaScript file is on an external server, the filename must start with <b>http://</b> or <b>//</b>, otherwise the file must be located in <b>/sources/js/</b></div>
                 </td>
 			</tr>

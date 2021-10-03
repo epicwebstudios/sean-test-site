@@ -13,6 +13,9 @@
 				'url'		=> $_POST['url'],
 				'limit'		=> $_POST['limit'],
 				'editor'	=> $_POST['editor'],
+				'inline'	=> $_POST['inline'],
+				'before'	=> $_POST['before'],
+				'position'	=> $_POST['position'],
 				'status'	=> $_POST['status'],
 			);
 		

@@ -1110,6 +1110,9 @@ CREATE TABLE `stylesheets` (
   `url` text NOT NULL,
   `limit` text NOT NULL,
   `editor` int(1) NOT NULL,
+  `inline` tinyint(1) NOT NULL DEFAULT 1,
+  `before` text NOT NULL,
+  `position` int(1) NOT NULL,
   `order` int(255) NOT NULL,
   `status` int(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;

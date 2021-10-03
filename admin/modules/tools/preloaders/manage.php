@@ -36,7 +36,7 @@
 			<tr>
 				<td class="left">Filename:</td>
 				<td class="right">
-                	<? field_text( 'filename', $info['filename'] ); ?>
+                	<? field_text( 'filename', $info['filename'], 'font-family:monospace;' ); ?>
                     <div>This is the path to the file from the base CMS directory.</div>
                 </td>
 			</tr>

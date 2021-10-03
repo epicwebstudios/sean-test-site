@@ -59,7 +59,7 @@
 			<tr>
 				<td class="left">Page URL:</td>
 				<td class="right">
-					<span class="black"><b><? mainURL(1); ?></b></span><? field_text( 'link', $info['link'], "margin-top: -3px; width: 200px;" ); ?>
+					<span class="black"><b><? mainURL(1); ?></b></span><? field_text( 'link', $info['link'], "margin-top: -3px; width: 218px;" ); ?>
                     <? /* <input type="text" name="link" value="<? echo $info['link']; ?>" style="margin-top: -3px; width: 200px;"/> */ ?>
 					<div>This corresponds to the link where the page is accessed.</div>
 				</td>
@@ -293,7 +293,7 @@
 			<tr>
 				<td class="left">Canonical URL:</td>
 				<td class="right">
-                	<? field_text( 'canonical', $info['canonical'] ); ?>
+                    <span class="black"><b><? mainURL(1); ?></b></span><? field_text( 'canonical', $info['canonical'], "margin-top: -3px; width: 218px;" ); ?>
 					<div>If this page duplicates the content of another page or website, enter the original URL here. Otherwise, leave blank.</div>
                 </td>
 			</tr>

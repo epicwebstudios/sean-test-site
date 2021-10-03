@@ -460,91 +460,83 @@
 	
 	
 	// This function will load the stylesheets into the main wrapper
-	function load_stylesheets(){
+	function load_stylesheets($position = 0){
 		
 		$settings = siteSettings( '`ps_minify_css`' );
-		
-		$sources = '';
-		
-		$query = mysql_query( "SELECT `url`, `limit` FROM `stylesheets` WHERE `status` = '1' ORDER BY `order` ASC" );
-		
-		$content = '';
-		
-		if( $settings['ps_minify_css'] == '1' ){
-			
-			$content = '';
-		
-			while( $info = mysql_fetch_assoc($query) ){
-				
-				if( 
-					( substr($info['url'], 0, 4) == 'http' ) || 
-					( substr($info['url'], 0, 2) == '//' )
-				){
-					if( substr($info['url'], 0, 2) == '//' ){
-						$url = 'http:'.$info['url'];
-					} else {
-						$url = $info['url'];
-					}
-				} else {
-					$url = BASE_DIR.'/sources/css/'.$info['url'];
-				}
-				
-				$content .= '/* '.$url.' */' . "\n" . minify_css( file_get_contents( $url ) );
-				
+
+		$stylesheets    = array();
+		$sources        = '';
+
+		$stmt   = "SELECT `id`, `url`, `limit`, `inline`, `before`, `position` FROM `stylesheets` WHERE `status` = '1' AND `position` = '$position' ORDER BY `order` ASC";
+		$query  = mysql_query($stmt);
+
+		while ($r = mysql_fetch_assoc($query))
+			$stylesheets[$r['id']] = $r;
+
+		foreach ($stylesheets as $stylesheet) {
+
+			// if external url
+			if (str_starts_with($stylesheet['url'], 'http') || str_starts_with($stylesheet['url'], '//')) {
+
+				if (str_starts_with($stylesheet['url'], '//'))
+					$url = 'http:'.$stylesheet['url'];
+				else
+					$url = $stylesheet['url'];
+			} else {
+
+				if ($settings['ps_minify_css'])
+					$url = BASE_DIR.'/sources/css/'.$stylesheet['url'];
+				else
+					$url = returnURL().'/sources/css/'.$stylesheet['url'];
 			}
-			
-			$content = str_replace( '@font-face{', '@font-face{font-display:auto;', $content );
-		
-			$sources = '<style>'.$content.'</style>';
-		
-		} else {
-		
-			while( $info = mysql_fetch_assoc($query) ){
-			
-				if( $info['limit'] != 1 ){
-					
-					$limit = load_stylesheet_limit( $info['limit'] );
-					
-					$sources .= '<!--'.$limit['value'].'>' . "\n";
-					
-					if( $info['limit'] == 3 ){
-						$sources .= '<!-->' . "\n";
-					}
+
+			// preceding HTML
+			if ($stylesheet['before'])
+				$sources .= $stylesheet['before']."\n";
+
+			// if minifying
+			if ($settings['ps_minify_css'] && $stylesheet['inline']) {
+
+				$content = '';
+
+				$content .= '<style>';
+				$content .= '/* '.$url.' */'.minify_css(file_get_contents($url));
+
+				$content = str_replace('@font-face{', '@font-face{font-display:auto;', $content);
+				$content .= '</style>'."\n";
+
+				$sources .= $content;
+			} else {
+
+				if ($stylesheet['limit'] != 1) {
+
+					$limit = load_stylesheet_limit($stylesheet['limit']);
+
+					$sources .= '<!--'.$limit['value'].'>'."\n";
+
+					if ($stylesheet['limit'] == 3)
+						$sources .= '<!-->'."\n";
 				}
-				
-				if( 
-					( substr($info['url'], 0, 4) == 'http' ) || 
-					( substr($info['url'], 0, 2) == '//' )
-				){
-					$url = $info['url'];
-				} else {
-					$url = returnURL().'/sources/css/'.$info['url'];
-				}
-				
+
 				$url .= '?'.cache_refresh();
-				
+
 				$sources .= '<link';
-					$sources .= ' type="text/css"';
-					$sources .= ' rel="stylesheet"';
-					$sources .= ' href="'.$url.'"';
-				$sources .= ' />' . "\n";
-				
-				if( $info['limit'] != 1 ){
-					
-					if( $info['limit'] == 3 ){
-						$sources .= '<!-->' . "\n";
-					}
-					
-					$sources .= '<![endif]-->' . "\n";
-					
+				$sources .= ' type="text/css"';
+				$sources .= ' rel="stylesheet"';
+				$sources .= ' href="'.$url.'"';
+				$sources .= ' />'."\n";
+
+				if ($stylesheet['limit'] != 1) {
+
+					if ($stylesheet['limit'] == 3)
+						$sources .= '<!-->'."\n";
+
+					$sources .= '<![endif]-->'."\n";
 				}
-			
 			}
-			
 		}
-		
+
 		echo $sources;
-		
 	}
 	
 	
@@ -1334,6 +1326,24 @@
 			'link' => $link
 		);
 		
+	}
+
+	function get_robots() {
+
+		global $settings, $page;
+
+		if( $settings['allow_index'] == '0' && !array_str_contains(explode(',', $settings['user_agents']), $_SERVER['HTTP_USER_AGENT']) ){
+			$robots = 'noindex';
+			http_response_code( 404 );
+		} else {
+			if( ($page['status'] == '2') || ($page['status'] == '3') ){
+				$robots = 'noindex,nofollow';
+			} else {
+				$robots = 'index,follow';
+			}
+		}
+
+		return $robots;
 	}
 	
 
