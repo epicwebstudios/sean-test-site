@@ -6,6 +6,16 @@
             page_body_close();
         ?>
 
+        <? if ($settings['sticky_nav']) : ?>
+            <script>
+                if (typeof sticky_nav !== 'undefined' && typeof sticky_nav === 'function') {
+                    $(document).ready(function () {
+                        sticky_nav('.header');
+                    });
+                }
+            </script>
+        <? endif; ?>
+
 	</body>
 
 </html>

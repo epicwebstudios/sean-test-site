@@ -34,6 +34,7 @@
 				'file_browser'			=> $_POST['file_browser'],
 				'banner_image'          => process_file( 'banner_image', '/layout/banner/' ),
 				'user_agents'			=> $_POST['user_agents'],
+				'sticky_nav'			=> $_POST['sticky_nav'],
 			);
 
 

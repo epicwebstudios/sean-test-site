@@ -265,9 +265,10 @@ CREATE TABLE `javascript` (
 INSERT INTO `javascript` (`id`, `url`, `status`, `order`) VALUES
 (1, '//js.ewsapi.com/lightbox/lightbox.min.js', 1, 2),
 (2, '//js.ewsapi.com/jquery/jquery-1.10.2.min.js', 1, 1),
-(4, 'functions.js', 1, 4),
 (3, '//js.ewsapi.com/mediaqueries/ie.mediaqueries.min.js', 1, 3),
-(5, 'lazy.js', 1, 4);
+(4, 'functions.js', 1, 4),
+(5, 'lazy.js', 1, 5),
+(6, 'sticky_nav.js', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -1047,15 +1048,45 @@ CREATE TABLE `settings` (
   `ps_minify_js` int(1) NOT NULL,
   `allow_index` int(1) NOT NULL,
   `file_browser` longtext NOT NULL,
-  `banner_image` varchar(255) NOT NULL
+  `banner_image` varchar(255) NOT NULL,
+  `user_agents` varchar(255) NOT NULL,
+  `sticky_nav` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `url`, `name`, `title`, `cleanURLs`, `description`, `favicon`, `theme_color`, `image`, `email`, `offline`, `offline_msg`, `allow_exec`, `php_path`, `viewport`, `max_login_attempts`, `revision_limit`, `head`, `foot`, `body_open`, `body_close`, `ps_minify_css`, `ps_minify_js`, `allow_index`, `file_browser`) VALUES
-(1, '', '', '', 1, '', '', '', '', 'no-reply@yourdomain.com', 0, 'Our website is currently undergoing routine maintenance. Please check back soon.', 0, '', '{\"width\":\"device-width\",\"height\":\"\",\"initial_scale\":\"1.0\",\"min_scale\":\"1.0\",\"max_scale\":\"3.0\",\"scalable\":\"yes\"}', 5, 100, '', '', '', '', 1, 1, 0, '{\"display_type\":\"grid\",\"image_types\":\"jpg, jpeg, png, gif, webm, svg, bmp, tiff\",\"media_types\":\"mp4, mov, mpeg, mpg, m4v, avi, wma, flv, webm\",\"file_types\":\"doc, docx, rtf, pdf, xls, xlsx, txt, csv, xml, ppt, pptx, psd, ai, zip\",\"allow_folder_creation\":\"1\",\"allow_file_upload\":\"1\",\"allow_rename\":\"1\",\"allow_delete\":\"1\",\"allow_overwrite\":\"1\"}');
+INSERT INTO `settings`
+SET
+	`id` = 1,
+    `url` = '',
+    `name` = '',
+    `title` = '',
+    `cleanURLs` = 1,
+    `description` = '',
+    `favicon` = '',
+    `theme_color` = '',
+    `image` = '',
+    `email` = 'no-reply@yourdomain.com',
+    `offline` = 0,
+    `offline_msg` = 'Our website is currently undergoing routine maintenance. Please check back soon.',
+    `allow_exec` = 0,
+    `php_path` = '',
+    `viewport` = '{\"width\":\"device-width\",\"height\":\"\",\"initial_scale\":\"1.0\",\"min_scale\":\"1.0\",\"max_scale\":\"3.0\",\"scalable\":\"yes\"}',
+    `max_login_attempts` = 5,
+    `revision_limit` = 100,
+    `head` = '',
+    `foot` = '',
+    `body_open` = '',
+    `body_close` = '',
+    `ps_minify_css` = 1,
+    `ps_minify_js` = 1,
+    `allow_index` = 0,
+    `file_browser` = '{\"display_type\":\"grid\",\"image_types\":\"jpg, jpeg, png, gif, webm, svg, bmp, tiff\",\"media_types\":\"mp4, mov, mpeg, mpg, m4v, avi, wma, flv, webm\",\"file_types\":\"doc, docx, rtf, pdf, xls, xlsx, txt, csv, xml, ppt, pptx, psd, ai, zip\",\"allow_folder_creation\":\"1\",\"allow_file_upload\":\"1\",\"allow_rename\":\"1\",\"allow_delete\":\"1\",\"allow_overwrite\":\"1\"}',
+    `banner_image` = '',
+    `user_agents` = 'W3C_Validator,Validator.nu',
+    `sticky_nav` = 0;
 
 -- --------------------------------------------------------
 

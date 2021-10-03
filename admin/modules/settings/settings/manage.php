@@ -118,18 +118,6 @@
                     <div>This is the e-mail address that all of your contact form submissions will be sent from.</div>
                 </td>
 			</tr>
-            <tr>
-                <td class="left">Default Banner Image:</td>
-                <td class="right">
-                    <? field_image( 'banner_image', $info['banner_image'], '/layout/banner/' ); ?>
-                    <table>
-                        <tr><td colspan="2"><b>Recommended Dimensions</b></td></tr>
-                        <? foreach ($banner_image_rec as $key => $dim) : ?>
-                            <tr><td><?= $key ?>:</td><td><?= $dim ?></td></tr>
-                        <? endforeach; ?>
-                    </table>
-                </td>
-            </tr>
 		</tbody>
 	</table>
     
@@ -216,6 +204,24 @@
 			</tr>
 		</thead>
 		<tbody>
+            <tr>
+                <td class="left">Default Banner Image:</td>
+                <td class="right">
+                    <? field_image( 'banner_image', $info['banner_image'], '/layout/banner/' ); ?>
+                    <table>
+                        <tr><td colspan="2"><b>Recommended Dimensions</b></td></tr>
+                        <? foreach ($banner_image_rec as $key => $dim) : ?>
+                            <tr><td><?= $key ?>:</td><td><?= $dim ?></td></tr>
+                        <? endforeach; ?>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="left">Sticky Navigation:</td>
+                <td class="right">
+                    <? field_select( 'sticky_nav', array(0 => 'Disabled', 1 => 'Enabled'), $info['sticky_nav'] ); ?>
+                </td>
+            </tr>
 			<tr>
 				<td class="left">&lt;head&gt; Tags:</td>
 				<td class="right">
