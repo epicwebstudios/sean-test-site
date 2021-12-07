@@ -11,6 +11,7 @@
         $banner_image       = null;
         $banner_video_html  = null;
         $banner_video_image = null;
+		$lazy               = $settings['banner_lazy'];
 
         if ($banner_type == 0) {
 

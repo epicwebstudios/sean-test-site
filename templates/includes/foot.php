@@ -6,7 +6,7 @@
             page_body_close();
         ?>
 
-        <? if ($settings['sticky_nav']) : ?>
+        <? if ($settings['sticky_header']) : ?>
             <script>
                 if (typeof sticky_nav !== 'undefined' && typeof sticky_nav === 'function') {
                     $(document).ready(function () {

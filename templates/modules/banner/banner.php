@@ -22,7 +22,14 @@
 	</div>
 
 	<? if ($banner_type == 0) : ?>
-		<div class="banner-image lazy" data-src="<?= $banner_image ?>"></div>
+		<div
+            class="banner-image <?= $lazy ? 'lazy' : '' ?>"
+            <? if ($lazy) : ?>
+            data-src="<?= $banner_image ?>"
+            <? else : ?>
+            style="background-image:url(<?= $banner_image ?>);"
+            <? endif; ?>
+        ></div>
 	<? endif; ?>
 
 	<? if ($banner_type == 1) : ?>

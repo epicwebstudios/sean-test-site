@@ -24,5 +24,6 @@
 			require $this_dir.'/view/list.php';
     }
 
+	unset($cta_view);
 	unset($cta_category_id);
 	unset($cta_id);

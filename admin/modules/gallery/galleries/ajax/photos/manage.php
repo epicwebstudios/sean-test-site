@@ -31,6 +31,15 @@
                     <? field_textarea( 'caption', $info['caption'] ); ?>
                 </td>
             </tr>
+            <tr>
+                <td class="left">Status:</td>
+                <td class="right">
+                    <?
+                        $options = array( 1 => 'Active / Visible', 0 => 'Inactive / Hidden' );
+                        field_select2( 'status', $options, $info['status'] );
+                    ?>
+                </td>
+            </tr>
         </tbody>
     </table>
     

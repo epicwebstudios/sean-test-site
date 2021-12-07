@@ -457,106 +457,180 @@
 		$info = mysql_fetch_assoc( $query );
 		return $info;
 	}
+
+	// Queues a CSS file/url into the global $css array
+	function queue_stylesheet($file_or_array, $prepend = false, $position = 0, $type = 0, $before = null, $limit = 1, $order = 9999) {
+		global $css;
+
+		$sheet = array(
+			'url'       => $file_or_array,
+			'position'  => $position,
+			'type'      => $type,
+			'before'    => $before,
+			'limit'     => $limit,
+			'order'     => $order,
+		);
+
+		if (is_array($file_or_array))
+			$sheet = array_replace($sheet, $file_or_array);
+
+		if (!key_exists($sheet['url'], $css)) {
+			if ($prepend)
+				$css = array($sheet['url'] => $sheet) + $css;
+			else
+				$css[$sheet['url']] = $sheet;
+		}
+	}
 	
 	
 	// This function will load the stylesheets into the main wrapper
 	function load_stylesheets($position = 0){
+		global $css;
 		
 		$settings = siteSettings( '`ps_minify_css`' );
 
-		$stylesheets    = array();
-		$sources        = '';
-
-		$stmt   = "SELECT `id`, `url`, `limit`, `inline`, `before`, `position` FROM `stylesheets` WHERE `status` = '1' AND `position` = '$position' ORDER BY `order` ASC";
+		// queue the css
+		$stmt   = "SELECT `id`, `url`, `limit`, `type`, `before`, `position` FROM `stylesheets` WHERE `status` = '1' AND `position` = '$position' ORDER BY `order` ASC";
 		$query  = mysql_query($stmt);
 
 		while ($r = mysql_fetch_assoc($query))
-			$stylesheets[$r['id']] = $r;
+			queue_stylesheet($r, true);
 
-		foreach ($stylesheets as $stylesheet) {
+		// sort
+		usort($css, function ($item1, $item2) {
+			return $item1['order'] <=> $item2['order'];
+		});
 
-			// if external url
-			if (str_starts_with($stylesheet['url'], 'http') || str_starts_with($stylesheet['url'], '//')) {
+		// print the css
+		$sources = '';
 
-				if (str_starts_with($stylesheet['url'], '//'))
-					$url = 'http:'.$stylesheet['url'];
-				else
-					$url = $stylesheet['url'];
-			} else {
+		foreach ($css as $stylesheet) {
 
-				if ($settings['ps_minify_css'])
-					$url = BASE_DIR.'/sources/css/'.$stylesheet['url'];
-				else
-					$url = returnURL().'/sources/css/'.$stylesheet['url'];
-			}
+			if ($stylesheet['position'] == $position) {
 
-			// preceding HTML
-			if ($stylesheet['before'])
-				$sources .= $stylesheet['before']."\n";
+				// if external url
+				if (str_starts_with($stylesheet['url'], 'http') || str_starts_with($stylesheet['url'], '//')) {
+					$internal   = false;
+					$file       = null;
 
-			// if minifying
-			if ($settings['ps_minify_css'] && $stylesheet['inline']) {
-
-				$content = '';
-
-				$content .= '<style>';
-				$content .= '/* '.$url.' */'.minify_css(file_get_contents($url));
-
-				$content = str_replace('@font-face{', '@font-face{font-display:auto;', $content);
-				$content .= '</style>'."\n";
-
-				$sources .= $content;
-			} else {
-
-				if ($stylesheet['limit'] != 1) {
-
-					$limit = load_stylesheet_limit($stylesheet['limit']);
-
-					$sources .= '<!--'.$limit['value'].'>'."\n";
-
-					if ($stylesheet['limit'] == 3)
-						$sources .= '<!-->'."\n";
+					if (str_starts_with($stylesheet['url'], '//'))
+						$url = 'http:'.$stylesheet['url'];
+					else
+						$url = $stylesheet['url'];
+				} else {
+					$internal   = true;
+					$file       = BASE_DIR.'/sources/css/'.$stylesheet['url'];
+					$url        = returnURL().'/sources/css/'.$stylesheet['url'];
 				}
 
-				$url .= '?'.cache_refresh();
+				// preceding HTML
+				if ($stylesheet['before'])
+					$sources .= $stylesheet['before']."\n";
 
-				$sources .= '<link';
-				$sources .= ' type="text/css"';
-				$sources .= ' rel="stylesheet"';
-				$sources .= ' href="'.$url.'"';
-				$sources .= ' />'."\n";
+				// if minifying
+				if ($stylesheet['type'] == 0) {
 
-				if ($stylesheet['limit'] != 1) {
+					if ($internal)
+						$file_to_load = $file;
+					else
+						$file_to_load = $url;
 
-					if ($stylesheet['limit'] == 3)
-						$sources .= '<!-->'."\n";
+					$content = '';
 
-					$sources .= '<![endif]-->'."\n";
+					$content .= '<style>';
+
+					if ($settings['ps_minify_css'])
+						$content .= '/* '.$url.' */'.minify_css(file_get_contents($file_to_load));
+					else
+						$content .= '/* '.$url.' */'.file_get_contents($file_to_load);
+
+					$content = str_replace('@font-face{', '@font-face{font-display:auto;', $content);
+					$content .= '</style>'."\n";
+
+					$sources .= $content;
+				} else {
+
+					if ($stylesheet['limit'] != 1) {
+
+						$limit = load_stylesheet_limit($stylesheet['limit']);
+
+						$sources .= '<!--'.$limit['value'].'>'."\n";
+
+						if ($stylesheet['limit'] == 3)
+							$sources .= '<!-->'."\n";
+					}
+
+					$url .= '?'.cache_refresh();
+
+					$sources .= '<link';
+					$sources .= ' type="text/css"';
+					$sources .= ' rel="stylesheet"';
+					$sources .= ' href="'.$url.'"';
+					$sources .= ' />'."\n";
+
+					if ($stylesheet['limit'] != 1) {
+
+						if ($stylesheet['limit'] == 3)
+							$sources .= '<!-->'."\n";
+
+						$sources .= '<![endif]-->'."\n";
+					}
 				}
 			}
 		}
 
 		echo $sources;
 	}
-	
+
+	// Queues a JS file/url into the global $js array
+	function queue_javascript($file_or_array, $position = 0, $order = 9999) {
+		global $js;
+
+		$script = array(
+			'url'       => $file_or_array,
+			'position'  => $position,
+			'order'     => $order,
+		);
+
+		if (is_array($file_or_array))
+			$script = array_replace($script, $file_or_array);
+
+		if (!key_exists($script['url'], $js))
+			$js[$script['url']] = $script;
+	}
 	
 	// This function will load the stylesheets into the main wrapper
-	function load_javascript(){
+	function load_javascript($position = 0){
+		global $js;
 		
 		$settings = siteSettings( '`ps_minify_js`' );
-		
-		$query = mysql_query( "SELECT * FROM `javascript` WHERE `status` = '1' ORDER BY `order` ASC" );
-		
+
+		// queue the js
+		$query = mysql_query( "SELECT * FROM `javascript` WHERE `status` = '1' AND `position` = '$position' ORDER BY `order` ASC" );
+
+		while ($r = mysql_fetch_assoc($query))
+			queue_javascript($r, true);
+
+		// sort
+		usort($js, function ($item1, $item2) {
+			return $item1['order'] <=> $item2['order'];
+		});
+
+		// print the scripts
 		$sources = '';
-	
-		while( $info = mysql_fetch_assoc($query) ){
-			if( 
-				( substr($info['url'], 0, 4) == 'http' ) || 
-				( substr($info['url'], 0, 2) == '//' )
-			){
-				$sources .= '<script src="'.$info['url'].'?'.cache_refresh().'"></script>' . "\n";
-			} else {
-				$sources .= '<script src="'.returnURL()."/sources/js/".$info['url'].'?'.cache_refresh().'"></script>' . "\n";
+
+		foreach ($js as $j) {
+
+			if ($j['position'] == $position) {
+
+				if(
+					( substr($j['url'], 0, 4) == 'http' ) ||
+					( substr($j['url'], 0, 2) == '//' )
+				){
+					$sources .= '<script src="'.$j['url'].'?'.cache_refresh().'"></script>' . "\n";
+				} else {
+					$sources .= '<script src="'.returnURL()."/sources/js/".$j['url'].'?'.cache_refresh().'"></script>' . "\n";
+				}
 			}
 		}
 		
@@ -585,14 +659,12 @@
 	
 	
 	// This function will load stylesheets into a comma seperated list for editors
-	function editor_stylesheets(){
+	function editor_stylesheets($wrap = '\''){
 		
 		$list = '';
 		
 		$query = mysql_query( "SELECT * FROM `stylesheets` WHERE `status` = '1' AND `editor` ='1' ORDER BY `order` ASC" );
 		while( $info = mysql_fetch_assoc($query) ){
-			
-			$info['url'] = str_replace( ',', '&#44;', $info['url'] );
 			
 			if( $list != '' ){ $list .= ','; }
 			
@@ -600,9 +672,9 @@
 				( substr($info['url'], 0, 4) == 'http' ) || 
 				( substr($info['url'], 0, 2) == '//' )
 			){
-				$list .= "'".$info['url'].'?'.time()."'";
+				$list .= $wrap.$info['url'].'?'.time().$wrap;
 			} else {
-				$list .= "'".returnURL().'/sources/css/'.$info['url'].'?'.time()."'";
+				$list .= $wrap.returnURL().'/sources/css/'.$info['url'].'?'.time().$wrap;
 			}
 			
 		}
@@ -1264,7 +1336,7 @@
 
 		$output = '';
 
-		$output .= '<div id="admin_bar" class="admin-bar '.$admin_bar_class.'">';
+		$output .= '<div id="admin_bar" class="admin-bar admin-bar-v2 '.$admin_bar_class.'">';
 
 			$output .= '<div class="admin-bar-left">';
 		
@@ -1350,4 +1422,5 @@
 	$admin_bar	= array();
 	$settings 	= siteSettings();
 	$system 	= systemInfo();
-	
+	$js         = array();
+	$css        = array();

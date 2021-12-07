@@ -28,6 +28,7 @@
 		array( 'title' => 'Photo',		'sort' => false,	'width' => 100 ),
 		array( 'title' => 'Filename',	'sort' => false,	'width' => 400 ),
 		array( 'title' => 'Caption',	'sort' => false,	'width' => 0 ),
+		array( 'title' => 'Status', 	'sort' => 'status', 'width' => 125 )
 	);
 	
 	

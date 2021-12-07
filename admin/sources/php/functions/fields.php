@@ -113,6 +113,61 @@
 		echo $output;
 		
 	}
+
+
+	function field_select_multiple( $name, $options, $selected = array(), $style = false, $other = false, $explode = false ){
+
+		if (!is_array($selected)) {
+
+			if ($explode) {
+				$selected = explode($explode, $selected);
+
+				foreach ($selected as $key => $item) {
+					unset($selected[$key]);
+					$selected[$item] = $item;
+				}
+			} else
+				$selected = array($selected => $selected);
+		}
+
+		if ($options && !is_array($options) && $explode) {
+			$options = explode($explode, $options);
+
+			foreach ($options as $key => $item) {
+				unset($options[$key]);
+				$options[$item] = $item;
+			}
+		} elseif (!$options)
+			$options = array();
+
+		$output = '';
+
+		$output .= '<select';
+		$output .= ' name="'.$name.'[]"';
+		$output .= ' id="'.field_id( $name ).'"';
+		if( $style ){ $output .= ' style="'.$style.'"'; }
+		if( $other ){ $output .= ' '.$other; }
+		$output .= ' multiple';
+		$output .= '>';
+
+		if( is_array($options) ){
+			foreach( $options as $key => $value ){
+
+				$output .= '<option';
+				$output .= ' value="'.htmlentities( $key ).'"';
+				if( key_exists($key, $selected)){ $output .= ' selected'; }
+				$output .= '>';
+				$output .= $value;
+				$output .= '</option>';
+
+			}
+		}
+
+		$output .= '</select>';
+
+		echo $output;
+
+	}
 	
 	
 	function field_select2( $name, $options, $selected = false, $style = false, $other = false ){
@@ -123,6 +178,22 @@
 			echo "$( '#".field_id( $name )."' ).select2();";
         echo '</script>';
 		
+	}
+
+
+	function field_select2_multiple( $name, $options, $selected = false, $style = false, $other = false, $explode = false, $params = array() ){
+
+		if ($params)
+			$params = array_replace(array('width' => 330), $params);
+
+		echo '<div>';
+		field_select_multiple( $name, $options, $selected, $style, $other, $explode );
+		echo '</div>';
+
+		echo '<script type="text/javascript">';
+		echo '$( "#'.field_id( $name ).'" ).select2('.json_encode($params).');';
+		echo '</script>';
+
 	}
 	
 	
@@ -749,6 +820,11 @@
 		
 		return $result;
 	
+	}
+
+	// returns imploded value of $_POST array
+	function process_array_implode($name, $separator = ',') {
+		return implode($separator, $_POST[$name]);
 	}
 	
 	

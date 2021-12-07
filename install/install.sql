@@ -254,6 +254,7 @@ CREATE TABLE `file_manager` (
 CREATE TABLE `javascript` (
   `id` int(255) NOT NULL,
   `url` varchar(250) NOT NULL,
+  `position` int(1) NOT NULL DEFAULT 0,
   `status` int(1) NOT NULL,
   `order` int(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -263,12 +264,12 @@ CREATE TABLE `javascript` (
 --
 
 INSERT INTO `javascript` (`id`, `url`, `status`, `order`) VALUES
-(1, '//js.ewsapi.com/lightbox/lightbox.min.js', 1, 2),
-(2, '//js.ewsapi.com/jquery/jquery-1.10.2.min.js', 1, 1),
+(1, '//js.ewsapi.com/jquery/jquery-1.10.2.min.js', 1, 1),
+(2, '//js.ewsapi.com/lightbox/lightbox.min.js', 1, 2),
 (3, '//js.ewsapi.com/mediaqueries/ie.mediaqueries.min.js', 1, 3),
-(4, 'functions.js', 1, 4),
-(5, 'lazy.js', 1, 5),
-(6, 'sticky_nav.js', 1, 6);
+(4, 'lazy.js', 1, 4),
+(6, 'sticky_nav.js', 1, 5),
+(7, 'functions.js', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -689,7 +690,8 @@ CREATE TABLE `m_photo_photos` (
   `gallery` int(255) NOT NULL,
   `filename` varchar(200) NOT NULL,
   `caption` text NOT NULL,
-  `order` int(255) NOT NULL
+  `order` int(255) NOT NULL,
+  `status` int(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1049,8 +1051,11 @@ CREATE TABLE `settings` (
   `allow_index` int(1) NOT NULL,
   `file_browser` longtext NOT NULL,
   `banner_image` varchar(255) NOT NULL,
+  `banner_lazy` tinyint(1) NOT NULL,
   `user_agents` varchar(255) NOT NULL,
-  `sticky_nav` tinyint(1) NOT NULL
+  `sticky_header` tinyint(1) NOT NULL,
+  `logo_header` varchar(255) NOT NULL,
+  `logo_footer` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -1085,8 +1090,8 @@ SET
     `allow_index` = 0,
     `file_browser` = '{\"display_type\":\"grid\",\"image_types\":\"jpg, jpeg, png, gif, webm, svg, bmp, tiff\",\"media_types\":\"mp4, mov, mpeg, mpg, m4v, avi, wma, flv, webm\",\"file_types\":\"doc, docx, rtf, pdf, xls, xlsx, txt, csv, xml, ppt, pptx, psd, ai, zip\",\"allow_folder_creation\":\"1\",\"allow_file_upload\":\"1\",\"allow_rename\":\"1\",\"allow_delete\":\"1\",\"allow_overwrite\":\"1\"}',
     `banner_image` = '',
-    `user_agents` = 'W3C_Validator,Validator.nu',
-    `sticky_nav` = 0;
+    `user_agents` = 'Validator.nu,W3C_Validator,SiteAuditBot,AhrefsBot,rogerbot,Screaming Frog SEO Spider,GTmetrix,90.0.4430.212,PTST,TiggeritoBot,Chrome-Lighthouse',
+    `sticky_header` = 0;
 
 -- --------------------------------------------------------
 
@@ -1116,19 +1121,22 @@ INSERT INTO `shortcodes` (`id`, `name`, `type`, `table`, `id_col`, `name_col`, `
 (1, 'News Module', 1, 'm_news_categories', 'id', 'name', 'news-module', '#? $_GET[\'news_category_id\'] = \'', '\'; require BASE_DIR.\"/modules/news/module.php\"; ?#', '', 1),
 (2, 'Form Module', 1, 'm_forms', 'id', 'name', 'form-module', '#? $_GET[\'form_id\'] = \'', '\'; require BASE_DIR.\"/modules/forms/module.php\"; ?#', '', 1),
 (3, 'Staff Module', 1, 'm_staff_categories', 'id', 'name', 'staff-module', '#? $_GET[\'staff_category_id\'] = \'', '\'; require BASE_DIR.\"/modules/staff/module.php\"; ?#', '', 1),
-(4, 'Gallery Module (Category)', 1, 'm_photo_categories', 'id', 'name', 'gallery-module-category', '#? $_GET[\'gallery_category_id\'] = \'', '\'; require BASE_DIR.\"/modules/gallery/module.php\"; ?#', '', 1),
-(5, 'Gallery Module (Gallery)', 1, 'm_photo_galleries', 'id', 'name', 'gallery-module', '#? $_GET[\'gallery_id\'] = \'', '\'; require BASE_DIR.\"/modules/gallery/module.php\"; ?#', '', 1),
+(4, 'Gallery Module (Category)', 1, 'm_photo_categories', 'id', 'name', 'gallery-module-category', '#? $category_id = \'', '\'; require BASE_DIR.\"/modules/gallery/module.php\"; ?#', '', 1),
+(5, 'Gallery Module (Gallery)', 1, 'm_photo_galleries', 'id', 'name', 'gallery-module', '#? $gallery_id = \'', '\'; require BASE_DIR.\"/modules/gallery/module.php\"; ?#', '', 1),
 (6, 'Resources Module (Table)', 1, 'm_resource_categories', 'id', 'name', 'resources-module-table', '#? $_GET[\'resources_display_type\'] = \'table\'; $_GET[\'resources_category_id\'] = \"', '\"; require BASE_DIR.\"/modules/resources/module.php\"; ?#', '', 1),
 (7, 'Resources Module (Feed)', 1, 'm_resource_categories', 'id', 'name', 'resources-module-feed', '#? $_GET[\'resources_display_type\'] = \'feed\'; $_GET[\'resources_category_id\'] = \"', '\"; require BASE_DIR.\"/modules/resources/module.php\"; ?#', '', 1),
 (8, 'Identity Package', 1, 'm_identity_packages', 'id', 'name', 'identity-package', '#? $_GET[\'identity_package_id\'] = \'', '\'; require BASE_DIR.\"/modules/identity/module.php\"; ?#', '', 1),
-(9, 'Testimonial Module', 1, 'm_testimonial_categories', 'id', 'name', 'testimonial-module', '#? $_GET[\'testimonial_category_id\'] = \"', '\"; require BASE_DIR.\"/modules/testimonials/module.php\"; ?#', '', 1),
-(10, 'Testimonial Module (Feed)', 1, 'm_testimonial_categories', 'id', 'name', 'testimonial-feed', '#? $_GET[\'testimonial_display_type\'] = \"feed\"; $_GET[\'testimonial_category_id\'] = \"', '\"; require BASE_DIR.\"/modules/testimonials/module.php\"; ?#', '', 1),
+(9, 'Testimonial Module (Single - Random)', 1, 'm_testimonial_categories', 'id', 'name', 'testimonial-module', '#? $category_id = \"', '\"; require BASE_DIR.\"/modules/testimonials/module.php\"; ?#', '', 1),
+(10, 'Testimonial Module (Feed)', 1, 'm_testimonial_categories', 'id', 'name', 'testimonial-feed', '#? $display_type = \"feed\"; $category_id = \"', '\"; require BASE_DIR.\"/modules/testimonials/module.php\"; ?#', '', 1),
 (11, 'Form Module (No Labels)', 1, 'm_forms', 'id', 'name', 'form-module-labeless', '#? $_GET[\'form_id\'] = \'', '\'; $_GET[\'form_labeless\'] = \'1\'; require BASE_DIR.\"/modules/forms/module.php\"; ?#', '', 1),
 (12, 'Resources Module (Grid)', 1, 'm_resource_categories', 'id', 'name', 'resources-module-grid', '#? $_GET[\'resources_display_type\'] = \'grid\'; $_GET[\'resources_category_id\'] = \"', '\"; require BASE_DIR.\"/modules/resources/module.php\"; ?#', '', 1),
 (13, 'FAQ Module', 1, 'm_faq_categories', 'id', 'name', 'faq-module', '#? $_GET[\'faq_category_id\'] = \'', '\'; require BASE_DIR.\"/modules/faq/module.php\"; ?#', '', 1),
 (14, 'CTA Module', 1, 'm_cta_categories', 'id', 'name', 'cta-module', '#? $cta_category_id = \'', '\'; require BASE_DIR . \'/modules/cta/module.php\' ?#', '', 1),
 (15, 'CTA Module (Single)', 1, 'm_cta', 'id', 'name', 'cta-module-single', '#? $cta_view = \'single\'; $cta_id = \'', '\'; require BASE_DIR.\"/modules/cta/module.php\"; ?#', '', 1),
-(16, 'Social Module', 2, '', '', '', 'social-module', '', '', '#? require BASE_DIR . \'/modules/social/module.php\' ?#', 1);
+(16, 'Social Module', 2, '', '', '', 'social-module', '', '', '#? require BASE_DIR . \'/modules/social/module.php\' ?#', 1),
+(17, 'Gallery Module (Gallery) - Slider', 1, 'm_photo_galleries', 'id', 'name', 'gallery-module-slider', '#? $gallery_id = \'', '\'; $use_slider = true; require BASE_DIR."/modules/gallery/module.php"; ?#', '', 1),
+(18, 'Testimonial Module (Feed) - Slider', 1, 'm_testimonial_categories', 'id', 'name', 'testimonial-feed-slider', '#? $use_slider = true; $display_type = \'feed\'; $category_id = \'', '\'; require BASE_DIR."/modules/testimonials/module.php"; ?#', '', 1),
+(19, 'Testimonial Module (Single)', 1, 'testimonial-single', 'id', 'name', 'testimonial-single', '#? $testimonial_id = \"', '\"; require BASE_DIR.\"/modules/testimonials/module.php\"; ?#', '', 1);
 
 -- --------------------------------------------------------
 
@@ -1141,7 +1149,7 @@ CREATE TABLE `stylesheets` (
   `url` text NOT NULL,
   `limit` text NOT NULL,
   `editor` int(1) NOT NULL,
-  `inline` tinyint(1) NOT NULL DEFAULT 1,
+  `type` int(1) NOT NULL DEFAULT 0,
   `before` text NOT NULL,
   `position` int(1) NOT NULL,
   `order` int(255) NOT NULL,
@@ -1152,13 +1160,13 @@ CREATE TABLE `stylesheets` (
 -- Dumping data for table `stylesheets`
 --
 
-INSERT INTO `stylesheets` (`id`, `url`, `limit`, `editor`, `order`, `status`) VALUES
-(1, '//css.ewsapi.com/icons/icons.min.css', '1', 1, 1, 1),
-(2, '//css.ewsapi.com/reset/reset.min.css', '1', 1, 2, 1),
-(3, '//css.ewsapi.com/global/global.v4.css', '1', 1, 3, 1),
-(4, 'default.modules.css', '1', 0, 4, 1),
-(5, 'stylesheet.css', '1', 1, 5, 1),
-(6, 'responsive.css', '1', 0, 6, 1);
+INSERT INTO `stylesheets` (`id`, `url`, `limit`, `editor`, `order`, `status`, `position`, `before`) VALUES
+(1, '//css.ewsapi.com/icons/icons.min.css', '1', 1, 1, 1, 0, ''),
+(2, '//css.ewsapi.com/reset/reset.min.css', '1', 1, 2, 1, 0, ''),
+(3, '//css.ewsapi.com/global/global.v4.css', '1', 1, 3, 1, 0, ''),
+(4, 'default.modules.css', '1', 0, 4, 1, 0, ''),
+(5, 'stylesheet.css', '1', 1, 5, 1, 0, ''),
+(6, 'responsive.css', '1', 0, 6, 1, 0, '');
 
 -- --------------------------------------------------------
 

@@ -36,7 +36,7 @@
 		if( file_exists($base_file) ){ $modified = filemtime( $base_file ); }
 		$cache_file = $cache_path.'/'.$modified.'.'.$mode.'.'.$width.'.'.$height.'.'.$file;
 		$extension	= explode( '.', $file );
-		$extension	= strtolower( end( $file ) );
+		$extension	= strtolower( end( $extension ) );
 
 
 	// Check for SVG...

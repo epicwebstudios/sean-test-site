@@ -40,6 +40,12 @@
                     <div>If the JavaScript file is on an external server, the filename must start with <b>http://</b> or <b>//</b>, otherwise the file must be located in <b>/sources/js/</b></div>
                 </td>
 			</tr>
+            <tr>
+                <td class="left">Position:</td>
+                <td class="right">
+                    <? field_select2( 'position', $positions, $info['position'] ); ?>
+                </td>
+            </tr>
 			<tr>
 				<td class="left">Status:</td>
 				<td class="right">
@@ -72,6 +78,13 @@
                     <td colspan="2"><? echo $item_capital; ?> Editor</td>
                 </tr>
             </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2" style="padding:7px 10px;">
+                        <? field_checkbox('edit', array(1 => 'Save changes to file on submit')); ?>
+                    </td>
+                </tr>
+            </tbody>
         </table>
         <?
             $content = file_get_contents( BASE_DIR.'/sources/js/'.$info['url'] );

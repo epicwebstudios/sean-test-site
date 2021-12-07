@@ -1,4 +1,4 @@
-<div class="cta cta-<?= $id ?>">
+<div class="cta" data-id="<?= $id ?>">
 
 	<? if ($image && $image_type == 0) : ?>
         <div class="cta-image-div lazy" data-src="<?= $image ?>" aria-label="<?= $name ?>"></div>

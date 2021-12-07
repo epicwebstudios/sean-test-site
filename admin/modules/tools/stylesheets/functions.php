@@ -5,3 +5,8 @@
 		0 => 'Head',
 		1 => 'Foot',
 	);
+
+	$types = array(
+		0 => 'Inline (Default)',
+		1 => 'External',
+	);

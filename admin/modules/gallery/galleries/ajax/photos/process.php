@@ -12,6 +12,7 @@
 		
 			$values = array(
 				'caption'	=> $_POST['caption'],
+				'status'	=> $_POST['status'],
 			);
 		
 		// -- End set values

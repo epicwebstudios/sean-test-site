@@ -22,6 +22,7 @@
 			set_og_tags();
 			custom_head();
 			page_head();
+            load_javascript(1);
 		?>
         
         <script>
@@ -32,10 +33,22 @@
 					setTimeout( function(){ jQuery_defer( method ); }, 50 );
 				}
 			}
+
+            function jQuery_plugin_defer(plugin, method) {
+                jQuery_defer(function() {
+                    if (typeof $.fn[plugin] !== 'undefined') {
+                        method();
+                    } else {
+                        setTimeout(function() {
+                            jQuery_plugin_defer(plugin, method);
+                        }, 50);
+                    }
+                });
+            }
 		</script>
 	</head>
 
-	<body>
+	<body class="template-<?= $page['template'] ?>">
     
    		<?
             custom_body_open();

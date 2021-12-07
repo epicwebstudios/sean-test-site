@@ -44,16 +44,16 @@
                 </td>
 			</tr>
             <tr>
-                <td class="left">Position:</td>
+                <td class="left">Type:</td>
                 <td class="right">
-                    <? field_select2( 'position', $positions, $info['position'] ); ?>
+                    <? field_select( 'type', $types, $info['type'] ); ?>
+                    <div>Set to "Internal" to allow minification. Set to "External" to allow browser limitations.</div>
                 </td>
             </tr>
             <tr>
-                <td class="left">Make Inline:</td>
+                <td class="left">Position:</td>
                 <td class="right">
-                    <? field_select( 'inline', array(1 => 'Yes (Default)', 0 => 'No'), $info['inline'] ); ?>
-                    <div>Set to "Yes" to allow minification. Set to "No" to allow browser limitations.</div>
+                    <? field_select2( 'position', $positions, $info['position'] ); ?>
                 </td>
             </tr>
 			<tr class="inline-setting inline-setting-0">
@@ -107,6 +107,13 @@
                     <td colspan="2"><? echo $item_capital; ?> Editor</td>
                 </tr>
             </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2" style="padding:7px 10px;">
+                        <? field_checkbox('edit', array(1 => 'Save changes to file on submit')); ?>
+                    </td>
+                </tr>
+            </tbody>
         </table>
         <?
             $content = file_get_contents( BASE_DIR.'/sources/css/'.$info['url'] );

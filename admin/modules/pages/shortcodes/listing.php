@@ -52,11 +52,11 @@
                     	<? echo $types[$info['type']]; ?>
                     </td>
                     
-                    <td>
+                    <td style="font-family:monospace;">
                     	<? echo $info['tag']; ?>
                     </td>
                     
-                    <td>
+                    <td style="font-family:monospace;">
                     	<? echo $info['table']; ?>
                     </td>
                     

@@ -47,6 +47,10 @@
 					<td style="font-family:monospace;">
 						<b><? echo $info['url']; ?></b>
                     </td>
+
+                    <td>
+                        <?= $types[$info['type']] ?>
+                    </td>
                 
 					<td>
 						<? echo $limitations[$info['limit']]; ?>

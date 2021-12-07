@@ -25,12 +25,15 @@ window.onload = function() {
         $banner_video.css('width', width+'px');
     }
 
-    $(document).ready(function() {
-        resize_banner_video();
-    });
+    jQuery_defer(function() {
 
-    $(window).resize(function() {
-        resize_banner_video();
+        $(document).ready(function() {
+            resize_banner_video();
+        });
+
+        $(window).resize(function() {
+            resize_banner_video();
+        });
     });
 
 }

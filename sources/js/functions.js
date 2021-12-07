@@ -6,7 +6,7 @@ function add_to_admin_bar( button_text, link ){
 		output += button_text;
 	output += '</a>';
 	
-	$( '#admin_bar' ).append( output );
+	$( '#admin_bar .admin-bar-items' ).append( output );
 	
 	return;
 	
@@ -62,7 +62,6 @@ $(document).ready( function(){
 	$( '.toggle_mobile_menu' ).click( function(){
 		toggle_mobile_menu();
 	});
-	
 });
 
 

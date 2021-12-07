@@ -11,10 +11,13 @@
 		
 			$values = array(
 				'url'		=> $_POST['url'],
+				'position'  => $_POST['position'],
 				'status'	=> $_POST['status'],
 			);
 		
 		// -- End set values
+
+		$save_file = isset($_POST['edit']);
 
 
 	}
@@ -38,6 +41,7 @@
 			$file = BASE_DIR.'/sources/js/'.$values['url'];
 			
 			if(
+				( $save_file ) &&
 				( substr($values['url'], 0, 4) != 'http' ) &&
 				( substr($values['url'], 0, 2) != '//' ) &&
 				( !file_exists($file) )
@@ -76,6 +80,7 @@
 			$file = BASE_DIR.'/sources/js/'.$values['url'];
 			
 			if(
+				( $save_file ) &&
 				( substr($values['url'], 0, 4) != 'http' ) &&
 				( substr($values['url'], 0, 2) != '//' )
 			){
