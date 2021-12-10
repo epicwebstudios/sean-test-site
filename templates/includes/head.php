@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="generator" content="epicPlatform <? echo $system['version'].'-'.$system['build']; ?>" />
+		<meta name="generator" content="epicPlatform <?= EP_VERSION ?>" />
 		<meta name="author" content="<? echo $settings['name']; ?>" />
 		<meta name="robots" content="<? echo get_robots(); ?>" />
 		
