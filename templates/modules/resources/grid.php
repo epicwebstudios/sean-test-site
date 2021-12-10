@@ -4,7 +4,7 @@
 		echo '<div class="ilb w_25">';
 ?>
 
-    <div class="p_a">
+    <div class="resource p_a" data-id="<?= $file['id'] ?>">
     
     	<div class="icon">
             <a href="<? echo $file['url']; ?>" target="_blank">

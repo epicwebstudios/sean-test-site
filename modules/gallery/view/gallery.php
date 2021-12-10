@@ -9,15 +9,7 @@
 	        `status` = 1
 	    ORDER BY `order` ASC";
 
-	$classes = array(
-		'gallery_module',
-		'gallery',
-	);
-
-	if ($use_slider)
-		$classes[] = 'slider';
-		
-	echo sprintf('<div class="%1$s" data-id="%2$s">', implode(' ', $classes), $gallery_id);
+	echo '<div class="gallery_module gallery '.($use_slider?'slider':'').'" data-id="'.$gallery_id.'">';
 		
 		if( $category_id ){
 			$gallery = mysql_fetch_assoc( mysql_query( "SELECT `name` FROM `m_photo_galleries` WHERE `id` = '$gallery_id' LIMIT 1" ) );

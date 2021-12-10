@@ -18,7 +18,8 @@
 	$query = mysql_query( $stmt );
 
 	while( $r = mysql_fetch_assoc($query) ){
-	
+
+		$id             = $r['id'];
 		$quote			= $r['quote'];
 		$summary 		= nl2br( $r['summary'] );
 		$rating 		= $r['rating'];

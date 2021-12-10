@@ -48,7 +48,7 @@
 		}
 		
 		
-		echo '<div class="resources_module">';
+		echo '<div class="resources_module" data-id="'.$category_id.'">';
 		
 			if( $display_type == 'grid' ){
 				require BASE_DIR.'/templates/modules/resources/grid.php';

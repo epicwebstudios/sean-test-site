@@ -1,4 +1,4 @@
-<div class="ca entry">
+<div class="ca entry" data-id="<?= $id ?>">
 
     <? if (!$page['banner']) : ?>
         <h1 class="title">

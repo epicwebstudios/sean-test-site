@@ -92,21 +92,21 @@
 			<tr class="type type_1">
 				<td class="left">Open Replacement:</td>
 				<td class="right">
-                	<? field_textarea( 'b_replace', $info['b_replace'], 'font-family:monospace;' ); ?>
+                	<? field_code( 'b_replace', $info['b_replace'], false, false, 'php' ); ?>
                     <div>The opening tag will be replaced with this snippet.</div>
                 </td>
 			</tr>
 			<tr class="type type_1">
 				<td class="left">Close Replacement:</td>
 				<td class="right">
-                	<? field_textarea( 'e_replace', $info['e_replace'], 'font-family:monospace;' ); ?>
+                	<? field_code( 'e_replace', $info['e_replace'], false, false, 'php' ); ?>
                     <div>The closing tag will be replaced with this snippet.</div>
                 </td>
 			</tr>
 			<tr class="type type_2">
 				<td class="left">Replacement:</td>
 				<td class="right">
-                	<? field_textarea( 'replace', $info['replace'], 'font-family:monospace;' ); ?>
+                	<? field_code( 'replace', $info['replace'], false, false, 'php' ); ?>
                     <div>The tag will be replaced with this snippet.</div>
                 </td>
 			</tr>

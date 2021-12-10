@@ -1,4 +1,4 @@
-<div class="testimonial">
+<div class="testimonial" data-id="<?= $id?>">
 
 	<div class="quote"><? parsePage( $quote ); ?></div>
     

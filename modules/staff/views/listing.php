@@ -11,7 +11,7 @@
 	$rQ = mysql_query( $stmt );
 	if( mysql_num_rows($rQ) > 0 ){
 		
-		echo '<div class="staff_module listing">';
+		echo '<div class="staff_module listing" data-id="'.$category_id.'">';
 		
 			while( $r = mysql_fetch_assoc($rQ) ){
 			

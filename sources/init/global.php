@@ -459,7 +459,7 @@
 	}
 
 	// Queues a CSS file/url into the global $css array
-	function queue_stylesheet($file_or_array, $prepend = false, $position = 0, $type = 0, $before = null, $limit = 1, $order = 9999) {
+	function queue_stylesheet($file_or_array, $position = 0, $type = 0, $before = null, $limit = 1, $order = 9999) {
 		global $css;
 
 		$sheet = array(
@@ -474,12 +474,8 @@
 		if (is_array($file_or_array))
 			$sheet = array_replace($sheet, $file_or_array);
 
-		if (!key_exists($sheet['url'], $css)) {
-			if ($prepend)
-				$css = array($sheet['url'] => $sheet) + $css;
-			else
-				$css[$sheet['url']] = $sheet;
-		}
+		if (!key_exists($sheet['url'], $css))
+			$css[$sheet['url']] = $sheet;
 	}
 	
 	
@@ -490,11 +486,11 @@
 		$settings = siteSettings( '`ps_minify_css`' );
 
 		// queue the css
-		$stmt   = "SELECT `id`, `url`, `limit`, `type`, `before`, `position` FROM `stylesheets` WHERE `status` = '1' AND `position` = '$position' ORDER BY `order` ASC";
+		$stmt   = "SELECT * FROM `stylesheets` WHERE `status` = '1' AND `position` = '$position' ORDER BY `order` ASC";
 		$query  = mysql_query($stmt);
 
 		while ($r = mysql_fetch_assoc($query))
-			queue_stylesheet($r, true);
+			queue_stylesheet($r);
 
 		// sort
 		usort($css, function ($item1, $item2) {

@@ -1,4 +1,4 @@
-<div class="ilb person">
+<div class="ilb person" data-id="<?= $id ?>">
 	
     <? if( $photo ){ ?>
     	<div class="photo">

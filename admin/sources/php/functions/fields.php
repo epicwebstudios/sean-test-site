@@ -520,7 +520,7 @@
 	}
 	
 	
-	function field_code( $name, $value = false, $style = false, $other = false ){
+	function field_code( $name, $value = false, $style = false, $other = false, $mode = 'javascript' ){
 		
 		$output = '';
 		
@@ -540,7 +540,7 @@
 			echo ' CodeMirror.fromTextArea(document.getElementById("'.field_id( $name ).'"),{ ';
 				echo ' lineNumbers: true, ';
 				echo ' indentUnit: 4, ';
-				echo ' mode: "javascript" ';
+				echo ' mode: "'.$mode.'" ';
 			echo ' }); ';
         echo '</script>';
 		
