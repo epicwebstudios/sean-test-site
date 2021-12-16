@@ -1,5 +1,5 @@
 <footer class="footer">
     <div class="wrapper">
-        <? year(); ?> &copy Website Name
+        <? year(); ?> &copy; <?= $settings['name'] ?>
     </div>
 </footer>
