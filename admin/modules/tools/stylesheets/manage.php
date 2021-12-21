@@ -39,11 +39,24 @@
 			<tr>
 				<td class="left">Filename:</td>
 				<td class="right">
-                	<? field_text( 'url', $info['url'] ); ?>
+                	<? field_text( 'url', $info['url'], 'font-family:monospace;' ); ?>
                     <div>If the stylesheet file is on an external server, the filename must start with <b>http://</b> or <b>//</b>, otherwise the file must be located in <b>/sources/css/</b></div>
                 </td>
 			</tr>
-			<tr>
+            <tr>
+                <td class="left">Type:</td>
+                <td class="right">
+                    <? field_select( 'type', $types, $info['type'] ); ?>
+                    <div>Set to "Internal" to allow minification. Set to "External" to allow browser limitations.</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="left">Position:</td>
+                <td class="right">
+                    <? field_select2( 'position', $positions, $info['position'] ); ?>
+                </td>
+            </tr>
+			<tr class="inline-setting inline-setting-0">
 				<td class="left">Browser Limitation:</td>
 				<td class="right">
                 	<? field_select2( 'limit', $limitations, $info['limit'] ); ?>
@@ -52,12 +65,16 @@
 			<tr>
 				<td class="left">Include in Editor:</td>
 				<td class="right">
-                	<?
-						$options = array( 1 => 'Yes', 0 => 'No' );
-                    	field_select2( 'editor', $options, $info['editor'] );
-					?>
+                	<? field_select( 'editor', array( 1 => 'Yes', 0 => 'No' ), $info['editor'] ); ?>
                 </td>
 			</tr>
+            <tr>
+                <td class="left">Preceding HTML:</td>
+                <td class="right">
+                    <? field_code( 'before', $info['before'] ); ?>
+                    <div>Adds custom code before the stylesheet is placed. Useful for adding <span class="code">preconnect</span>s.</div>
+                </td>
+            </tr>
 			<tr>
 				<td class="left">Status:</td>
 				<td class="right">
@@ -90,6 +107,13 @@
                     <td colspan="2"><? echo $item_capital; ?> Editor</td>
                 </tr>
             </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2" style="padding:7px 10px;">
+                        <? field_checkbox('edit', array(1 => 'Save changes to file on submit')); ?>
+                    </td>
+                </tr>
+            </tbody>
         </table>
         <?
             $content = file_get_contents( BASE_DIR.'/sources/css/'.$info['url'] );
@@ -135,6 +159,6 @@
 	}
 ?>
 
-
-
-
+<script>
+    bind_toggle('#inline', 'inline-setting');
+</script>

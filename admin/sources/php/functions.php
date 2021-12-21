@@ -195,6 +195,19 @@
 			$contents  = '';
 			$contents .= 'User-Agent: *' . "\n";
 			$contents .= 'Disallow: /';
+
+			if ($settings['user_agents']) {
+
+				$contents  .= "\n\n";
+
+				foreach (explode(',', $settings['user_agents']) as $user_agent) {
+
+					if ($user_agent != 'Googlebot')
+						$contents .= "User-Agent: $user_agent\n";
+				}
+
+				$contents  .= "Disallow: /admin";
+			}
 		}
 		
 		file_put_contents( $file, $contents );

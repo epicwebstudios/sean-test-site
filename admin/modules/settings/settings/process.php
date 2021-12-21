@@ -6,8 +6,8 @@
 	
 		$id = $_POST['id'];
 		$values = array();
-		
-		
+
+
 		// -- Set values
 		
 			$values = array(
@@ -33,7 +33,11 @@
 				'allow_index'			=> $_POST['allow_index'],
 				'file_browser'			=> $_POST['file_browser'],
 				'banner_image'          => process_file( 'banner_image', '/layout/banner/' ),
-				'user_agents'			=> $_POST['user_agents'],
+				'banner_lazy'			=> $_POST['banner_lazy'],
+				'user_agents'			=> process_array_implode('user_agents'),
+				'sticky_header'			=> $_POST['sticky_header'],
+				'logo_header'          => process_file( 'logo_header', '/layout/' ),
+				'logo_footer'          => process_file( 'logo_footer', '/layout/' ),
 			);
 
 
@@ -65,6 +69,8 @@
 			
 		mysql_query( "UPDATE `".$database[0]."` ".$set." WHERE `id` = '".$id."' LIMIT 1" );
 		echo mysql_error();
+
+		update_robots();
 			
 		log_action( 'Edited '.$item );
 		log_message( $item_capital.' has been edited successfully.', 'success', $item_capital.' Edited' );

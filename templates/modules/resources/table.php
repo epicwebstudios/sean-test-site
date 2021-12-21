@@ -10,7 +10,7 @@
         
 		<? foreach( $files as $file ){ ?>
         	
-            <tr>
+            <tr class="resource" data-id="<?= $file['id'] ?>">
             
             	<td>
                     <span class="fa <? echo $file['icon']; ?>"></span>

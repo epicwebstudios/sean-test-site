@@ -8,8 +8,11 @@
 	// http://epicwebstudios.com/platform
 	//----------------------------------------
 
-	if (isset($_GET['debug']))
+	if ($_GET['debug'] == 1 || $_GET['debug'] == 2)
 		ini_set('display_errors', 1);
+
+	if ($_GET['debug'] == 2)
+		error_reporting(E_ALL);
 	
 	require 'sources/init/init.php';
 	

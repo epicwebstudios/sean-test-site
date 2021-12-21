@@ -65,48 +65,48 @@
 			<tr>
 				<td class="left">Tag:</td>
 				<td class="right">
-                	<? field_text( 'tag', $info['tag'] ); ?>
+                	<? field_text( 'tag', $info['tag'], 'font-family:monospace;' ); ?>
                     <div>The shortcode plugin will insert this tag wrapped around the ID. Examples: <b>{form}</b> or <b>{form}</b>1234<b>{/form}</b>.</div>
                 </td>
 			</tr>
 			<tr class="type type_1">
 				<td class="left">Reference Table:</td>
 				<td class="right">
-                	<? field_text( 'table', $info['table'] ); ?>
+                	<? field_text( 'table', $info['table'], 'font-family:monospace;' ); ?>
                 </td>
 			</tr>
 			<tr class="type type_1">
 				<td class="left">ID Column:</td>
 				<td class="right">
-                	<? field_text( 'id_col', $info['id_col'] ); ?>
+                	<? field_text( 'id_col', $info['id_col'], 'font-family:monospace;' ); ?>
                     <div>Inside of the reference table, this is the column name of the "ID" column.</div>
                 </td>
 			</tr>
 			<tr class="type type_1">
 				<td class="left">Name Column:</td>
 				<td class="right">
-                	<? field_text( 'name_col', $info['name_col'] ); ?>
+                	<? field_text( 'name_col', $info['name_col'], 'font-family:monospace;' ); ?>
                     <div>Inside of the reference table, this is the column name of the "Name" column.</div>
                 </td>
 			</tr>
 			<tr class="type type_1">
 				<td class="left">Open Replacement:</td>
 				<td class="right">
-                	<? field_textarea( 'b_replace', $info['b_replace'] ); ?>
+                	<? field_code( 'b_replace', $info['b_replace'], false, false, 'php' ); ?>
                     <div>The opening tag will be replaced with this snippet.</div>
                 </td>
 			</tr>
 			<tr class="type type_1">
 				<td class="left">Close Replacement:</td>
 				<td class="right">
-                	<? field_textarea( 'e_replace', $info['e_replace'] ); ?>
+                	<? field_code( 'e_replace', $info['e_replace'], false, false, 'php' ); ?>
                     <div>The closing tag will be replaced with this snippet.</div>
                 </td>
 			</tr>
 			<tr class="type type_2">
 				<td class="left">Replacement:</td>
 				<td class="right">
-                	<? field_textarea( 'replace', $info['replace'] ); ?>
+                	<? field_code( 'replace', $info['replace'], false, false, 'php' ); ?>
                     <div>The tag will be replaced with this snippet.</div>
                 </td>
 			</tr>

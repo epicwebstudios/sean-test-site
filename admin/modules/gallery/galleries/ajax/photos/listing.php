@@ -61,6 +61,11 @@
 							}
 						?>
                     </td>
+
+                <td>
+                    <? if( $info['status'] == '1' ){ echo '<b class="tc_green">Active / Visible</b>'; } ?>
+                    <? if( $info['status'] == '0' ){ echo '<b class="tc_red">Inactive / Hidden</b>'; } ?>
+                </td>
                 
                 
                 <? // Column output end ?>
@@ -70,7 +75,7 @@
                     <td align="center">
                         <select onchange="ajax_process( '<? echo $section_id; ?>', '<? echo $_GET['i']; ?>', '&act=order&id=<? echo $info['id']; ?>&o=' + $(this).val() ); return false;">
                             <?
-                                $count = reorder_count($database[0]);
+                                $count = reorder_count($database[0], "`gallery` = '$_GET[i]'");
                                 for( $i = 1; $i <= $count; $i++ ){
                                     echo '<option value="'.$i.'" ';
                                     if( $info['order'] == $i ){ echo 'selected'; }

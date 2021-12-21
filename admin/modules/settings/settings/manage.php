@@ -87,13 +87,8 @@
             <tr class="setting-index setting-index-0">
                 <td class="left">Allowed User Agents:</td>
                 <td class="right">
-                    <? field_text( 'user_agents', $info['user_agents'] ); ?>
-                    <script>
-                        $('#user_agents').tagsInput({
-                            defaultText:'Add a user agent'
-                        });
-                    </script>
-                    <div>User agents allowed to visit site while indexing is disabled.</div>
+                    <? field_select2_multiple( 'user_agents', $info['user_agents'], $info['user_agents'], false, false, ',', array('tags' => true,) ); ?>
+                    <div>User agents to disable noindex for while indexing is disabled.</div>
                 </td>
             </tr>
 			<tr class="offline">
@@ -118,18 +113,6 @@
                     <div>This is the e-mail address that all of your contact form submissions will be sent from.</div>
                 </td>
 			</tr>
-            <tr>
-                <td class="left">Default Banner Image:</td>
-                <td class="right">
-                    <? field_image( 'banner_image', $info['banner_image'], '/layout/banner/' ); ?>
-                    <table>
-                        <tr><td colspan="2"><b>Recommended Dimensions</b></td></tr>
-                        <? foreach ($banner_image_rec as $key => $dim) : ?>
-                            <tr><td><?= $key ?>:</td><td><?= $dim ?></td></tr>
-                        <? endforeach; ?>
-                    </table>
-                </td>
-            </tr>
 		</tbody>
 	</table>
     
@@ -216,6 +199,42 @@
 			</tr>
 		</thead>
 		<tbody>
+            <tr>
+                <td class="left">Header Logo:</td>
+                <td class="right">
+                    <? field_image( 'logo_header', $info['logo_header'], '/layout/' ); ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="left">Footer Logo:</td>
+                <td class="right">
+                    <? field_image( 'logo_footer', $info['logo_footer'], '/layout/' ); ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="left">Default Banner Image:</td>
+                <td class="right">
+                    <? field_image( 'banner_image', $info['banner_image'], '/layout/banner/' ); ?>
+                    <table>
+                        <tr><td colspan="2"><b>Recommended Dimensions</b></td></tr>
+                        <? foreach ($banner_image_rec as $key => $dim) : ?>
+                            <tr><td><?= $key ?>:</td><td><?= $dim ?></td></tr>
+                        <? endforeach; ?>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="left">Banner Lazy Loading:</td>
+                <td class="right">
+                    <? field_select( 'banner_lazy', array(0 => 'Disabled', 1 => 'Enabled'), $info['banner_lazy'] ); ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="left">Sticky Header:</td>
+                <td class="right">
+                    <? field_select( 'sticky_header', array(0 => 'Disabled', 1 => 'Enabled'), $info['sticky_header'] ); ?>
+                </td>
+            </tr>
 			<tr>
 				<td class="left">&lt;head&gt; Tags:</td>
 				<td class="right">

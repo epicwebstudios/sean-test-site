@@ -35,6 +35,7 @@
 
 				'banner'                    => $_POST['banner'],
 				'banner_type'               => $_POST['banner_type'],
+				'banner_overlay'            => $_POST['banner_overlay'],
 				'banner_image'              => process_file( 'banner_image', '/layout/banner/' ),
 				'banner_title'              => $_POST['banner_title'],
 				'banner_subtitle'           => $_POST['banner_subtitle'],
@@ -67,20 +68,24 @@
 			}
 			
 			$set = query_build_set( $values );
-			
-			mysql_query( "INSERT INTO `".$database[0]."` ".$set );
-			$new_record = mysql_insert_id();
-			
-			create_revision( $new_record, $database[0] );
-			update_robots();
-			
-			log_action( 'Added '.$item.' "'.$values[$log_item].'"' );
-			log_message( 'The '.$item.' "'.$values[$log_item].'" has been added successfully. <a href="?a='.$_GET['a'].'&act=edit&i='.$new_record.'">Click here to edit the new '.$item.'</a>', 'success', $item_capital.' Added' ); 
-	
-			if( $allow_order ){
-				reorder_all( $database[0] );
-			}
-		
+
+			$stmt = "INSERT INTO `$database[0]` ".$set;
+			$query = mysql_query( $stmt );
+
+			if ($query) {
+				$new_record = mysql_insert_id();
+
+				create_revision($new_record, $database[0]);
+				update_robots();
+
+				log_action('Added '.$item.' "'.$values[$log_item].'"');
+				log_message('The '.$item.' "'.$values[$log_item].'" has been added successfully. <a href="?a='.$_GET['a'].'&act=edit&i='.$new_record.'">Click here to edit the new '.$item.'</a>', 'success', $item_capital.' Added');
+
+				if ($allow_order) {
+					reorder_all($database[0]);
+				}
+			} else
+				log_message('Error adding '.$item.'<pre>'.mysql_error().'</pre>', 'error', 'Error');
 		} else {
 			log_message( 'You do not have permission to add a '.$item.'.', 'error', 'Error' );
 		}
@@ -97,13 +102,17 @@
 			
 			$set = query_build_set( $values );
 			
-			mysql_query( "UPDATE `".$database[0]."` ".$set." WHERE `id` = '".$id."' LIMIT 1" );
-			
-			create_revision( $id, $database[0] );
-			update_robots();
-		
-			log_action( 'Edited '.$item.' "'.$values[$log_item].'"' );
-			log_message( 'The '.$item.' "'.$values[$log_item].'" has been edited successfully.', 'success', $item_capital.' Edited' );
+			$query = mysql_query( "UPDATE `".$database[0]."` ".$set." WHERE `id` = '".$id."' LIMIT 1" );
+
+			if ($query) {
+
+				create_revision($id, $database[0]);
+				update_robots();
+
+				log_action('Edited '.$item.' "'.$values[$log_item].'"');
+				log_message('The '.$item.' "'.$values[$log_item].'" has been edited successfully.', 'success', $item_capital.' Edited');
+			} else
+				log_message('Error saving '.$values[$log_item].'<pre>'.mysql_error().'</pre>', 'error', 'Error');
 		
 		} else {
 			log_message( 'Could not locate '.$item.' you attempted to edit or your do not have permission to edit this '.$item.'.', 'error', 'Error' );

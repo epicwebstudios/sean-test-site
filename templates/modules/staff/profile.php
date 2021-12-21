@@ -1,4 +1,4 @@
-<div class="ca">
+<div class="person ca" data-id="<?= $id ?>">
 
 	<? if( $photo ){ ?>
     	<div class="l photo">

@@ -13,11 +13,15 @@
 				'url'		=> $_POST['url'],
 				'limit'		=> $_POST['limit'],
 				'editor'	=> $_POST['editor'],
+				'type'	    => $_POST['type'],
+				'before'	=> $_POST['before'],
+				'position'	=> $_POST['position'],
 				'status'	=> $_POST['status'],
 			);
 		
 		// -- End set values
 
+		$save_file = isset($_POST['edit']);
 
 	}
 	
@@ -40,6 +44,7 @@
 			$file = BASE_DIR.'/sources/css/'.$values['url'];
 			
 			if(
+				( $save_file ) &&
 				( substr($values['url'], 0, 4) != 'http' ) &&
 				( substr($values['url'], 0, 2) != '//' ) &&
 				( !file_exists($file) )
@@ -78,6 +83,7 @@
 			$file = BASE_DIR.'/sources/css/'.$values['url'];
 			
 			if(
+				( $save_file ) &&
 				( substr($values['url'], 0, 4) != 'http' ) &&
 				( substr($values['url'], 0, 2) != '//' )
 			){

@@ -5,10 +5,11 @@
 
     require_once $this_dir.'/functions.php';
 
-    $cta_category_id    = isset($cta_category_id) ? $cta_category_id : false;
-	$cta_id             = isset($cta_id) ? $cta_id : false;
+	$cta_view           = $cta_view ?? null;
+    $cta_category_id    = $cta_category_id ?? false;
+	$cta_id             = $cta_id ?? false;
 
-	if ($cta_id) {
+	if ($cta_view == 'single' && $cta_id) {
 	    $cta            = \cta\get_cta_from_id($cta_id);
 	    $cta_category   = \cta\get_category_from_cta_id($cta['category']);
 	    
@@ -22,3 +23,7 @@
 		if ($ctas)
 			require $this_dir.'/view/list.php';
     }
+
+	unset($cta_view);
+	unset($cta_category_id);
+	unset($cta_id);

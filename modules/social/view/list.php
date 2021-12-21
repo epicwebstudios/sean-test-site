@@ -1,5 +1,6 @@
 <?
     foreach ($socials as $social) {
+	    $id             = $social['id'];
         $type           = $social['type'];
         $link           = $social['link'];
         $text           = $social_types[$type]['alt'];

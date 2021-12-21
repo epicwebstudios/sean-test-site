@@ -63,7 +63,7 @@
 					
 					if( $show_item ){
 					
-						$output .= '<div class="item '.$class.'" data-level="'.$level.'">';
+						$output .= '<div class="item '.$class.'" data-level="'.$level.'" data-id="'.$id.'">';
 							
 							$output .= '<a';
 								if( $link ){ $output .= ' href="'.$link.'"'; }
@@ -71,6 +71,7 @@
 								if( $target ){ $output .= ' target="'.$target.'"'; }
 								if( $class ){ $output .= ' class="'.$class.'"'; }
 								$output .= ' data-level="'.$level.'"';
+								$output .= ' data-id="'.$id.'"';
 							$output .= '>';
 								$output .= $label;
 							$output .= '</a>';

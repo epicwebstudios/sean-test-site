@@ -1,4 +1,4 @@
-<div class="social" data-unicode="<?= $icon_unicode ?>">
+<div class="social" data-unicode="<?= $icon_unicode ?>" data-id="<?= $id ?>">
 	<div class="social-icon-container">
 		<a class="social-link social-link-icon" href="<?= $link ?>" target="_blank" title="<?= $text?>">
 			<?= $icon_tag ?>

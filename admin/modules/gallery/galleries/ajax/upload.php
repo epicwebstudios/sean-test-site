@@ -27,7 +27,7 @@
 				
 				move_uploaded_file( $_FILES[$field_name]['tmp_name'], $output_dir.$orig_file );
 				
-				mysql_query( "INSERT INTO `m_photo_photos` SET `gallery` = '".$gallery."', `filename` = '".$orig_file."', `order` = '999999'" );
+				mysql_query( "INSERT INTO `m_photo_photos` SET `gallery` = '".$gallery."', `filename` = '".$orig_file."', `order` = '999999', `status` = 1" );
 				reorder_all( 'm_photo_photos', "`gallery` = '".$gallery."'" );
 				
 			} else {
@@ -39,7 +39,7 @@
 					
 					move_uploaded_file( $_FILES[$field_name]['tmp_name'][$i], $output_dir.$orig_file ); 
 				
-					mysql_query( "INSERT INTO `m_photo_photos` SET `gallery` = '".$gallery."', `filename` = '".$orig_file."', `order` = '999999'" );
+					mysql_query( "INSERT INTO `m_photo_photos` SET `gallery` = '".$gallery."', `filename` = '".$orig_file."', `order` = '999999', `status` = 1" );
 					reorder_all( 'm_photo_photos', "`gallery` = '".$gallery."'" );
 				
 				}

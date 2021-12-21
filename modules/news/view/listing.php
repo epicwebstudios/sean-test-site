@@ -58,7 +58,7 @@
 	}
 	
 		
-	echo '<div class="news_module listing">';
+	echo '<div class="news_module listing" data-id="'.$category_id.'">';
 			
 		require BASE_DIR.'/templates/modules/news/pagination.php';
 

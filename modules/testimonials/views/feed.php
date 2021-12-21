@@ -1,16 +1,25 @@
 <?
-
-
 	if( $category_id ){
-		$stmt = "SELECT * FROM `m_testimonials` WHERE `category` = '".$category_id."' AND `status` = '1' ORDER BY RAND() LIMIT 1";
+		$stmt = "SELECT * FROM `m_testimonials` WHERE `category` = '".$category_id."' AND `status` = '1' ORDER BY RAND()";
 	} else {
-		$stmt = "SELECT * FROM `m_testimonials` WHERE `status` = '1' ORDER BY RAND() LIMIT 1";
+		$stmt = "SELECT * FROM `m_testimonials` WHERE `status` = '1' ORDER BY RAND()";
 	}
-	
+
+	$classes = array(
+		'testimonial_module',
+		'feed',
+	);
+
+	if ($use_slider)
+		$classes[] = 'slider';
+
+	echo sprintf('<div class="%1$s" data-id="%2$s">', implode(' ', $classes), $category_id);
 	
 	$query = mysql_query( $stmt );
+
 	while( $r = mysql_fetch_assoc($query) ){
-	
+
+		$id             = $r['id'];
 		$quote			= $r['quote'];
 		$summary 		= nl2br( $r['summary'] );
 		$rating 		= $r['rating'];
@@ -47,12 +56,15 @@
 			}
 			
 		}
-		
-		echo '<div class="testimonial_module feed">';
 			
 			require BASE_DIR.'/templates/modules/testimonials/feed.php';
-			
-		echo '</div>';
 	
 	}
 
+	echo '</div>';
+
+	if ($use_slider) {
+		echo '<script>';
+		include BASE_DIR.'/templates/modules/testimonials/src/js/slider.js.php';
+		echo '</script>';
+	}

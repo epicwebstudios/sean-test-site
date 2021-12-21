@@ -59,7 +59,7 @@
 			<tr>
 				<td class="left">Page URL:</td>
 				<td class="right">
-					<span class="black"><b><? mainURL(1); ?></b></span><? field_text( 'link', $info['link'], "margin-top: -3px; width: 200px;" ); ?>
+					<span class="black"><b><? mainURL(1); ?></b></span><? field_text( 'link', $info['link'], "margin-top: -3px; width: 218px;" ); ?>
                     <? /* <input type="text" name="link" value="<? echo $info['link']; ?>" style="margin-top: -3px; width: 200px;"/> */ ?>
 					<div>This corresponds to the link where the page is accessed.</div>
 				</td>
@@ -105,9 +105,15 @@
         </tbody>
         <tbody class="banner-setting banner-setting-1">
             <tr>
-                <td class="left">Banner Media Type:</td>
+                <td class="left">Media Type:</td>
                 <td class="right">
                     <? field_select( 'banner_type', array(2 => 'None', 0 => 'Image', 1 => 'Video'), $info['banner_type'] ); ?>
+                </td>
+            </tr>
+            <tr class="banner-type-setting banner-type-setting-0 banner-type-setting-1">
+                <td class="left">Use Overlay:</td>
+                <td class="right">
+                    <? field_select( 'banner_overlay', array(1 => 'Yes', 0 => 'No',), $info['banner_overlay'] ); ?>
                 </td>
             </tr>
             <tr class="banner-type-setting banner-type-setting-0">
@@ -183,20 +189,20 @@
                 </td>
             </tr>
             <tr>
-                <td class="left">Banner Title:</td>
+                <td class="left">Title:</td>
                 <td class="right">
                     <? field_text( 'banner_title', $info['banner_title'] ); ?>
                 </td>
             </tr>
             <tr>
-                <td class="left">Banner Supertitle:</td>
+                <td class="left">Supertitle:</td>
                 <td class="right">
                     <? field_text( 'banner_supertitle', $info['banner_supertitle'] ); ?>
                     <div>Text above banner title</div>
                 </td>
             </tr>
             <tr>
-                <td class="left">Banner Subtitle/Text:</td>
+                <td class="left">Subtitle/Text:</td>
                 <td class="right">
                     <? field_textarea( 'banner_subtitle', $info['banner_subtitle'] ); ?>
                     <div>Text below banner title</div>
@@ -287,7 +293,7 @@
 			<tr>
 				<td class="left">Canonical URL:</td>
 				<td class="right">
-                	<? field_text( 'canonical', $info['canonical'] ); ?>
+                    <span class="black"><b><? mainURL(1); ?></b></span><? field_text( 'canonical', $info['canonical'], "margin-top: -3px; width: 218px;" ); ?>
 					<div>If this page duplicates the content of another page or website, enter the original URL here. Otherwise, leave blank.</div>
                 </td>
 			</tr>

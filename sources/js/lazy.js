@@ -1,8 +1,11 @@
 jQuery_defer(function () {
 
     // does nothing here but is cool to have
-    function getScripts(scripts, callback = false) {
-        var progress = 0;
+    function getScripts(scripts, callback) {
+        if (!callback)
+            callback = false;
+
+        let progress = 0;
         scripts.forEach(function (script) {
             $.getScript(script, function () {
                 if (++progress == scripts.length && callback) callback();
