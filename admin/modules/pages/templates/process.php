@@ -5,14 +5,15 @@
 	if( (isset($_POST['edit_sub'])) || (isset($_POST['add_sub'])) ){
 	
 		$id = $_POST['id'];
-		
+
 		
 		// -- Set values
 		
 			$values = array(
-				'name'			=> $_POST['name'],
-				'description'	=> $_POST['description'],
-				'filename'		=> $_POST['filename'],
+				'name'			    => $_POST['name'],
+				'description'	    => $_POST['description'],
+				'filename'          => $_POST['filename'],
+				'banner_dimensions' => $_POST['banner_dimensions'],
 			);
 		
 		// -- End set values

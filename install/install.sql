@@ -952,16 +952,17 @@ CREATE TABLE `page_templates` (
   `id` int(255) NOT NULL,
   `name` varchar(150) NOT NULL,
   `description` text NOT NULL,
-  `filename` varchar(150) NOT NULL
+  `filename` varchar(150) NOT NULL,
+  `banner_dimensions` varchar(150) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `page_templates`
 --
 
-INSERT INTO `page_templates` (`id`, `name`, `description`, `filename`) VALUES
-(1, 'Homepage', 'Default homepage template.', 'homepage.php'),
-(2, 'Subpage', 'Default subpage template.', 'subpage.php');
+INSERT INTO `page_templates` (`id`, `name`, `description`, `filename`, `banner_dimensions`) VALUES
+(1, 'Homepage', 'Default homepage template.', 'homepage.php', '{"width":"1920","height":"###"}'),
+(2, 'Subpage', 'Default subpage template.', 'subpage.php', '{"width":"1920","height":"###"}');
 
 -- --------------------------------------------------------
 
