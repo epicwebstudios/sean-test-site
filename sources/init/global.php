@@ -170,28 +170,29 @@
 			}
 		}
 		
-		if( $info['canonical'] == '' ){
-			$uri = $_GET['act'];
-			$uri = str_replace( '"', '', $uri );
-			$uri = str_replace( "'", '', $uri );
-			$uri = html_entity_decode( $uri );
-			$uri = explode( '>', $uri );
-			$uri = $uri[0];
-			$uri = explode( '<', $uri );
-			$uri = $uri[0];
-			$uri = strip_tags( $uri );
-			$info['canonical'] = returnURL().'/'.$uri;
-		}
-		
 		if( $info ){
-			return $info;
+
+			if( $info['canonical'] == '' ){
+				$uri = $_GET['act'];
+				$uri = str_replace( '"', '', $uri );
+				$uri = str_replace( "'", '', $uri );
+				$uri = html_entity_decode( $uri );
+				$uri = explode( '>', $uri );
+				$uri = $uri[0];
+				$uri = explode( '<', $uri );
+				$uri = $uri[0];
+				$uri = strip_tags( $uri );
+				$info['canonical'] = returnURL().'/'.$uri;
+			}
+
 		} else {
 			http_response_code( 404 );
 			$query = mysql_query( "SELECT ".$custom_fields." FROM `pages` WHERE `link` = 'error' LIMIT 1" );
 			$info = mysql_fetch_assoc( $query );
-			return $info;
 		}
-	
+
+		return $info;
+
 	}
 	
 	
@@ -586,6 +587,8 @@
 			'url'       => $file_or_array,
 			'position'  => $position,
 			'order'     => $order,
+			'type'      => 'text/javascript',
+			'extra'     => '',
 		);
 
 		if (is_array($file_or_array))
@@ -619,13 +622,15 @@
 
 			if ($j['position'] == $position) {
 
+				$type = $j['type'] ?: 'text/javascript';
+
 				if(
 					( substr($j['url'], 0, 4) == 'http' ) ||
 					( substr($j['url'], 0, 2) == '//' )
 				){
-					$sources .= '<script src="'.$j['url'].'?'.cache_refresh().'"></script>' . "\n";
+					$sources .= '<script src="'.$j['url'].'?'.cache_refresh().'" type="'.$type.'" '.$j['extra'].'></script>' . "\n";
 				} else {
-					$sources .= '<script src="'.returnURL()."/sources/js/".$j['url'].'?'.cache_refresh().'"></script>' . "\n";
+					$sources .= '<script src="'.returnURL()."/sources/js/".$j['url'].'?'.cache_refresh().'" type="'.$type.'" '.$j['extra'].'></script>' . "\n";
 				}
 			}
 		}
@@ -1003,7 +1008,7 @@
     }
 	
 	
-	function img_url( $path, $width, $height, $mode = 'scale' ){
+	function img_url( $path, $width = 500, $height = 500, $mode = 'scale' ){
 		
 		if( substr($path, 0, 1) == '/' ){
 			$path = substr( $path, 1 );

@@ -302,6 +302,7 @@
 
 .faq_module .entry .question {
 	cursor: pointer;
+	font-weight:bold;
 }
 
 .faq_module .entry .question:after {

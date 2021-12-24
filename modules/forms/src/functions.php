@@ -1,5 +1,7 @@
 <?
 	function form_render( $form_id ){
+
+		$page = getPage( $_GET['act'] );
 	
 		$output = '';
 		
@@ -26,7 +28,7 @@
 				$output .= '<form method="post" enctype="multipart/form-data" onsubmit="return form_verify('.$form['id'].');" id="form_'.$form['id'].'">';
 				
 					$output .= '<input type="hidden" name="form_id" value="'.$form['id'].'">';
-					$output .= '<input type="hidden" name="on_page" id="on_page" value="'.returnURL().'/'.$_GET['act'].'">';
+					$output .= '<input type="hidden" name="on_page" id="on_page" value="'.returnURL().'/'.$page['link'].'">';
 					
 					$output .= '<input';
 						$output .= ' type="hidden"';
