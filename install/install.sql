@@ -255,6 +255,8 @@ CREATE TABLE `javascript` (
   `id` int(255) NOT NULL,
   `url` varchar(250) NOT NULL,
   `position` int(1) NOT NULL DEFAULT 0,
+  `type` varchar(50) NOT NULL,
+  `extra` varchar(500) NOT NULL,
   `status` int(1) NOT NULL,
   `order` int(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -263,13 +265,13 @@ CREATE TABLE `javascript` (
 -- Dumping data for table `javascript`
 --
 
-INSERT INTO `javascript` (`id`, `url`, `status`, `order`) VALUES
-(1, '//js.ewsapi.com/jquery/jquery-1.10.2.min.js', 1, 1),
-(2, '//js.ewsapi.com/lightbox/lightbox.min.js', 1, 2),
-(3, '//js.ewsapi.com/mediaqueries/ie.mediaqueries.min.js', 1, 3),
-(4, 'lazy.js', 1, 4),
-(6, 'sticky_nav.js', 1, 5),
-(7, 'functions.js', 1, 6);
+INSERT INTO `javascript` (`id`, `order`, `status`, `type`, `extra`, `url`) VALUES
+(1, 1, 1, '', '', '//js.ewsapi.com/jquery/jquery-1.10.2.min.js'),
+(2, 2, 1, '', '', '//js.ewsapi.com/lightbox/lightbox.min.js'),
+(3, 3, 1, '', '', '//js.ewsapi.com/mediaqueries/ie.mediaqueries.min.js'),
+(4, 4, 1, '', '', '//js.ewsapi.com/sticky/v1/sticky.min.js'),
+(5, 5, 1, '', '', 'lazy.js'),
+(6, 6, 1, '', '', 'functions.js');
 
 -- --------------------------------------------------------
 

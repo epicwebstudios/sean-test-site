@@ -12,6 +12,8 @@
 			$values = array(
 				'url'		=> $_POST['url'],
 				'position'  => $_POST['position'],
+				'type'      => $_POST['type'],
+				'extra'     => $_POST['extra'],
 				'status'	=> $_POST['status'],
 			);
 		
