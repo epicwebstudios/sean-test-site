@@ -1,7 +1,7 @@
 <?
 
 
-	function listing_columns( $columns, $allow_order, $allow_duplicate, $allow_edit, $allow_delete, $filter_list = false ){
+	function listing_columns( $columns, $allow_order, $allow_duplicate, $allow_edit, $allow_delete, $filter_list = false, $auto_size = true ){
 		
 		$default_width = 940;
 		$preset_width = 0;
@@ -66,7 +66,7 @@
 					
 				}
 				
-				echo '<td class="category" style="'.$width.'">';
+				echo '<td class="category" '.($auto_size ? 'style="'.$width : '').'">';
 					echo $title.' '.$sort_img;
 				echo '</td>';
 						

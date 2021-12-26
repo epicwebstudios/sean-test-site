@@ -23,7 +23,7 @@
 	</thead>
 	<tbody>
 		<tr>
-			<? listing_columns( $columns, $allow_order, $allow_duplicate, $allow_edit, $allow_delete ); ?>
+			<? listing_columns( $columns, $allow_order, $allow_duplicate, $allow_edit, $allow_delete, false, false ); ?>
 		</tr>
 
 		<?
