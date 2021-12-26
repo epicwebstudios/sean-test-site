@@ -56,6 +56,10 @@
                     	<? if( $info['status'] == '1' ){ echo '<b class="tc_green">Active / Enabled</b>'; } ?>
                         <? if( $info['status'] == '0' ){ echo '<b class="tc_red">Inactive / Disabled</b>'; } ?>
                     </td>
+
+                    <td>
+                        <a href="/admin/?a=65&f_m=<?= $info['id'] ?>">Edit Menu Items</a>
+                    </td>
                 
                 
                 <? // Column output end ?>
