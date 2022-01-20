@@ -1,7 +1,7 @@
 <?
 
 
-	define( 'EP_VERSION', '3.8.0' );
+	define( 'EP_VERSION', '3.8.1' );
 
 	date_default_timezone_set( 'America/New_York' );
 

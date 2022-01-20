@@ -1,7 +1,7 @@
 <?
 
 
-	function listing_columns( $columns, $allow_order, $allow_duplicate, $allow_edit, $allow_delete, $filter_list = false ){
+	function listing_columns( $columns, $allow_order, $allow_duplicate, $allow_edit, $allow_delete, $filter_list = false, $auto_size = true ){
 		
 		$default_width = 940;
 		$preset_width = 0;
@@ -66,7 +66,7 @@
 					
 				}
 				
-				echo '<td class="category" style="'.$width.'">';
+				echo '<td class="category" '.($auto_size ? 'style="'.$width : '').'">';
 					echo $title.' '.$sort_img;
 				echo '</td>';
 						
@@ -321,3 +321,33 @@
 <?
 	}
 
+    /**
+     * Returns HTML table of recommended banner dimensions
+     * @return string
+     */
+    function render_banner_dimensions() {
+        $output = '';
+
+        $dimensions = fetch_all("SELECT `id`, `name`, `banner_dimensions` FROM `page_templates`");
+
+        if ($dimensions) {
+            $output .= '<table class="recommended-banner-dimensions">';
+            $output .= '<tbody>';
+            $output .= '<tr><td colspan="2"><b>Recommended Dimensions</b></td></tr>';
+
+            foreach ($dimensions as $dimension) {
+
+                if ($dimension['banner_dimensions']) {
+                    $the_dimensions = json_decode($dimension['banner_dimensions'], true);
+
+                    $output .= '<tr><td>'.$dimension['name'].': </td>';
+                    $output .= '<td>'.$the_dimensions['width'].'x'.$the_dimensions['height'].'</td></tr>';
+                }
+            }
+
+            $output .= '</tbody>';
+            $output .= '</table>';
+        }
+
+        return $output;
+    }

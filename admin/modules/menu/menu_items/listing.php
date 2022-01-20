@@ -6,17 +6,48 @@
     
     <div class="l">
 		<? if( $allow_add ){ ?>
-            <input type="button" value="Add <? echo $item_capital; ?>" onclick="window.location = '<? echo $base_url.'&act=add'; ?>'; return false;">
+            <input type="button" value="Add <? echo $item_capital; ?>" onclick="window.location = '<?= $base_url ?>&act=add<?= isset($_GET['f_m']) && $_GET['f_m'] ? '&menu_id='.$_GET['f_m'] : '' ?>'; return false;">
         <? } ?>
     </div>
-    
+
     <div class="r">
+        <b>Filter by Menu:</b> <? field_select2( 'f_m', array(0 => 'All Menus') + $menus, $_GET['f_m'], '', 'onchange="set_filter();"' ); ?>
     </div>
 
 </div>
 
+<script>
+
+    function set_filter(){
+
+        var url = '?a=<? echo $_GET['a']; ?>';
+
+        <? if( $_GET['s'] ){ ?>
+        url += '&s=<? echo $_GET['s']; ?>';
+        <? } ?>
+
+        if( $('#f_m').val() != '0' ){
+            url += '&f_m=' + $('#f_m').val();
+        }
+
+        window.location = url;
+
+    }
+
+</script>
+
 <?
-	$rQ = mysql_query( "SELECT * FROM `".$database[1]."` ORDER BY `name` ASC" );
+    $stmt = "SELECT * FROM `$database[1]`";
+    $stmt_order = "ORDER BY `name` ASC";
+    $stmt_where = "";
+
+    if( $_GET['f_m'] )
+        $stmt_where .= " WHERE `id` = '$_GET[f_m]'";
+
+    $stmt .= " $stmt_where $stmt_order";
+
+	$rQ = mysql_query( $stmt );
+
 	while( $r = mysql_fetch_assoc($rQ) ){
 		$items = menu_items_array( $r['id'], 'listing' );
 ?>

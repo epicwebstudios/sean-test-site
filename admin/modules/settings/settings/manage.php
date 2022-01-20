@@ -1,12 +1,4 @@
-<? $info = get_item( 1, $database[0] ); ?> 
-
-<?
-    $banner_image_rec = array(
-        'Homepage'  => '1920x###',
-        'Subpage'   => '1920x###',
-    );
-?>
-
+<? $info = get_item( 1, $database[0] ); ?>
 
 <div class="ca title_box">
 
@@ -215,12 +207,7 @@
                 <td class="left">Default Banner Image:</td>
                 <td class="right">
                     <? field_image( 'banner_image', $info['banner_image'], '/layout/banner/' ); ?>
-                    <table>
-                        <tr><td colspan="2"><b>Recommended Dimensions</b></td></tr>
-                        <? foreach ($banner_image_rec as $key => $dim) : ?>
-                            <tr><td><?= $key ?>:</td><td><?= $dim ?></td></tr>
-                        <? endforeach; ?>
-                    </table>
+                    <?= render_banner_dimensions(); ?>
                 </td>
             </tr>
             <tr>

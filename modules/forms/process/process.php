@@ -212,7 +212,7 @@
 					$m_msg		.= '---' . "\n" . "\n";
 					
 					foreach( $values['fields'] as $field ){
-						if( $value != '' ){
+						if( $field['value'] != '' ){
 							$m_msg .= $field['label'].': '.$field['value'] . "\n" . "\n";
 						}
 					}

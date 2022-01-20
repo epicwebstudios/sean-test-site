@@ -26,9 +26,10 @@
 	// - 'sort' = Column name of the database table to sort by. To disallow/disable sorting, use 'false', '0', or omit from record.
 	// - 'width' = The specific width of the column in the listing table. For automatic sizing, use 'false', '0', or omit from record.
 	$columns = array(
-		array( 'title' => 'Name', 			'sort' => 'name', 			'width' => 200 ),
-		array( 'title' => 'Description', 	'sort' => 'description', 	'width' => 0 ),
-		array( 'title' => 'Status', 		'sort' => 'status', 		'width' => 125 )
+		array( 'title' => 'Name', 			    'sort' => 'name', 			'width' => 200 ),
+		array( 'title' => 'Description', 	    'sort' => 'description', 	'width' => 0 ),
+		array( 'title' => 'Status', 		    'sort' => 'status', 		'width' => 125 ),
+		array( 'title' => 'Edit Menu Items', 	'sort' => false, 	        'width' => 125 ),
 	);
 	
 	

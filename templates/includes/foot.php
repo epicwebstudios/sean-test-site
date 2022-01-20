@@ -8,11 +8,7 @@
 
         <? if ($settings['sticky_header']) : ?>
             <script>
-                if (typeof sticky_nav !== 'undefined' && typeof sticky_nav === 'function') {
-                    $(document).ready(function () {
-                        sticky_nav('.header');
-                    });
-                }
+                let sticky = new Sticky('.header');
             </script>
         <? endif; ?>
 

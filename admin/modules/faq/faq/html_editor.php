@@ -33,6 +33,7 @@
 										cssFiles: [ 'theme/neat.css', 'theme/elegant.css' ],
 										jsFiles: [ 'mode/clike/clike.js', 'mode/php/php.js', ]
 									},
+        forced_root_block : '',
 	});
 	
 </script>

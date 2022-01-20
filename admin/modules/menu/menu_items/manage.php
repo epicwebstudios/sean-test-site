@@ -43,7 +43,7 @@
 	id="page_editor"
     method="post"
     enctype="multipart/form-data"
-    action="<? echo $base_url; if( $_GET['act'] == 'edit' ){ echo '&act='.$_GET['act'].'&i='.$_GET['i']; } ?>"
+    action="<? echo $base_url.(isset($_GET['menu_id']) && $_GET['menu_id'] ? '&f_m='.$_GET['menu_id'] : ''); if( $_GET['act'] == 'edit' ){ echo '&act='.$_GET['act'].'&i='.$_GET['i']; } ?>"
 >
 
     <? field_hidden( 'id', $info['id'] ); ?>
@@ -58,7 +58,7 @@
 			<tr>
 				<td class="left">Menu:</td>
 				<td class="right">
-                	<? field_select2( 'menu_id', $menus, $info['menu_id'], '', 'onchange="swap_menu_type();"' ); ?>
+                	<? field_select2( 'menu_id', $menus, ($info['menu_id'] ?: ($_GET['menu_id'] ?? '')), '', 'onchange="swap_menu_type();"' ); ?>
                 </td>
 			</tr>
             <? foreach( $menus as $key => $value ){ ?>

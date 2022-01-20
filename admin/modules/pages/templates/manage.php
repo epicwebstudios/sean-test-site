@@ -1,4 +1,8 @@
-<? $info = get_item( $_GET['i'], $database[0] ); ?>
+<?
+    global $user;
+
+    $info = get_item( $_GET['i'], $database[0] );
+?>
 
 
 <div class="ca title_box">
@@ -53,6 +57,28 @@
 			</tr>
 		</tbody>
 	</table>
+
+    &nbsp;
+
+    <? $banner_dimensions = $info['banner_dimensions'] ? json_decode( $info['banner_dimensions'], true ) : null ?>
+
+    <table class="form" <?= $user['level'] != 1 ? 'style="display:none"' : '' ?>>
+        <thead>
+            <tr>
+                <td colspan="2" style="background-color:#21537b;">Developer Settings</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="left">Recommended Banner Dimensions:</td>
+                <td class="right">
+                    <? field_text( 'banner_dimensions[width]', ($banner_dimensions ? $banner_dimensions['width'] : ''), 'width:50px;' ); ?> <span class="black">px</span>
+                    &nbsp;&nbsp;&times;&nbsp;&nbsp;
+                    <? field_text( 'banner_dimensions[height]', ($banner_dimensions ? $banner_dimensions['height'] : ''), 'width:50px;' ); ?> <span class="black">px</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 	
 	&nbsp;
 	
@@ -71,8 +97,15 @@
 <?
 
 	if( $_GET['act'] == 'edit' ){
+        echo '<div class="grid">';
+        echo '<div class="grid_box l w_50 p_r p_10">';
 		ajax_section( 'left_blocks' );
+        echo '</div>';
+
+        echo '<div class="grid_box l w_50 p_l p_10">';
 		ajax_section( 'right_blocks' );
+        echo '</div>';
+        echo '</div>';
 	}
 	
 	// AJAX Table/Records

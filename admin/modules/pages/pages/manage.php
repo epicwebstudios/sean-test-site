@@ -7,11 +7,6 @@
 		$info['content'] 	= '<div class="section"><div class="wrapper"><h1>Page Title</h1><p>The content of the page goes here.</p></div></div>';
 		$info['template'] 	= 2;
 	}
-
-	$banner_image_rec = array(
-        'Homepage'  => '1920x###',
-        'Subpage'   => '1920x###',
-    );
 ?>
 
 
@@ -120,12 +115,7 @@
                 <td class="left">Banner Image:</td>
                 <td class="right">
                     <? field_image( 'banner_image', $info['banner_image'], '/layout/banner/' ); ?>
-                    <table>
-                        <tr><td colspan="2"><b>Recommended Dimensions</b></td></tr>
-                        <? foreach ($banner_image_rec as $key => $dim) : ?>
-                            <tr><td><?= $key ?>:</td><td><?= $dim ?></td></tr>
-                        <? endforeach; ?>
-                    </table>
+                    <?= render_banner_dimensions(); ?>
                 </td>
             </tr>
             <tr class="banner-type-setting banner-type-setting-1">

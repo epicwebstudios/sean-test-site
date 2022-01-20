@@ -137,7 +137,7 @@ INSERT INTO `admin_pages` (`id`, `parent`, `name`, `link`, `external`, `target`,
 (43, 4, 'Form Builder', '', 0, '', '', 5, 0, 1),
 (44, 43, 'Manage Forms', '', 0, '', 'forms/forms/module.php', 1, 0, 1),
 (5, 0, 'Tools', '', 0, '', '', 5, 0, 1),
-(65, 20, 'Manage Menu Items', '', 0, '', 'menu/menu_items/module.php', 2, 0, 1),
+(65, 20, 'Manage Menu Items', '', 0, '', 'menu/menu_items/module.php', 1, 0, 1),
 (26, 5, '.htaccess Editor', '', 0, '', 'tools/htaccess/module.php', 3, 0, 1),
 (39, 5, 'SEO Auditor', 'http://www.epicwebstudios.com/audit', 1, '_blank', '', 1, 0, 1),
 (27, 5, 'Manage Blocked Users', '', 0, '', 'tools/blocked_users/module.php', 2, 0, 1),
@@ -156,7 +156,7 @@ INSERT INTO `admin_pages` (`id`, `parent`, `name`, `link`, `external`, `target`,
 (48, 19, 'Manage Staff Members', '', 0, '', 'staff/staff/module.php', 1, 0, 1),
 (49, 5, 'Manage JavaScript Files', '', 0, '', 'tools/javascript/module.php', 5, 0, 1),
 (55, 4, 'Manage Identity / Branding', '', 0, '', 'identity/module.php', 10, 0, 1),
-(64, 20, 'Manage Menus', '', 0, '', 'menu/menus/module.php', 1, 0, 1),
+(64, 20, 'Manage Menus', '', 0, '', 'menu/menus/module.php', 2, 0, 1),
 (52, 4, 'Resources', '', 0, '', '', 6, 0, 1),
 (53, 52, 'Manage Resources', '', 0, '', 'resources/resources/module.php', 1, 0, 1),
 (54, 52, 'Manage Categories', '', 0, '', 'resources/categories/module.php', 2, 0, 1),
@@ -255,6 +255,8 @@ CREATE TABLE `javascript` (
   `id` int(255) NOT NULL,
   `url` varchar(250) NOT NULL,
   `position` int(1) NOT NULL DEFAULT 0,
+  `type` varchar(50) NOT NULL,
+  `extra` varchar(500) NOT NULL,
   `status` int(1) NOT NULL,
   `order` int(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -263,13 +265,13 @@ CREATE TABLE `javascript` (
 -- Dumping data for table `javascript`
 --
 
-INSERT INTO `javascript` (`id`, `url`, `status`, `order`) VALUES
-(1, '//js.ewsapi.com/jquery/jquery-1.10.2.min.js', 1, 1),
-(2, '//js.ewsapi.com/lightbox/lightbox.min.js', 1, 2),
-(3, '//js.ewsapi.com/mediaqueries/ie.mediaqueries.min.js', 1, 3),
-(4, 'lazy.js', 1, 4),
-(6, 'sticky_nav.js', 1, 5),
-(7, 'functions.js', 1, 6);
+INSERT INTO `javascript` (`id`, `order`, `status`, `type`, `extra`, `url`) VALUES
+(1, 1, 1, '', '', '//js.ewsapi.com/jquery/jquery-1.10.2.min.js'),
+(2, 2, 1, '', '', '//js.ewsapi.com/lightbox/lightbox.min.js'),
+(3, 3, 1, '', '', '//js.ewsapi.com/mediaqueries/ie.mediaqueries.min.js'),
+(4, 4, 1, '', '', '//js.ewsapi.com/sticky/v1/sticky.min.js'),
+(5, 5, 1, '', '', 'lazy.js'),
+(6, 6, 1, '', '', 'functions.js');
 
 -- --------------------------------------------------------
 
@@ -952,16 +954,17 @@ CREATE TABLE `page_templates` (
   `id` int(255) NOT NULL,
   `name` varchar(150) NOT NULL,
   `description` text NOT NULL,
-  `filename` varchar(150) NOT NULL
+  `filename` varchar(150) NOT NULL,
+  `banner_dimensions` varchar(150) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `page_templates`
 --
 
-INSERT INTO `page_templates` (`id`, `name`, `description`, `filename`) VALUES
-(1, 'Homepage', 'Default homepage template.', 'homepage.php'),
-(2, 'Subpage', 'Default subpage template.', 'subpage.php');
+INSERT INTO `page_templates` (`id`, `name`, `description`, `filename`, `banner_dimensions`) VALUES
+(1, 'Homepage', 'Default homepage template.', 'homepage.php', '{"width":"1920","height":"###"}'),
+(2, 'Subpage', 'Default subpage template.', 'subpage.php', '{"width":"1920","height":"###"}');
 
 -- --------------------------------------------------------
 

@@ -37,13 +37,27 @@
 				<td class="left">Filename:</td>
 				<td class="right">
                 	<? field_text( 'url', $info['url'], 'font-family:monospace;' ); ?>
-                    <div>If the JavaScript file is on an external server, the filename must start with <b>http://</b> or <b>//</b>, otherwise the file must be located in <b>/sources/js/</b></div>
+                    <div>If the JavaScript file is on an external server, the filename must start with <b>https://</b> or <b>//</b>, otherwise the file must be located in <b>/sources/js/</b>.</div>
                 </td>
 			</tr>
             <tr>
                 <td class="left">Position:</td>
                 <td class="right">
                     <? field_select2( 'position', $positions, $info['position'] ); ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="left">Type:</td>
+                <td class="right">
+                    <? field_text( 'type', $info['type'], 'font-family:monospace;' ); ?>
+                    <div>Defaults to <span style="font-family:monospace">text/javascript</span> if blank.</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="left">Extra Attributes:</td>
+                <td class="right">
+                    <? field_text( 'extra', $info['extra'], 'font-family:monospace;' ); ?>
+                    <div>Add additional script attributes here.</div>
                 </td>
             </tr>
 			<tr>
