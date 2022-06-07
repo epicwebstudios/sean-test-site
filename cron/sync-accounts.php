@@ -5,7 +5,7 @@
 	
 	require_once BASE_DIR.'/sources/init/init.php';
 	
-	$url 	= 'http://in.epicwebstudios.com/sync/';
+	$url 	= 'http://in.epicwebstudios.com/sync/?include_timezones=true';
 	$ch 	= curl_init();
 	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
 	curl_setopt( $ch, CURLOPT_URL, $url );
