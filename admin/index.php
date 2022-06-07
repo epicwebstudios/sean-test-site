@@ -46,6 +46,7 @@
 	if( $success != 1 ){
 		if( isLoggedIn() ){
 			$user = getUser( $_COOKIE['admin_user'] );
+			date_default_timezone_set( $user['timezone'] );
 			log_activity();
 			require ADMIN_DIR.'/sources/layout/wrapper.php'; 
 		} else if( $_GET['a'] == 'reset' ){

@@ -38,6 +38,7 @@
 				'sticky_header'			=> $_POST['sticky_header'],
 				'logo_header'          => process_file( 'logo_header', '/layout/' ),
 				'logo_footer'          => process_file( 'logo_footer', '/layout/' ),
+				'timezone'				=> $_POST['timezone'],
 			);
 
 

@@ -58,6 +58,12 @@
                 </td>
 			</tr>
 			<tr>
+				<td class="left">Timezone:</td>
+				<td class="right">
+                	<? field_select( 'timezone', get_timezones(), $info['timezone'] ); ?>
+                </td>
+			</tr>
+			<tr>
 				<td class="left">Site Status:</td>
 				<td class="right">
                 	<?

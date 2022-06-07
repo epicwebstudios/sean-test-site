@@ -1,4 +1,7 @@
-<? $info = get_item( $_GET['i'], $database[0] ); ?>
+<?
+	$info = get_item( $_GET['i'], $database[0] );
+	if( $_GET['act'] == 'add' ){ $info['timezone'] = $settings['timezone']; }
+?>
 
 
 <div class="ca title_box">
@@ -49,6 +52,12 @@
 				<td class="left">E-mail Address:</td>
 				<td class="right">
                 	<? field_text( 'email', $info['email'] ); ?>
+                </td>
+			</tr>
+			<tr>
+				<td class="left">Timezone:</td>
+				<td class="right">
+                	<? field_text( 'timezone', get_timezones(), $info['timezone'] ); ?>
                 </td>
 			</tr>
 		</tbody>

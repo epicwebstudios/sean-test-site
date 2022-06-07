@@ -16,6 +16,7 @@
 				'level'		=> $_POST['level'],
 				'status'	=> $_POST['status'],
 				'email'		=> $_POST['email'],
+				'timezone'	=> $_POST['timezone'],
 			);
 			
 			if( $_POST['password'] != '' ){

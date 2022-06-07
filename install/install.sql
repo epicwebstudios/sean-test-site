@@ -29,6 +29,7 @@ CREATE TABLE `administrators` (
   `last` text NOT NULL,
   `level` int(255) NOT NULL,
   `status` int(1) NOT NULL,
+  `timezone` varchar(150) NOT NULL,
   `lastActivity` int(255) NOT NULL,
   `email` text NOT NULL,
   `login_attempts` int(2) NOT NULL,
@@ -1058,7 +1059,8 @@ CREATE TABLE `settings` (
   `user_agents` varchar(255) NOT NULL,
   `sticky_header` tinyint(1) NOT NULL,
   `logo_header` varchar(255) NOT NULL,
-  `logo_footer` varchar(255) NOT NULL
+  `logo_footer` varchar(255) NOT NULL,
+  `timezone` varchar(150) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -1094,7 +1096,8 @@ SET
     `file_browser` = '{\"display_type\":\"grid\",\"image_types\":\"jpg, jpeg, png, gif, webm, svg, bmp, tiff\",\"media_types\":\"mp4, mov, mpeg, mpg, m4v, avi, wma, flv, webm\",\"file_types\":\"doc, docx, rtf, pdf, xls, xlsx, txt, csv, xml, ppt, pptx, psd, ai, zip\",\"allow_folder_creation\":\"1\",\"allow_file_upload\":\"1\",\"allow_rename\":\"1\",\"allow_delete\":\"1\",\"allow_overwrite\":\"1\"}',
     `banner_image` = '',
     `user_agents` = 'Validator.nu,W3C_Validator,SiteAuditBot,AhrefsBot,rogerbot,Screaming Frog SEO Spider,GTmetrix,90.0.4430.212,PTST,TiggeritoBot,Chrome-Lighthouse',
-    `sticky_header` = 0;
+    `sticky_header` = 0,
+    `timezone` = 'America/New_York';
 
 -- --------------------------------------------------------
 

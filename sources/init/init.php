@@ -17,6 +17,9 @@
 
 	define( 'BASE_URL', $settings['url'] );
 	define( 'URL', $settings['url'] );
+		
+
+	date_default_timezone_set( $settings['timezone'] );
 
 
 	$preloaders = preloaders();
