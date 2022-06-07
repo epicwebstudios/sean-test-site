@@ -57,7 +57,7 @@
 			<tr>
 				<td class="left">Timezone:</td>
 				<td class="right">
-                	<? field_text( 'timezone', get_timezones(), $info['timezone'] ); ?>
+                	<? field_select2( 'timezone', get_timezones(), $info['timezone'] ); ?>
                 </td>
 			</tr>
 		</tbody>
