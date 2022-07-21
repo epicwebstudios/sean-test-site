@@ -303,7 +303,7 @@
 			$end = time();
 			$run_time = ( $end - $start );
 			
-			if( ($end-$start) > 5 ){
+			if( $run_time > 5 ){
 				
 				$backtrace = debug_backtrace();
 				$backtrace = $backtrace[0];
