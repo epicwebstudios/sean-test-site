@@ -1,6 +1,0 @@
-IndexIgnore *
-Options -Indexes
-
-RewriteEngine On
-
-RewriteRule ^(.*)$ index.php?act=$1 [L,QSA]
