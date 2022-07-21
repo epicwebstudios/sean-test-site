@@ -301,13 +301,25 @@
 			$resource = mysqli_query( $link_identifier, $query );
 			
 			$end = time();
+			$run_time = ( $end - $start );
 			
 			if( ($end-$start) > 5 ){
+				
 				$backtrace = debug_backtrace();
 				$backtrace = $backtrace[0];
 				$file = $backtrace['file'];
 				$line = $backtrace['line'];
-				file_put_contents( BASE_DIR.'/.logs/slow-queries.log', $file.', line '.$line.': '.$query."\n", FILE_APPEND );
+				
+				$log = '';
+				$log .= date( 'n/j/Y, g:i A' )."\n";
+				$log .= 'File: '.$file."\n";
+				$log .= 'Line: '.$file."\n";
+				$log .= 'Run Time: '.$run_time."\n";
+				$log .= 'Query: '.$query."\n";
+				$log .= "\n";
+				
+				file_put_contents( BASE_DIR.'/.logs/slow-queries.log', $log, FILE_APPEND );
+				
 			}
 			
 			return $resource;
