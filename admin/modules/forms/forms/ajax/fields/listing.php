@@ -49,11 +49,35 @@
                     </td>
                 
 					<td>
-						<? echo $validation_options[$info['validation']]; ?>
+						<?
+							if( 
+								( $info['type'] == '1' ) ||
+								( $info['type'] == '2' ) ||
+								( $info['type'] == '4' ) ||
+								( $info['type'] == '5' ) ||
+								( $info['type'] == '6' )
+							){
+								field_select(
+									'validation',
+									$validation_options,
+									$info['validation'],
+									'',
+									'onchange="ajax_process( \'fields\', \''.$_GET['i'].'\', \'&act=do&id='.$info['id'].'&validation=\' + $(this).val() ); return false;"'
+								);
+							}
+						?>
                     </td>
                 
 					<td>
-						<? echo $width_options[$info['width']]; ?>
+						<?
+							field_select(
+								'width',
+								$width_options,
+								$info['width'],
+								'',
+								'onchange="ajax_process( \'fields\', \''.$_GET['i'].'\', \'&act=do&id='.$info['id'].'&width=\' + $(this).val() ); return false;"'
+							);
+						?>
                     </td>
                 
                 

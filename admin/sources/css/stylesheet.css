@@ -7,9 +7,11 @@
 body {
 	font-family: 'Roboto', Arial, Helvetica, sans-serif;
 	font-size: 12px;
-	background-image: url('../../images/page-bg.png');
-	background-position: top center;
-	background-repeat: repeat-x;
+	background: rgb(200,227,248);
+	background: -webkit-linear-gradient(rgba(200,227,248,1) 0%, rgba(200,227,248,0) 100%);
+	background: -o-linear-gradient(rgba(200,227,248,1) 0%, rgba(200,227,248,0) 100%);
+	background: linear-gradient(rgba(200,227,248,1) 0%, rgba(200,227,248,0) 100%);
+	background-attachment: fixed;
 }
 
 body.main {
@@ -242,6 +244,10 @@ input[disabled]:hover {
 .header .bottom .user {
 	line-height: 45px;
 	font-size: 14px;
+}
+
+.header .logo img {
+	height: 45px;
 }
 
 
@@ -677,3 +683,100 @@ div.CodeMirror {
 .share-list .state{
 	display: inline-block;
 }
+
+
+/* Dark Mode */
+
+.dark_mode_toggle {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	height: 1.75em;
+    width: 3.25em;
+    border-radius: 1.75em;
+	border: 1px solid #FFF;
+	margin-right: 1em;
+	cursor: pointer;
+    -moz-transition: all .2s linear;
+    -webkit-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+	margin-top: -2px;
+}
+
+.dark_mode_toggle * {
+	cursor: pointer;
+    -moz-transition: all .2s linear;
+    -webkit-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+}
+
+.dark_mode_toggle .toggle {
+	position: absolute;
+	z-index: 100;
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	top: .0625em;
+	bottom: .0625em;
+	background-color: #FFF;
+	text-align:center;
+}
+
+.dark_mode_toggle .toggle i {
+	display: none;
+	font-size: 1em;
+    color: #2369A3;
+    text-shadow: none;
+    line-height: 1.25rem;
+}
+
+.dark_mode_toggle.loading .toggle i {
+	display: inline-block;
+}
+
+.dark_mode_toggle.on .toggle {
+	right: .0625em;
+}
+
+.dark_mode_toggle.off .toggle {
+	left: .0625em;
+}
+
+.dark_mode_toggle .light,
+.dark_mode_toggle .dark {
+	position: absolute;
+	z-index: 50;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.dark_mode_toggle .light {
+	right: .25em;
+}
+
+.dark_mode_toggle .dark {
+	left: .25em;
+}
+
+
+/* AJAX Modifications */
+
+html.ajax {
+	background-color: #FFF;
+}
+
+html.ajax body {
+	min-width: 10px;
+	height: auto;
+}
+
+html.ajax table {
+	font-size: 12px;
+}
+
+html.ajax .contain {
+	padding: 20px;
+}
+

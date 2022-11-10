@@ -1,5 +1,20 @@
 <?
 
+
+	if( $_GET['act'] == 'do' ){
+		if( ($_GET['id'] != '') && ($_GET['i'] != '') ){
+			
+			if( $_GET['validation'] != '' ){
+				mysql_query( "UPDATE `".$database[0]."` SET `validation` = '".$_GET['validation']."' WHERE `id` = '".$_GET['i']."' LIMIT 1" );
+			}
+			
+			if( $_GET['width'] != '' ){
+				mysql_query( "UPDATE `".$database[0]."` SET `width` = '".$_GET['width']."' WHERE `id` = '".$_GET['i']."' LIMIT 1" );
+			}
+			
+		}
+	}
+
 	
 	// Processing form elements that have been submitted.
 	if( (isset($_POST['edit_sub'])) || (isset($_POST['add_sub'])) ){
@@ -21,6 +36,7 @@
 				'alignment'		=> $_POST['alignment'],
 				'columns'		=> $_POST['columns'],
 				'validation'	=> $_POST['validation'],
+				'element'		=> $_POST['element'],
 			);
 		
 		// -- End set values

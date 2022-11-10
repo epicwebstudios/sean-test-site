@@ -129,3 +129,27 @@ function bind_toggle(elem, toggle_class) {
 		$('.'+toggle_class+'-'+val).show();
 	}).trigger('change.bind_namespace');
 }
+
+function toggle_dark_mode(){
+	
+	var toggle 	= $( '.dark_mode_toggle' );
+	var url		= toggle.data( 'url' );
+	
+	if( toggle.hasClass('on') ){
+		toggle.removeClass( 'on' ).addClass( 'off' ).addClass( 'loading' );
+		window.location = url + '&set_dark_mode=0';
+	} else {
+		toggle.removeClass( 'off' ).addClass( 'on' ).addClass( 'loading' );
+		window.location = url + '&set_dark_mode=1';
+	}
+	
+	return false;
+	
+}
+
+$( document ).ready( function(){
+	$( 'body' ).on( 'click', '.dark_mode_toggle', function(e){
+		toggle_dark_mode();
+		return false;
+	});
+});

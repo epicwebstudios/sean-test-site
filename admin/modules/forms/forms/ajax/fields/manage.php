@@ -1,6 +1,7 @@
 <?
 	$info = get_item( $_GET['id'], $database[0] );
 	if( $_GET['act'] == 'add' ){ $info['width'] = 100; }
+	if( $info['element'] == '' ){ $info['element'] = 'h2'; }
 ?>
 
 <script>
@@ -9,7 +10,6 @@
 		$( '.options' ).hide();
 		let value = $( '#type' ).val();
 		$( '.options_' + value ).show();
-		console.log(value);
 		if( value === "8" ){
 		    $('.options_1_to_7').hide();
         }else{
@@ -56,6 +56,12 @@
                 <td class="left">Type:</td>
                 <td class="right">
                     <? field_select( 'type', $field_options, $info['type'], '', 'onchange="swap_type();"' ); ?>
+                </td>
+            </tr>
+            <tr class="options options_7">
+                <td class="left">Tag / Element:</td>
+                <td class="right">
+                    <? field_text( 'element', $info['element'], 'width: 45px; text-align: center;' ); ?>
                 </td>
             </tr>
             <tr class="options options_1_to_7">

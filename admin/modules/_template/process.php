@@ -6,17 +6,13 @@
 	
 		$id = $_POST['id'];
 		
+		// Set the table values for add / edit.
 		
-		// -- Set values
-		
-			$values = array(
-				'name'		=> $_POST['name'],
-				'image'		=> process_file( 'image' ),
-				'status'	=> $_POST['status'],
-			);
-		
-		// -- End set values
-
+		$values = array(
+			'name'		=> $_POST['name'],
+			'image'		=> process_file( 'image' ),
+			'status'	=> $_POST['status'],
+		);
 
 	}
 	
@@ -30,21 +26,28 @@
 				$values['order'] = 999999;
 			}
 			
-			$set = query_build_set( $values );
-			
-			mysql_query( "INSERT INTO `".$database[0]."` ".$set );
+			mysql_query( "INSERT INTO `".$database[0]."` ".query_build_set( $values ) );
 			$new_record = mysql_insert_id();
 			
 			create_revision( $new_record, $database[0] );
 			log_action( 'Added '.$item.' "'.$values[$log_item].'"' );
-			log_message( 'The '.$item.' "'.$values[$log_item].'" has been added successfully. <a href="?a='.$_GET['a'].'&act=edit&i='.$new_record.'">Click here to edit the new '.$item.'</a>', 'success', $item_capital.' Added' ); 
+			
+			log_message(
+				'The '.$item.' "'.$values[$log_item].'" has been added successfully. <a href="?a='.$_GET['a'].'&act=edit&i='.$new_record.'">Click here to edit the new '.$item.'</a>',
+				'success',
+				$item_capital.' Added'
+			); 
 	
 			if( $allow_order ){
 				reorder_all( $database[0] );
 			}
 		
 		} else {
-			log_message( 'You do not have permission to add a '.$item.'.', 'error', 'Error' );
+			log_message(
+				'You do not have permission to add a '.$item.'.',
+				'error',
+				'Error'
+			);
 		}
 
 	}
@@ -57,16 +60,22 @@
 		
 		if( ($record['id']) && ($allow_edit) ){
 			
-			$set = query_build_set( $values );
-			
-			mysql_query( "UPDATE `".$database[0]."` ".$set." WHERE `id` = '".$id."' LIMIT 1" );
+			mysql_query( "UPDATE `".$database[0]."` ".query_build_set( $values )." WHERE `id` = '".$id."' LIMIT 1" );
 			
 			create_revision( $id, $database[0] );
 			log_action( 'Edited '.$item.' "'.$values[$log_item].'"' );
-			log_message( 'The '.$item.' "'.$values[$log_item].'" has been edited successfully.', 'success', $item_capital.' Edited' );
+			log_message(
+				'The '.$item.' "'.$values[$log_item].'" has been edited successfully.',
+				'success',
+				$item_capital.' Edited'
+			);
 		
 		} else {
-			log_message( 'Could not locate '.$item.' you attempted to edit or your do not have permission to edit this '.$item.'.', 'error', 'Error' );
+			log_message(
+				'Could not locate '.$item.' you attempted to edit or your do not have permission to edit this '.$item.'.',
+				'error',
+				'Error'
+			);
 		}
 		
 	}
@@ -82,14 +91,22 @@
 			$query = mysql_query( "DELETE FROM `".$database[0]."` WHERE `id` = '".$record['id']."' LIMIT 1" );
 			
 			log_action( 'Deleted '.$item.' "'.$record[$log_item].'"' );
-			log_message( 'The '.$item.' "'.$record[$log_item].'" has been deleted successfully.', 'success', $item_capital.' Deleted' );
+			log_message(
+				'The '.$item.' "'.$record[$log_item].'" has been deleted successfully.',
+				'success',
+				$item_capital.' Deleted'
+			);
 			
 			if( $allow_order ){
 				reorder_all( $database[0] );
 			}
 			
 		} else {
-			log_message( 'Could not locate '.$item.' you attempted to delete or your do not have permission to delete this '.$item.'.', 'error', 'Error' );
+			log_message(
+				'Could not locate '.$item.' you attempted to delete or your do not have permission to delete this '.$item.'.',
+				'error',
+				'Error'
+			);
 		}
 		
 	}
@@ -102,10 +119,18 @@
 		
 		if( ($allow_order) && ($record['id']) ){
 			reorder_one( $database[0], $record['id'], $_GET['o'] );
-			log_action( 'Re-ordered '.$item.' "'.$record[$log_item].'"' );
-			log_message( 'The '.$item.' "'.$record[$log_item].'" has been re-ordered successfully.', 'success', $item_capital.' Re-ordered' );
+			log_action( 'Reordered '.$item.' "'.$record[$log_item].'"' );
+			log_message(
+				'The '.$item.' "'.$record[$log_item].'" has been reordered successfully.',
+				'success',
+				$item_capital.' Reordered'
+			);
 		} else {
-			log_message( 'Could not locate '.$item.' you attempted to re-order or your do not have permission to re-order this '.$item.'.', 'error', 'Error' );
+			log_message(
+				'Could not locate '.$item.' you attempted to reorder or your do not have permission to reorder this '.$item.'.',
+				'error',
+				'Error'
+			);
 		}
 		
 	}
@@ -122,16 +147,28 @@
 			$base_name = $record[$log_item];
 			$record[$log_item] .= ' (Duplicate)';
 			
-			$set = query_build_set( $record );
+			if( $allow_order ){
+				$record['order'] = 999999;
+			}
 			
-			mysql_query( "INSERT INTO `".$database[0]."` ".$set );
+			mysql_query( "INSERT INTO `".$database[0]."` ".query_build_set( $record ) );
 			$new_record = mysql_insert_id();
+			
+			if( $allow_order ){
+				reorder_all( $database[0] );
+			}
+			
 			log_action( 'Duplicated '.$item.' "'.$base_name.'"' );
 			redirect( '?a='.$_GET['a'].'&act=edit&i='.$new_record.'&duplicated=1' );
+			
 			die();
 			
 		} else {
-			log_message( 'Could not locate '.$item.' you attempted to duplicate or your do not have permission to duplicate this '.$item.'.', 'error', 'Error' );
+			log_message(
+				'Could not locate '.$item.' you attempted to duplicate or your do not have permission to duplicate this '.$item.'.',
+				'error',
+				'Error'
+			);
 		}
 		
 	}
@@ -139,9 +176,16 @@
 
 	// Display successful duplication message, if duplicated.
 	if( $_GET['duplicated'] == '1' ){
+		
 		$record = get_item( $_GET['i'], $database[0] );
 		$record[$log_item] = str_replace( ' (Duplicate)', '', $record[$log_item] );
-		log_message( 'The '.$item.' "'.$record[$log_item].'" has been duplicated successfully.', 'success', $item_captial.' Duplicated' );
+		
+		log_message(
+			'The '.$item.' "'.$record[$log_item].'" has been duplicated successfully.',
+			'success',
+			$item_captial.' Duplicated'
+		);
+		
 	}
 	
 	

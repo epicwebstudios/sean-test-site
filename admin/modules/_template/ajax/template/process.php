@@ -7,15 +7,11 @@
 		$parent = $_POST['parent'];
 		$id = $_POST['id'];
 		
+		// Set the table values for add / edit.
 		
-		// -- Set values
-		
-			$values = array(
-				'name'	=> $_POST['name'],
-			);
-		
-		// -- End set values
-		
+		$values = array(
+			'name'	=> $_POST['name'],
+		);
 
 	}
 	
@@ -38,14 +34,23 @@
 			
 			create_revision( $new_record, $database[0] );
 			log_action( 'Added '.$item.' "'.$values[$log_item].'"' );
-			log_message( 'The '.$item.' "'.$values[$log_item].'" has been added successfully.', 'success', $item_capital.' Added' ); 
+			
+			log_message(
+				'The '.$item.' "'.$values[$log_item].'" has been added successfully.',
+				'success',
+				$item_capital.' Added'
+			); 
 	
 			if( $allow_order ){
 				reorder_all( $database[0], "`".$parent_column."` = '".$_GET['i']."'" );
 			}
 		
 		} else {
-			log_message( 'You do not have permission to add a '.$item.'.', 'error', 'Error' );
+			log_message(
+				'You do not have permission to add a '.$item.'.',
+				'error',
+				'Error'
+			);
 		}
 		
 		echo '<script type="text/javascript">';
@@ -68,10 +73,19 @@
 			
 			create_revision( $id, $database[0] );
 			log_action( 'Edited '.$item.' "'.$values[$log_item].'"' );
-			log_message( 'The '.$item.' "'.$values[$log_item].'" has been edited successfully.', 'success', $item_capital.' Edited' );
+			
+			log_message(
+				'The '.$item.' "'.$values[$log_item].'" has been edited successfully.',
+				'success',
+				$item_capital.' Edited'
+			);
 		
 		} else {
-			log_message( 'Could not locate '.$item.' you attempted to edit or your do not have permission to edit this '.$item.'.', 'error', 'Error' );
+			log_message(
+				'Could not locate '.$item.' you attempted to edit or your do not have permission to edit this '.$item.'.',
+				'error',
+				'Error'
+			);
 		}
 		
 		echo '<script type="text/javascript">';
@@ -108,7 +122,7 @@
 		
 		if( ($allow_order) && ($record['id']) ){
 			reorder_one( $database[0], $record['id'], $_GET['o'], "`".$parent_column."` = '".$_GET['i']."'" );
-			log_action( 'Re-ordered '.$item.' "'.$record[$log_item].'"' );
+			log_action( 'Reordered '.$item.' "'.$record[$log_item].'"' );
 		}
 		
 	}

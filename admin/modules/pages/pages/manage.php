@@ -169,9 +169,16 @@
                                 <? field_image( 'banner_video_thumbnail', $info['banner_video_thumbnail'], '/layout/banner/' ); ?>
                                 <table>
                                     <tr><td colspan="2"><b>Recommended Dimensions</b></td></tr>
-                                    <? foreach ($banner_image_rec as $key => $dim) : ?>
-                                        <tr><td><?= $key ?>:</td><td><?= $dim ?></td></tr>
-                                    <? endforeach; ?>
+                                    <?
+										if( is_array($banner_image_rec) ){
+											foreach( $banner_image_rec as $key => $dim ){
+												echo '<tr>';
+													echo '<td>'.$key.':</td>';
+													echo '<td>'.$dim.':</td>';
+												echo '</tr>';
+											}
+										}
+									?>
                                 </table>
                             </td>
                         </tr>

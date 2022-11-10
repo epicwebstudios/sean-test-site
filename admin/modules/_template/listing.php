@@ -49,8 +49,10 @@
                     </td>
                     
                     <td>
-                    	<? if( $info['status'] == '1' ){ echo '<b class="tc_green">Active / Enabled</b>'; } ?>
-                        <? if( $info['status'] == '0' ){ echo '<b class="tc_red">Inactive / Disabled</b>'; } ?>
+                    	<?
+							if( $info['status'] == '1' ){ echo '<b class="tc_green">Active / Enabled</b>'; }
+                        	if( $info['status'] == '0' ){ echo '<b class="tc_red">Inactive / Disabled</b>'; }
+						?>
                     </td>
                 
                 

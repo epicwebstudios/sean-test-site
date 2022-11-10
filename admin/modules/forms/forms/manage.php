@@ -94,7 +94,7 @@
                 <td class="right">
                     <? field_textarea( 'email_to', $info['email_to'] ); ?>
                     <div>The e-mail addresses which will be sent a copy of all submissions.</div>
-                    <div>Seperate multiple e-mail addreses with a comma.</div>
+                    <div>Separate multiple e-mail addresses with a comma.</div>
                 </td>
             </tr>
 			<tr>

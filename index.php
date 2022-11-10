@@ -14,7 +14,7 @@
 	if ($_GET['debug'] == 2)
 		error_reporting(E_ALL);
 	
-	require 'sources/init/init.php';
+	require_once 'sources/init/init.php';
 	
 	$template 		= mysql_fetch_assoc( mysql_query( "SELECT * FROM `page_templates` WHERE `id`= '".$page['template']."'" ) );
 	$template_file	= BASE_DIR.'/templates/'.$template['filename'];

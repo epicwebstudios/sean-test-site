@@ -53,10 +53,15 @@
 						$alignment 		= $r['alignment'];
 						$columns 		= $r['columns'];
 						$validation 	= $r['validation'];
+						$element		= $r['element'];
 						$class			= '';
 						
 						if( $validation > 0 ){
 							$class		= 'validate_'.$validation;
+						}
+						
+						if( $element == '' ){
+							$element = 'h2';
 						}
 						
 						$output .= '<div class="l w_'.$width.'">';
@@ -361,9 +366,9 @@
 									// 7: Label / Category
 									if( $type == '7' ){
 									
-										$output .= '<h2>';
+										$output .= '<'.$element.'>';
 											$output .= $label;
-										$output .= '</h2>';
+										$output .= '</'.$element.'>';
 									
 									}
 

@@ -350,6 +350,7 @@ CREATE TABLE `m_form_fields` (
   `alignment` int(1) NOT NULL,
   `columns` int(2) NOT NULL,
   `validation` int(5) NOT NULL,
+  `element` varchar(5) NOT NULL,
   `order` int(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
