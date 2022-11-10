@@ -18,6 +18,10 @@ h3 {
 .notify-warning h4 { color: #F0AD4E !important; }
 .notify-error h4 { color: #D9534F !important; }
 
+.content {
+	color: #FFF;
+}
+
 
 
 /* Header */
