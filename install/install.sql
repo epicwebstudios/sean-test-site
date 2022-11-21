@@ -1061,7 +1061,8 @@ CREATE TABLE `settings` (
   `sticky_header` tinyint(1) NOT NULL,
   `logo_header` varchar(255) NOT NULL,
   `logo_footer` varchar(255) NOT NULL,
-  `timezone` varchar(150) NOT NULL
+  `timezone` varchar(150) NOT NULL,
+  `email_settings` longtext NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -1098,7 +1099,8 @@ SET
     `banner_image` = '',
     `user_agents` = 'Validator.nu,W3C_Validator,SiteAuditBot,AhrefsBot,rogerbot,Screaming Frog SEO Spider,GTmetrix,90.0.4430.212,PTST,TiggeritoBot,Chrome-Lighthouse',
     `sticky_header` = 0,
-    `timezone` = 'America/New_York';
+    `timezone` = 'America/New_York',
+	`email_settings` = '[]';
 
 -- --------------------------------------------------------
 

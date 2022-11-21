@@ -1,12 +1,11 @@
 <?
 
+	define( 'ADMIN_PANEL', true );
 
-	$path = explode( '/admin', dirname(__FILE__) );
-	define( 'BASE_DIR', $path[0] );
-	
-	include BASE_DIR.'/sources/init/connect.php';
-	require BASE_DIR.'/sources/init/global.php';
-	require BASE_DIR.'/admin/sources/php/functions.php';
+	$path = explode( '/admin', __DIR__ );
+	define( 'CORE_DIR', $path[0].'/core' );
+	require_once CORE_DIR.'/core.php';
+
 	require dirname( __FILE__ ).'/functions.php';
 	require dirname( __FILE__ ).'/../settings.php';
 

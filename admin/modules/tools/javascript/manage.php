@@ -78,7 +78,9 @@
 		if(
 			( $_GET['act'] == 'edit' ) &&
 			( substr($info['url'], 0, 4) != 'http' ) &&
-			( substr($info['url'], 0, 2) != '//' )
+			( substr($info['url'], 0, 2) != '//' ) &&
+			( substr($info['url'], 0, 5) != 'core/' ) &&
+			( substr($info['url'], 0, 6) != '/core/' )
 		){
 	?>
     

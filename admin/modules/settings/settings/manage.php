@@ -72,36 +72,10 @@
 					?>
                 </td>
 			</tr>
-			<tr>
-				<td class="left">Allow Indexing:</td>
-				<td class="right">
-                	<?
-						$options = array( 1 => 'Enabled', 0 => 'Disabled' );
-                    	field_select2( 'allow_index', $options, $info['allow_index'] );
-					?>
-					<div>If enabled, Google (and other search engines) will be allowed to index the website.</div>
-                </td>
-			</tr>
-            <tr class="setting-index setting-index-0">
-                <td class="left">Allowed User Agents:</td>
-                <td class="right">
-                    <? field_select2_multiple( 'user_agents', $info['user_agents'], $info['user_agents'], false, false, ',', array('tags' => true,) ); ?>
-                    <div>User agents to disable noindex for while indexing is disabled.</div>
-                </td>
-            </tr>
 			<tr class="offline">
 				<td class="left">Offline Message:</td>
 				<td class="right">
                 	<? field_textarea( 'offline_msg', $info['offline_msg'] ); ?>
-                </td>
-			</tr>
-			<tr>
-				<td class="left">Clean URLs:</td>
-				<td class="right">
-                	<?
-						$options = array( 1 => 'On', 0 => 'Off' );
-                    	field_select2( 'cleanURLs', $options, $info['cleanURLs'] );
-					?>
                 </td>
 			</tr>
 			<tr>
@@ -161,6 +135,23 @@
                 </td>
 			</tr>
 			<tr>
+				<td class="left">Allow Indexing:</td>
+				<td class="right">
+                	<?
+						$options = array( 1 => 'Enabled', 0 => 'Disabled' );
+                    	field_select2( 'allow_index', $options, $info['allow_index'] );
+					?>
+					<div>If enabled, Google (and other search engines) will be allowed to index the website.</div>
+                </td>
+			</tr>
+            <tr class="setting-index setting-index-0">
+                <td class="left">Allowed User Agents:</td>
+                <td class="right">
+                    <? field_select2_multiple( 'user_agents', $info['user_agents'], $info['user_agents'], false, false, ',', array('tags' => true,) ); ?>
+                    <div>User agents to disable noindex for while indexing is disabled.</div>
+                </td>
+            </tr>
+			<tr>
 				<td class="left">Theme Color:</td>
 				<td class="right">
                 	<? field_color( 'theme_color', $info['theme_color'] ); ?>
@@ -189,6 +180,88 @@
 	</table>
     
     &nbsp;
+	
+	<script>
+	
+		function toggle_smtp(){
+			var id = $( '#email_settings_smtp' ).val();
+			$( '.smtp' ).hide();
+			$( '.smtp_' + id ).show();
+			console.log( id );
+		}
+		
+		$( document ).ready( function(){
+			toggle_smtp();
+		});
+	
+	</script>
+    
+	<table class="form">
+		<thead>
+			<tr>
+				<td colspan="2">Mail Settings</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="left">"From" Name:</td>
+				<td class="right">
+                	<? field_text( 'email_settings[name]', $info['email_settings']['name'] ); ?>
+					<div>If blank, the site name will be used.</div>
+                </td>
+			</tr>
+			<tr>
+				<td class="left">"From" E-mail Address:</td>
+				<td class="right">
+                	<? field_text( 'email_settings[email]', $info['email_settings']['email'] ); ?>
+                </td>
+			</tr>
+			<tr>
+				<td class="left">Use Authentication:</td>
+				<td class="right">
+                	<?
+						$options = array( '0' => 'No', '1' => 'Yes' );
+						field_select2( 'email_settings[smtp]', $options, $info['email_settings']['smtp'], '', 'onchange="toggle_smtp();"' );
+					?>
+                </td>
+			</tr>
+			<tr class="smtp smtp_1">
+				<td class="left">SMTP Host:</td>
+				<td class="right">
+                	<? field_text( 'email_settings[host]', $info['email_settings']['host'] ); ?>
+                </td>
+			</tr>
+			<tr class="smtp smtp_1">
+				<td class="left">SMTP Port:</td>
+				<td class="right">
+                	<? field_text( 'email_settings[port]', $info['email_settings']['port'], 'width: 50px; text-align: center;' ); ?>
+                </td>
+			</tr>
+			<tr class="smtp smtp_1">
+				<td class="left">Encryption Type:</td>
+				<td class="right">
+                	<?
+						$options = array( 'tls' => 'TLS', 'ssl' => 'SSL' );
+						field_select2( 'email_settings[encryption]', $options, $info['email_settings']['encryption'] );
+					?>
+                </td>
+			</tr>
+			<tr class="smtp smtp_1">
+				<td class="left">SMTP Username:</td>
+				<td class="right">
+                	<? field_text( 'email_settings[username]', $info['email_settings']['username'] ); ?>
+                </td>
+			</tr>
+			<tr class="smtp smtp_1">
+				<td class="left">SMTP Password:</td>
+				<td class="right">
+                	<? field_text( 'email_settings[password]', $info['email_settings']['password'] ); ?>
+                </td>
+			</tr>
+		</tbody>
+	</table>
+	
+	&nbsp;
     
 	<table class="form">
 		<thead>

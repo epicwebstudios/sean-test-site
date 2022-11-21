@@ -3,8 +3,14 @@
 	$site_root = explode( '/admin', dirname(__FILE__) );
 	define( 'SITE_ROOT', $site_root[0] );
 
-	require_once dirname( __FILE__ ).'/../config.php';
-	require_once dirname( __FILE__ ).'/functions.php';
+	require_once SITE_ROOT.'/core/php/functions/mysql.compatibility.php';
+	require_once SITE_ROOT.'/sources/php/db.config.php';
+
+	$connect = @mysql_connect( $db['host'], $db['user'], $db['pass'] ) or $connect = false;
+	@mysql_select_db( $db['db'], $connect );
+
+	require_once __DIR__.'/../config.php';
+	require_once __DIR__.'/functions.php';
 
 	// Get settings...
 

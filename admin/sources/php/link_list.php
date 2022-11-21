@@ -1,14 +1,18 @@
 <?
 
 
-	$path = explode( '/admin', dirname(__FILE__) );
-	define( 'BASE_DIR', $path[0] );
+	define( 'ADMIN_PANEL', true );
 
-	require BASE_DIR.'/sources/init/init.php';
+	$path = explode( '/admin', dirname(__FILE__) );
+	define( 'CORE_DIR', $path[0].'/core' );
+
+	require_once CORE_DIR.'/core.php';
+
 
 	if( (empty($_COOKIE['admin_user'])) || (empty($_COOKIE['admin_pass'])) ){
 		die( 'You do not have permission to access this page.' );
 	}
+
 
 	$base 	= returnURL();
 	$links 	= array();

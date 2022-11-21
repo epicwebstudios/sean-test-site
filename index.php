@@ -1,20 +1,7 @@
 <?
 
-	//----------------------------------------
-	// epicPlatform v3.7.1
-	// (c) Epic Web Studios, LLC
-	//----------------------------------------
-	// For the latest releases, please visit:
-	// http://epicwebstudios.com/platform
-	//----------------------------------------
-
-	if ($_GET['debug'] == 1 || $_GET['debug'] == 2)
-		ini_set('display_errors', 1);
-
-	if ($_GET['debug'] == 2)
-		error_reporting(E_ALL);
-	
-	require_once 'sources/init/init.php';
+	require_once __DIR__.'/core/core.php';
+	require_once __DIR__.'/sources/php/init.php';
 	
 	$template 		= mysql_fetch_assoc( mysql_query( "SELECT * FROM `page_templates` WHERE `id`= '".$page['template']."'" ) );
 	$template_file	= BASE_DIR.'/templates/'.$template['filename'];
@@ -36,4 +23,6 @@
 	}
 	
 	mysql_close( $connect );
+
+	pre_dump( $request );
 

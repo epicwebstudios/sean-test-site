@@ -1,12 +1,9 @@
 <?
 	
-	$path = explode( '/admin', dirname(__FILE__) );
-	$path = $path[0];
-	define( 'BASE_DIR', $path );
-	
-	require_once BASE_DIR.'/sources/init/connect.php';
-	require_once BASE_DIR.'/sources/init/global.php';
-	require_once BASE_DIR.'/admin/sources/php/functions.php';
+	define( 'ADMIN_PANEL', true );
+	$path = explode( '/admin', __DIR__ );
+	define( 'CORE_DIR', $path[0].'/core' );
+	require_once CORE_DIR.'/core.php';
 	
 	$path = explode( '/ajax', dirname(__FILE__) );
 	$path = $path[0];

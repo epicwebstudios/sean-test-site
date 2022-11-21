@@ -15,7 +15,6 @@
 				'name'					=> $_POST['name'],
 				'title'					=> $_POST['title'],
 				'email'					=> $_POST['email'],
-				'cleanURLs'				=> $_POST['cleanURLs'],
 				'description'			=> $_POST['description'],
 				'theme_color'			=> $_POST['theme_color'],
 				'image'					=> process_file( 'image', '/og_images/' ),

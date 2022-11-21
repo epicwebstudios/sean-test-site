@@ -1,9 +1,9 @@
 <?
 
 	$path = explode( '/cron', dirname(__FILE__) );
-	define( 'BASE_DIR', $path[0] );
+	define( 'CORE_DIR', $path[0].'/core' );
 	
-	require_once BASE_DIR.'/sources/init/init.php';
+	require_once CORE_DIR.'/core.php';
 	
 	$url 	= 'http://in.epicwebstudios.com/sync/?include_timezones=true';
 	$ch 	= curl_init();

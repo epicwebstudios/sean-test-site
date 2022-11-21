@@ -1,6 +1,7 @@
 <?
-	require "../../../../sources/init/connect.php";
-	require "../../../../sources/init/global.php";
+	define( 'ADMIN_PANEL', true );
+	$path = explode( '/admin', __DIR__ );
+	require_once $path[0].'/core/core.php';
 ?>
 
 <!DOCTYPE html>

@@ -58,9 +58,7 @@
 
 	function config_custom_icons(){
 		
-		$path = explode( '/admin', dirname(__FILE__) );
-		$path = $path[0];
-		require $path.'/sources/init/connect.php';
+		global $connect;
 		
 		$rQ = mysql_query( "SELECT * FROM `file_manager` ORDER BY `id` ASC", $connect );
 		while( $r = mysql_fetch_assoc($rQ) ){
@@ -125,9 +123,7 @@
 
 	function config_settings(){
 		
-		$path = explode( '/admin', dirname(__FILE__) );
-		$path = $path[0];
-		require $path.'/sources/init/connect.php';
+		global $connect;
 		
 		$r = mysql_fetch_assoc( mysql_query( "SELECT `file_browser` FROM `settings` WHERE `id` = '1' LIMIT 1", $connect ) );
 		
@@ -377,9 +373,7 @@
 
 	function site_url(){
 		
-		$path = explode( '/admin', dirname(__FILE__) );
-		$path = $path[0];
-		require $path.'/sources/init/connect.php';
+		global $connect;
 		
 		$info = mysql_fetch_assoc( mysql_query( "SELECT `url` FROM `settings` WHERE `id` = '1' LIMIT 1", $connect ) );
 		
@@ -425,6 +419,8 @@
 
 	function validate_login(){
 		
+		global $connect;
+		
 		if(
 			( !$_COOKIE['admin_user'] ) ||
 			( $_COOKIE['admin_user'] == '' ) ||
@@ -433,10 +429,6 @@
 		){
 			die( 'You do not have permission to access this resource. (Error code: 1)' );
 		}
-		
-		$path = explode( '/admin', dirname(__FILE__) );
-		$path = $path[0];
-		require $path.'/sources/init/connect.php';
 		
 		$user = addcslashes( $_COOKIE['admin_user'], "'" );
 		$pass = addcslashes( $_COOKIE['admin_pass'], "'" );

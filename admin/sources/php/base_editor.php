@@ -1,5 +1,5 @@
 <script src="<? mainURL(); ?>/admin/editor/tinymce.min.js"></script>
-<script type="text/javascript">
+<script>
 	
 	function file_manager( field_name, url, type, win ){
 		

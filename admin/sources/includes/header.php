@@ -26,7 +26,7 @@
 	<div class="ca bottom">
 
 		<div class="l">
-			<? require_once BASE_DIR.'/admin/sources/php/menu.php'; ?>
+			<? require_once ADMIN_DIR.'/sources/php/menu.php'; ?>
 		</div>
 
 		<div class="r user">

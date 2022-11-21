@@ -47,6 +47,8 @@
 				( $save_file ) &&
 				( substr($values['url'], 0, 4) != 'http' ) &&
 				( substr($values['url'], 0, 2) != '//' ) &&
+				( substr($values['url'], 0, 5) != 'core/' ) &&
+				( substr($values['url'], 0, 6) != '/core/' ) &&
 				( !file_exists($file) )
 			){
 				file_put_contents( $file, '' );
@@ -85,7 +87,9 @@
 			if(
 				( $save_file ) &&
 				( substr($values['url'], 0, 4) != 'http' ) &&
-				( substr($values['url'], 0, 2) != '//' )
+				( substr($values['url'], 0, 2) != '//' ) &&
+				( substr($values['url'], 0, 5) != 'core/' ) &&
+				( substr($values['url'], 0, 6) != '/core/' )
 			){
 				file_put_contents( $file, strip_all_slashes($_POST['content']) );
 			}

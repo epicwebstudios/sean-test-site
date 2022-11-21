@@ -202,6 +202,7 @@
 				$emails = $form['email_to'];
 				if( $emails != '' ){
 					
+					/*
 					$m_to 		= $emails;
 					$m_from 	= $settings['email'];
 					
@@ -227,9 +228,63 @@
 					$m_msg		.= 'This e-mail was automatically generated. Please do not respond directly to this message.';
 					
 					mail( $m_to, $m_subject, $m_msg, 'From:'.$m_from );
+					*/
 					
-					$values['emailed_to'] 		= $m_to;
-					$values['email_contents'] 	= $m_msg;
+					//----
+					
+					$mailer = new Mailer();
+					
+					$message = '';
+					$message .= '<div>The following has been submitted through the "<b>'.$form['name'].'</b>" on <b>'.$settings['name'].'</b>:</div>';
+					$message .= '<div>&nbsp;</div>';
+					$message .= '<table style="border: 0; border-color: transparent;" border="0">';
+					
+					foreach( $values['fields'] as $field ){
+						if( $field['value'] != '' ){
+							$message .= '<tr>';
+								$message .= '<td align="right" valign="top" width="150" style="text-align: right; vertical-align: top; width: 150px;">';
+									$message .= '<b>'.$field['label'].':</b>';
+								$message .= '</td>';
+								$message .= '<td align="left" valign="top" style="text-align: left; padding-left: 10px; vertical-align: top;">';
+									$message .= $field['value'];
+								$message .= '</td>';
+							$message .= '</tr>';
+						}
+					}
+					
+					$message .= '</table>';
+					$message .= '<div>&nbsp;</div>';
+					$message .= '<div><b>Submitted On:</b> '.$values['on_page'].'</div>';
+					
+					if( $values['referral'] ){
+						$message .= '<div>&nbsp;</div>';
+						$message .= '<div><b>Referring URL:</b> '.$values['referral'].'</div>';
+					}
+					
+					$message .= '<div>&nbsp;</div>';
+					$message .= '<div><b>User IP Address:</b> '.$values['ip'].'</div>';
+					$message .= '<div>&nbsp;</div>';
+					$message .= '<div>---</div>';
+					$message .= '<div>&nbsp;</div>';
+					$message .= '<div>This e-mail was automatically generated. Please do not respond directly to this message.</div>';
+					
+					$to = explode( ',', $emails );
+					foreach( $to as $v ){
+						$v = trim( $v );
+						if( $v != '' ){
+							$mailer->to( $v );
+						}
+					}
+					
+					$mailer
+						->from( $settings['email'], $settings['name'] )
+						->subject( '"'.$form['name'].'" submission on '.$settings['name'] )
+						->message( $message );
+					
+					$mailer->send();
+					
+					$values['emailed_to'] 		= $emails;
+					$values['email_contents'] 	= $message;
 					
 				}
 				

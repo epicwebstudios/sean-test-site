@@ -1,10 +1,11 @@
 <?
+
     ini_set('display_errors',1);
+
     $path = explode( '/cron', dirname(__FILE__) );
-    define( "BASE_DIR", $path[0] );
-	require "../sources/init/connect.php";
-    require "../sources/init/global.php";
-    require "../sources/php/functions.php";
-	require "../sources/php/search-cron.class.php";
+    define( 'CORE_DIR', $path[0].'/core' );
+
+	require_once CORE_DIR.'/core.php';
+    require_once BASE_DIR.'/sources/php/functions.php';
 	
 	$cron = new SearchCron();
