@@ -1,6 +1,15 @@
 <?
 
 
+	//-----------------------------------------------
+	// epicPlatform CMS
+	// (c) Epic Web Studios LLC
+	//-----------------------------------------------
+	// For the latest releases, please visit:
+	// https://github.com/epicwebstudios/epicPlatform
+	//-----------------------------------------------
+
+
 	define( 'ADMIN_PANEL', true );
 
 	$path = explode( '/admin', __DIR__ );

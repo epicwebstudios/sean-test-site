@@ -85,7 +85,7 @@ function ajax_listing( section, id ){
 	$( '#' + section + ' .loading' ).show();
 	
 	var request = $.ajax({
-		url: ajax_url + '/' + section + '/module.php?i=' + id,
+		url: ajax_url + '/' + section + '/?i=' + id,
 		type: 'get'
 	});
 	
@@ -106,7 +106,7 @@ function ajax_process( section, id, attributes, message ){
 	$( '#' + section + ' .loading' ).show();
 	
 	var request = $.ajax({
-		url: ajax_url + '/' + section + '/module.php?i=' + id + attributes,
+		url: ajax_url + '/' + section + '/?i=' + id + attributes,
 		type: 'get'
 	});
 	

@@ -14,7 +14,7 @@
 	);
 	
 	
-	require_once $path.'/sources/init/db.config.php';
+	require_once $path.'/sources/php/db.config.php';
 	
 	
 	$sql 	= file_get_contents( dirname(__FILE__).'/install.sql' );

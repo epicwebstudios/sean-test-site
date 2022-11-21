@@ -14,7 +14,6 @@
 				'url'					=> $_POST['url'],
 				'name'					=> $_POST['name'],
 				'title'					=> $_POST['title'],
-				'email'					=> $_POST['email'],
 				'description'			=> $_POST['description'],
 				'theme_color'			=> $_POST['theme_color'],
 				'image'					=> process_file( 'image', '/og_images/' ),
@@ -35,9 +34,10 @@
 				'banner_lazy'			=> $_POST['banner_lazy'],
 				'user_agents'			=> process_array_implode('user_agents'),
 				'sticky_header'			=> $_POST['sticky_header'],
-				'logo_header'          => process_file( 'logo_header', '/layout/' ),
-				'logo_footer'          => process_file( 'logo_footer', '/layout/' ),
+				'logo_header'          	=> process_file( 'logo_header', '/layout/' ),
+				'logo_footer'          	=> process_file( 'logo_footer', '/layout/' ),
 				'timezone'				=> $_POST['timezone'],
+				'email_settings'		=> $_POST['email_settings'],
 			);
 
 

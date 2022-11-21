@@ -1,11 +1,23 @@
 <?
 
+
+	//-----------------------------------------------
+	// epicPlatform CMS
+	// (c) Epic Web Studios LLC
+	//-----------------------------------------------
+	// For the latest releases, please visit:
+	// https://github.com/epicwebstudios/epicPlatform
+	//-----------------------------------------------
+
+
 	require_once __DIR__.'/core/core.php';
 	require_once __DIR__.'/sources/php/init.php';
 	
+
 	$template 		= mysql_fetch_assoc( mysql_query( "SELECT * FROM `page_templates` WHERE `id`= '".$page['template']."'" ) );
 	$template_file	= BASE_DIR.'/templates/'.$template['filename'];
 	
+
 	if( file_exists($template_file) ) {
 		
 		if( $page['protect'] == 1 ) {
@@ -22,7 +34,6 @@
 		echo '<b>Error</b>: The template file <b>'.$template['filename'].'</b> does not exist.';
 	}
 	
-	mysql_close( $connect );
 
-	pre_dump( $request );
+	mysql_close( $connect );
 

@@ -20,10 +20,11 @@
 		private $subject;
 		private $template;
 		private $to;
+		private $use_settings;
 		private $variables;
 		
 		
-		public function __construct(){
+		public function __construct( $use_settings = true ){
 			
 			$this->config = array(
 				'smtp' 			=> false,
@@ -33,6 +34,8 @@
 				'username'		=> false,
 				'password'		=> false,
 			);
+			
+			$this->use_settings = $use_settings;
 			
 			$this->clear();
 			
@@ -115,6 +118,34 @@
 			$this->subject		= '';
 			$this->to			= array();
 			$this->variables	= array();
+			
+			if( $this->use_settings ){
+				
+				$settings = siteSettings();
+				$email_settings = json_decode( $settings['email_settings'], true );
+				
+				if( $email_settings['name'] ){
+					$this->from( $email_settings['email'], $email_settings['name'] );
+				} else {
+					$this->from( $email_settings['email'], $settings['name'] );
+				}
+				
+				if( $email_settings['smtp'] == '0' ){
+					$email_settings['smtp'] = false;
+				} else {
+					$email_settings['smtp'] = true;
+				}
+			
+				$this->config = array(
+					'smtp' 			=> $email_settings['smtp'],
+					'host'			=> $email_settings['host'],
+					'encryption' 	=> $email_settings['encryption'],
+					'port'			=> $email_settings['port'],
+					'username'		=> $email_settings['username'],
+					'password'		=> $email_settings['password'],
+				);
+				
+			}
 			
 			return $this;
 			

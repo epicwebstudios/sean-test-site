@@ -14,7 +14,10 @@
 	);
 	
 	
-	require_once $path.'/sources/init/connect.php';
+	require_once $path.'/sources/php/db.config.php';
+	$connect = @mysql_connect( $db['host'], $db['user'], $db['pass'] ) or $connect = false;
+	@mysql_select_db( $db['db'], $connect );
+
 	
 	$url 	= addcslashes( $_POST['url'], "'" );
 	$name 	= addcslashes( $_POST['name'], "'" );

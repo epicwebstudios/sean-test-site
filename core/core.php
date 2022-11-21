@@ -12,7 +12,7 @@
 
 	// Set epicPlatform version.
 
-		define( 'EP_VERSION', '3.8.2' );
+		define( 'EP_VERSION', '3.9' );
 
 
 	// Start session.

@@ -1,4 +1,10 @@
-<? $info = get_item( 1, $database[0] ); ?>
+<?
+	$info = get_item( 1, $database[0] );
+	$info['email_settings'] = json_decode( $info['email_settings'], true );
+	if( !is_array($info['email_settings']) ){
+		$info['email_settings'] = array();
+	}
+?>
 
 <div class="ca title_box">
 
@@ -76,13 +82,6 @@
 				<td class="left">Offline Message:</td>
 				<td class="right">
                 	<? field_textarea( 'offline_msg', $info['offline_msg'] ); ?>
-                </td>
-			</tr>
-			<tr>
-				<td class="left">Form E-mail:</td>
-				<td class="right">
-                	<? field_text( 'email', $info['email'] ); ?>
-                    <div>This is the e-mail address that all of your contact form submissions will be sent from.</div>
                 </td>
 			</tr>
 		</tbody>
@@ -214,6 +213,7 @@
 				<td class="left">"From" E-mail Address:</td>
 				<td class="right">
                 	<? field_text( 'email_settings[email]', $info['email_settings']['email'] ); ?>
+					<div>Default "From" e-mail address using any system mailer scripts.</div>
                 </td>
 			</tr>
 			<tr>

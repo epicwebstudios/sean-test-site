@@ -14,8 +14,8 @@
 	);
 	
 	
-	require_once $path.'/sources/init/php54.compatibility.php';
-	require_once $path.'/sources/init/mysql.compatibility.php';
+	require_once $path.'/core/php/functions/php.compatibility.php';
+	require_once $path.'/core/php/functions/mysql.compatibility.php';
 	
 	
 	$host 		= $_POST['host'];
@@ -38,7 +38,7 @@
 			
 			$path = explode( '/install', dirname(__FILE__) );
 			$path = $path[0];
-			$file = $path.'/sources/init/db.config.php';
+			$file = $path.'/sources/php/db.config.php';
 			
 			$contents  = '';
 			$contents .= '<?' . "\n";

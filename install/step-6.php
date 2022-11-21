@@ -14,9 +14,7 @@
 	);
 	
 	
-	require $path.'/sources/init/connect.php';
-	require $path.'/sources/init/global.php';
-	require $path.'/admin/sources/php/functions.php';
+	require $path.'/core/core.php';
 		
 	$rQ = mysql_query( "SELECT * FROM `crons` ORDER BY `id` ASC" );
 	while( $r = mysql_fetch_array($rQ) ){

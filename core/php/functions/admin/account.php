@@ -119,7 +119,6 @@
 		$mailer = new Mailer();
 		
 		$mailer
-			->from( $settings['email'], $settings['name'] )
 			->to( $info['email'], $info['first'].' '.$info['last'] )
 			->subject( 'Password Reset For '.$settings['name'].' Requested' )
 			->message( $message );
@@ -181,7 +180,6 @@
 		$mailer = new Mailer();
 		
 		$mailer
-			->from( $settings['email'], $settings['name'] )
 			->to( $info['email'], $info['first'].' '.$info['last'] )
 			->subject( 'Account Locked On '.$settings['name'] )
 			->message( $message );

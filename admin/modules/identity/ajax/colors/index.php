@@ -1,6 +1,8 @@
 <?
 	
+	define( 'IS_AJAX', true );
 	define( 'ADMIN_PANEL', true );
+
 	$path = explode( '/admin', __DIR__ );
 	define( 'CORE_DIR', $path[0].'/core' );
 	require_once CORE_DIR.'/core.php';
@@ -9,7 +11,7 @@
 	$path = $path[0];
 	
 	$base_url = explode( '/admin', dirname(__FILE__) );
-	$base_url = returnURL().'/admin'.$base_url[1].'/module.php';
+	$base_url = returnURL().'/admin'.$base_url[1].'/';
 	
 	$section_id = basename( __DIR__ );
 	
@@ -22,33 +24,23 @@
 	if( !$_GET['act'] ){
 		require dirname( __FILE__ ).'/listing.php';
 	} else if( ($_GET['act'] == 'add') || ($_GET['act'] == 'edit') ){
+		require_once BASE_DIR.'/admin/sources/includes/head.php';
 	
 ?>
 
-<html>
-
-	<head>
-    
-		<? require_once BASE_DIR.'/admin/sources/php/ajax_head.php'; ?>
+<div class="contain">
+	<? show_messages(); ?>
+	<? require dirname( __FILE__ ).'/manage.php'; ?>
+</div>
         
-        <script type="text/javascript">
-            $( document ).ready( function(){
-                window.parent.ajax_autosize( $('.contain').outerWidth() + 'x' + $('.contain').outerHeight() );
-            });
-        </script>
-    
-    </head>
-    
-    <body>
-    	<div class="contain">
-            <? show_messages(); ?>
-        	<? require dirname( __FILE__ ).'/manage.php'; ?>
-        </div>
-    </body>
-    
-</html>
+<script type="text/javascript">
+	$( document ).ready( function(){
+		window.parent.ajax_autosize( $('.contain').outerWidth() + 'x' + $('.contain').outerHeight() );
+	});
+</script>
 
 <?
+		require_once BASE_DIR.'/admin/sources/includes/foot.php';
 	} else {
 		echo 'OK';
 	}

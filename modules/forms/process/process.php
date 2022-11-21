@@ -277,7 +277,6 @@
 					}
 					
 					$mailer
-						->from( $settings['email'], $settings['name'] )
 						->subject( '"'.$form['name'].'" submission on '.$settings['name'] )
 						->message( $message );
 					

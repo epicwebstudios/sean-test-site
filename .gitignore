@@ -1,8 +1,10 @@
 #IDEA files
 *.idea
 .idea/workspace.xml
-.htaccess
 robots.txt
+sitemap.xml
 sources/init/db.config.php
+sources/php/db.config.php
 _notes/
 /DEVMACHINE
+error_log

@@ -50,6 +50,10 @@
 	$contents .= "\n";
 	$contents .= 'RewriteCond %{REQUEST_FILENAME} !-f' . "\n";
 	$contents .= 'RewriteCond %{REQUEST_FILENAME} !-d' . "\n";
+	$contents .= 'RewriteRule ^image(.*)$ /core/image/index.php?act=$1 [L,QSA]' . "\n";
+	$contents .= "\n";
+	$contents .= 'RewriteCond %{REQUEST_FILENAME} !-f' . "\n";
+	$contents .= 'RewriteCond %{REQUEST_FILENAME} !-d' . "\n";
 	$contents .= 'RewriteRule ^(.*)$ index.php?act=$1 [L,QSA]' . "\n";
 	$contents .= "\n";
 	$contents .= '# php -- BEGIN cPanel-generated handler, do not edit' . "\n";
@@ -83,16 +87,6 @@
 	$contents .= '</IfModule>' . "\n";
 	$contents .= '# php -- END cPanel-generated handler, do not edit' . "\n";
 	file_put_contents( $path.'/admin/.htaccess', $contents );
-	
-	
-	$contents  = '';
-	$contents .= 'IndexIgnore *' . "\n";
-	$contents .= 'Options -Indexes' . "\n";
-	$contents .= "\n";
-	$contents .= 'RewriteEngine On' . "\n";
-	$contents .= "\n";
-	$contents .= 'RewriteRule ^(.*)$ index.php?act=$1 [L,QSA]' . "\n";
-	file_put_contents( $path.'/image/.htaccess', $contents );
 	
 	
 	$output['success'] = true;

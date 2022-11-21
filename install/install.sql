@@ -1100,7 +1100,7 @@ SET
     `user_agents` = 'Validator.nu,W3C_Validator,SiteAuditBot,AhrefsBot,rogerbot,Screaming Frog SEO Spider,GTmetrix,90.0.4430.212,PTST,TiggeritoBot,Chrome-Lighthouse',
     `sticky_header` = 0,
     `timezone` = 'America/New_York',
-	`email_settings` = '[]';
+	`email_settings` = '{\"name\":\"\",\"email\":\"no-reply@yourdomain.com\",\"smtp\":\"0\",\"host\":\"\",\"port\":\"587\",\"encryption\":\"tls\",\"username\":\"\",\"password\":\"\"}';
 
 -- --------------------------------------------------------
 
