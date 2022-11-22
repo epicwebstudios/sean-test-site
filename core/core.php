@@ -38,7 +38,7 @@
 		date_default_timezone_set( 'America/New_York' );
 
 
-	// Define globals.
+	// Define constants.
 
 		if( !defined('CORE_DIR') ){
 			define( 'CORE_DIR', __DIR__ );
@@ -55,6 +55,14 @@
 
 		if( !defined('ADMIN_PANEL') ){
 			define( 'ADMIN_PANEL', false );
+		}
+
+		if( !defined('IP_ADDRESS') ){
+			if( $_SERVER['HTTP_X_FORWARDED_FOR'] ){
+				define( 'IP_ADDRESS', $_SERVER['HTTP_X_FORWARDED_FOR'] );
+			} else {
+				define( 'IP_ADDRESS', $_SERVER['REMOTE_ADDR'] );
+			}
 		}
 
 

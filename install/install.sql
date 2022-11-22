@@ -32,6 +32,7 @@ CREATE TABLE `administrators` (
   `timezone` varchar(150) NOT NULL,
   `lastActivity` int(255) NOT NULL,
   `email` text NOT NULL,
+  `force_mfa` int(1) NOT NULL,
   `login_attempts` int(2) NOT NULL,
   `login_reset` varchar(25) NOT NULL,
   `reset_valid_until` int(32) NOT NULL

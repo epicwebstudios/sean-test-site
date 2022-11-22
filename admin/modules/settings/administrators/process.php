@@ -17,6 +17,7 @@
 				'status'	=> $_POST['status'],
 				'email'		=> $_POST['email'],
 				'timezone'	=> $_POST['timezone'],
+				'force_mfa'	=> $_POST['force_mfa'],
 			);
 			
 			if( $_POST['password'] != '' ){

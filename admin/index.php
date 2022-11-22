@@ -36,8 +36,12 @@
 			
 		} else {
 			
-			file_get_contents( returnURL().'/cron/sync-accounts.php' );
-			require_once ADMIN_DIR.'/sources/layout/login.php';
+			if( $mfa_login ){
+				require_once ADMIN_DIR.'/sources/layout/mfa-login.php';
+			} else {
+				file_get_contents( returnURL().'/cron/sync-accounts.php' );
+				require_once ADMIN_DIR.'/sources/layout/login.php';
+			}
 			
 		}
 		

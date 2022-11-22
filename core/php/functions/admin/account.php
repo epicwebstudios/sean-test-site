@@ -196,6 +196,61 @@
 
 
 	/**
+	 * Generate administrative user MFA/2FA email notification.
+	 *
+	 * @param int $id User ID.
+	 *
+	 * @return void
+	 */
+	
+	function generate_mfa_email( $id ){
+		
+		$settings = siteSettings();
+		
+		$stmt  = "";
+		$stmt .= " SELECT `id`, `email`, `first`, `last`, `login_reset`, `reset_valid_until` ";
+		$stmt .= " FROM `administrators` ";
+		$stmt .= " WHERE `id` = '".$id."' ";
+		$stmt .= " LIMIT 1 ";
+		
+		$info = mysql_fetch_assoc( mysql_query( $stmt ) );
+		
+		$message  = '';
+		$message .= '<div>Please enter the following verification code to access your account:</div>';
+		$message .= '<div>&nbsp;</div>';
+		$message .= '<div style="font-size: 20px;"><b>'.$info['login_reset'].'</b></div>';
+		$message .= '<div>&nbsp;</div>';
+		$message .= '<div>This verification code will expire in 5 minutes.</div>';
+		$message .= '<div>&nbsp;</div>';
+		$message .= '<div>The request for this access originated from IP address: '.IP_ADDRESS.'.</div>';
+		$message .= '<div>&nbsp;</div>';
+		$message .= '<div>If you did not request this code, please reset your password now to ensure your account remains secure.</div>';
+		$message .= '<div>&nbsp;</div>';
+		$message .= '<div>Thank you!</div>';
+		$message .= '<div>&nbsp;</div>';
+		$message .= '<div>---</div>';
+		$message .= '<div>&nbsp;</div>';
+		$message .= '<div>This e-mail is automatically generated, all replies will be discarded.</div>';
+		
+		$mailer = new Mailer();
+		
+		$mailer
+			->to( $info['email'], $info['first'].' '.$info['last'] )
+			->subject( $settings['name'].' Login Verification Code' )
+			->message( $message );
+		
+		$send = $mailer->send();
+		
+		if( $send['result'] ){
+			return true;
+		}
+		
+		return false;
+		
+	}	
+
+
+	/**
 	 * Check whether administrative user has permission to view a specific page.
 	 *
 	 * @param int $user User ID.
@@ -238,6 +293,76 @@
 
 
 	/**
+	 * Process Two-Factor / MFA administrative login request.
+	 */
+
+	$mfa_login 	= false;
+	$mfa_fail	= false;
+
+	if( isset($_POST['mfa_login_sub']) ){
+	
+		$mfa_login = true;
+		
+		$user_id 	= $_POST['mfa_u'];
+		$password 	= $_POST['mfa_p'];
+		$code 		= $_POST['mfa_code'];
+		
+		if( ($user_id != '') && ($password != '') ){
+			
+			$info = mysql_fetch_assoc( mysql_query( "SELECT * FROM `administrators` WHERE `id` = '".$user_id."' AND `password` = '".$password."' LIMIT 1" ) );
+			
+			if( $info['id'] ){
+				if( $info['status'] == '1' ){
+					if( $info['login_reset'] == $code ){
+						if( time() <= $info['reset_valid_until'] ){
+						
+							$timeout = 0;
+
+							if( $remember == 1 ){
+								$timeout = ( time() + (86400 * 180) );
+							}
+
+							setcookie( 'admin_user', $info['id'], $timeout, "/");
+							setcookie( 'admin_pass', $info['password'], $timeout, "/");
+							
+							$values = array(
+								'login_attempts' 	=> 0,
+								'login_reset'		=> '',
+								'reset_valid_until'	=> 0,
+							);
+							
+							mysql_query( "UPDATE `administrators` ".query_build_set($values)." WHERE `id` = '".$info['id']."' LIMIT 1" );
+							
+							$success = 1;
+							
+							redirect( $_SERVER['REQUEST_URI'] );
+							
+							
+						} else {
+							$error = '<div>The verification code you entered has expired. Please login again.</div>';
+							$mfa_fail = true;
+						}
+					} else {
+						$error = '<div>The verification code you entered is incorrect.</div>';
+					}
+				} else {
+					$error = '<div>Your account is disabled or locked. Please try again later.</div>';
+					$mfa_fail = true;
+				}
+			} else {
+				$error = '<div>Your verification attempt failed due to incorrect information.</div>';
+				$mfa_fail = true;
+			}
+			
+		} else {
+			$error = '<div>Your verification attempt failed due to missing information.</div>';
+			$mfa_fail = true;
+		}
+	
+	}
+
+
+	/**
 	 * Process administrative login request.
 	 */
 
@@ -263,17 +388,45 @@
 				if( $info['status'] == '1' ){
 					if( $info['password'] == $password ){
 						
-						$timeout = 0;
+						if( $info['force_mfa'] == '1' ){
+							
+							$_POST['mfa_u'] = $info['id'];
+							$_POST['mfa_p'] = $info['password'];
+							
+							$values = array(
+								'login_reset' 		=> mt_rand( 100000, 999999 ),
+								'reset_valid_until' => (time()+(60 *5)),
+							);
+							
+							mysql_query( "UPDATE `administrators` ".query_build_set($values)." WHERE `id` = '".$info['id']."' LIMIT 1" );
+							generate_mfa_email( $info['id'] );
+							
+							$mfa_login = true;
+							
+						} else {
 						
-						if( $remember == 1 ){
-							$timeout = ( time() + (86400 * 180) );
+							$timeout = 0;
+
+							if( $remember == 1 ){
+								$timeout = ( time() + (86400 * 180) );
+							}
+
+							setcookie( 'admin_user', $info['id'], $timeout, "/");
+							setcookie( 'admin_pass', $info['password'], $timeout, "/");
+							
+							$values = array(
+								'login_attempts' 	=> 0,
+								'login_reset'		=> '',
+								'reset_valid_until'	=> 0,
+							);
+							
+							mysql_query( "UPDATE `administrators` ".query_build_set($values)." WHERE `id` = '".$info['id']."' LIMIT 1" );
+							
+							$success = 1;
+							
+							redirect( $_SERVER['REQUEST_URI'] );
+							
 						}
-						
-						setcookie( 'admin_user', $info['id'], $timeout, "/");
-						setcookie( 'admin_pass', $info['password'], $timeout, "/");
-						mysql_query( "UPDATE `administrators` SET `login_attempts` = '0', `login_reset` = '' WHERE `id` = '".$info['id']."' LIMIT 1" );
-						$success = 1;
-						redirect( $_SERVER['REQUEST_URI'] );
 						
 					} else {
 						

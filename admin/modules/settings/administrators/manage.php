@@ -94,6 +94,16 @@
                 </td>
 			</tr>
 			<tr>
+				<td class="left">Require MFA?</td>
+				<td class="right">
+                	<?
+						$options = array( 0 => 'No', 1 => 'Yes' );
+                    	field_select2( 'force_mfa', $options, $info['force_mfa'] );
+					?>
+					<div>If set to "<b>Yes</b>", the user will need to check their email for a verification code during login.</div>
+                </td>
+			</tr>
+			<tr>
 				<td class="left">Status:</td>
 				<td class="right">
                 	<?
