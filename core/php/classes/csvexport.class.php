@@ -128,7 +128,8 @@
 		
 		private function parse( $array ){
 			
-			$data = $array['data'];
+			$data 		= $array['data'];
+			$precision 	= $array['precision'];
 			
 			switch( $array['type'] ){
 					
@@ -182,6 +183,11 @@
 					$output = $data;
 					break;
 				
+				case 'number':
+					$data = number_format( $data, $precision );
+					$output = $data;
+					break;
+				
 				case 'percent':
 				case 'percentage':
 					if( 
@@ -191,7 +197,7 @@
 						if( $data <= 1 ){
 							$data = ( $data * 100 );
 						}
-						$data = number_format( $data ).'%';
+						$data = number_format( $data, $precision ).'%';
 					}
 					$output = $data;
 					break;
