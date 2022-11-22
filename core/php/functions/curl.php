@@ -17,18 +17,24 @@
 	 */
 
 	function curl( $request_type, $url, $data = array(), $debug = false ){
+
+		$request_type = strtoupper( trim( $request_type ) );
 		
 		$ch = curl_init();
 		
-		curl_setopt( $ch, CURLOPT_URL, $url );
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, strtoupper( $request_type ) );
-		
 		if( is_array($data) ){
 			if( count($data) > 0 ){
-				curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query($data) );
+				if( $request_type == 'GET' ){
+					$url .= '?'.http_build_query( $data );
+				} else {
+					curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query($data) );
+				}
 			}
 		}
+		
+		curl_setopt( $ch, CURLOPT_URL, $url );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, $request_type );
 		
 		$output = array(
 			'response' 	=> curl_exec( $ch ),
@@ -68,22 +74,28 @@
 
 	function curl_auth( $api_key, $request_type, $url, $data = array(), $debug = false ){
 
+		$request_type = strtoupper( trim( $request_type ) );
+		
 		$headers = array(
 			'Authorization: Bearer '.$api_key,
 		);
 		
 		$ch = curl_init();
 		
+		if( is_array($data) ){
+			if( count($data) > 0 ){
+				if( $request_type == 'GET' ){
+					$url .= '?'.http_build_query( $data );
+				} else {
+					curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query($data) );
+				}
+			}
+		}
+		
 		curl_setopt( $ch, CURLOPT_URL, $url );
 		curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, strtoupper( $request_type ) );
-		
-		if( is_array($data) ){
-			if( count($data) > 0 ){
-				curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query($data) );
-			}
-		}
+		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, $request_type );
 		
 		$output = array(
 			'response' 	=> curl_exec( $ch ),
@@ -115,18 +127,23 @@
 
 	function curl_ping( $request_type, $url, $data = array() ){
 
+		$request_type = strtoupper( trim( $request_type ) );
+
 		$ch = curl_init();
-		
-		curl_setopt( $ch, CURLOPT_URL, $url );
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, strtoupper( $request_type ) );
 		
 		if( is_array($data) ){
 			if( count($data) > 0 ){
-				curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query($data) );
+				if( $request_type == 'GET' ){
+					$url .= '?'.http_build_query( $data );
+				} else {
+					curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query($data) );
+				}
 			}
 		}
 		
+		curl_setopt( $ch, CURLOPT_URL, $url );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, $request_type );
 		curl_setopt( $ch, CURLOPT_USERAGENT, 'api' );
 		curl_setopt( $ch, CURLOPT_TIMEOUT, 1 ); 
 		curl_setopt( $ch, CURLOPT_HEADER, 0 );

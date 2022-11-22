@@ -4,13 +4,10 @@
 	define( 'CORE_DIR', $path[0].'/core' );
 	
 	require_once CORE_DIR.'/core.php';
-	
-	$url 	= 'http://in.epicwebstudios.com/sync/?include_timezones=true';
-	$ch 	= curl_init();
-	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-	curl_setopt( $ch, CURLOPT_URL, $url );
-	$data 	= curl_exec( $ch );
-	curl_close( $ch );
+
+	$endpoint 	= 'http://in.epicwebstudios.com/sync/';
+	$params		= array( 'include_timezones' => '1' );
+	$data		= curl( 'GET', $endpoint, $params );
 	
 	if( $data ){
 		
