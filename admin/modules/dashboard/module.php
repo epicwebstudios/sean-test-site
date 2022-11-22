@@ -47,7 +47,18 @@
             <div>&nbsp;</div>
             <div>&nbsp;</div>
             
-            <div><img src="https://www.epicwebstudios.com/platform/update/check.php?v=<? echo EP_VERSION; ?>" /></div>
+            <div>
+				<?
+					$img  = 'https://www.epicwebstudios.com/platform/update/check.php';
+					$img .= '?v='.EP_VERSION;
+					$img .= '&large=true';
+					if( $_COOKIE['ews_dark_mode'] == '1' ){
+						$img .= '&dark=true';
+					}
+						
+					echo '<img src="'.$img.'" style="width: 300px;">';
+				?>
+			</div>
             
         </div>
     </div>

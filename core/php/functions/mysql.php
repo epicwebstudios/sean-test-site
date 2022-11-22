@@ -85,6 +85,37 @@
 	
 
 	/**
+	 * Insert a singular database record.
+	 *
+	 * If debugging is enabled and query fails, the SQL error is returned.
+	 *
+	 * @param string $table Database table.
+	 * @param array $values Key/value array of record values.
+	 * @param bool $debug Debugging status.
+	 *
+	 * @return int|bool|string New record ID, if successful.
+	 */
+
+	function insert_record( $table, $values, $debug = false ){
+		
+		mysql_query( "INSERT INTO `".$table."` ".query_build_set($values) );
+		
+		if( mysql_error() ){
+			
+			if( $debug ){
+				return mysql_error();
+			}
+			
+			return false;
+			
+		}
+		
+		return mysql_insert_id();
+		
+	}
+	
+
+	/**
 	 * Check database table to determine if record already exists.
 	 *
 	 * @param string $table Name of table to check.
@@ -153,5 +184,31 @@
 		} else {
 			return false;
 		}
+	}
+	
+
+	/**
+	 * Update a singular database record.
+	 *
+	 * If debugging is enabled and query fails, the SQL error is returned.
+	 *
+	 * @param string $table Database table.
+	 * @param int $id Record ID.
+	 * @param array $values Key/value array of new record values.
+	 * @param bool $debug Debugging status.
+	 *
+	 * @return bool|string Result of update.
+	 */
+
+	function update_record( $table, $id, $values, $debug = false ){
+		
+		mysql_query( "UPDATE `".$table."` ".query_build_set($values)." WHERE `id` = '".$id."' LIMIT 1" );
+		
+		if( mysql_error() ){
+			return false;
+		}
+		
+		return true;
+		
 	}
 

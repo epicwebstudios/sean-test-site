@@ -232,7 +232,7 @@
 		}
 		
 		
-		// Rendering
+		// Private Rendering Fucntions
 		
 		
 		private function render_code( $return = false ){
