@@ -39,3 +39,32 @@
 		
 	}
 
+
+	function available_modules( $dir, $options = array() ){
+		
+		$files = scandir( $dir );
+		
+		foreach( $files as $file ){
+			if( ($file != '.') && ($file != '..') && ($file != 'ajax') && (substr($file, 0, 1) != '_') ){
+				if( is_dir($dir.'/'.$file) ){
+					
+					$options = available_modules( $dir.'/'.$file, $options );
+				
+					if( file_exists($dir.'/'.$file.'/module.php') ){
+						$path = str_replace( ADMIN_DIR.'/modules/', '', $dir.'/'.$file.'/module.php' );
+						$options[$path] = $path;
+					}
+
+				}
+			}
+		}
+		
+		ksort( $options );
+		
+		return $options;
+		
+	}
+
+
+	$modules = available_modules( ADMIN_DIR.'/modules' );
+

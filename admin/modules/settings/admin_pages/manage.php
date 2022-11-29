@@ -75,7 +75,7 @@
 			<tr class="link_type link_type_0">
 				<td class="left">Module Handler:</td>
 				<td class="right">
-                	<? field_text( 'page', $info['page'] ); ?>
+					<? field_select2( 'page', $modules, $info['page'] ); ?>
                     <div>This is the filename of the page that will be loaded into the Admin Panel. All folders / files should be located in <b>/admin/modules/</b>, and this should be the path from this location.</div>
                 </td>
 			</tr>
