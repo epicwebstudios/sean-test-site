@@ -28,7 +28,7 @@
 	$columns = array(
 		array( 'title' => 'Type', 	'sort' => 'type', 	'width' => 0 ),
 		array( 'title' => 'Link', 	'sort' => 'link', 	'width' => 0 ),
-		array( 'title' => 'Status', 'sort' => 'status', 'width' => 125 )
+		array( 'title' => 'Status', 'sort' => 'status', 'width' => 135 )
 	);
 	
 	

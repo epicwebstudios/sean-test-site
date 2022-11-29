@@ -29,7 +29,7 @@
 		array( 'title' => 'Requested Page', 'sort' => 'request', 		'width' => 0 ),
 		array( 'title' => 'Redirect To', 	'sort' => false, 			'width' => 0 ),
 		array( 'title' => 'Method', 		'sort' => 'redirect_type', 	'width' => 150 ),
-		array( 'title' => 'Status', 		'sort' => 'status', 		'width' => 125 )
+		array( 'title' => 'Status', 		'sort' => 'status', 		'width' => 135 )
 	);
 	
 	

@@ -28,7 +28,7 @@
 	$columns = array(
 		array( 'title' => 'Question', 		'sort' => 'name', 		'width' => 0 ),
 		array( 'title' => 'Initial State', 	'sort' => 'collapsed', 	'width' => 125 ),
-		array( 'title' => 'Status', 		'sort' => 'status', 	'width' => 125 )
+		array( 'title' => 'Status', 		'sort' => 'status', 	'width' => 135 )
 	);
 	
 	

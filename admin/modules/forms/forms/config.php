@@ -28,8 +28,8 @@
 	$columns = array(
 		array( 'title' => 'Name', 				'sort' => 'name', 	'width' => 350 ),
 		array( 'title' => 'Description',		'sort' => 'name', 	'width' => 0 ),
-		array( 'title' => 'Status', 			'sort' => 'status', 'width' => 125 ),
-		array( 'title' => 'View Submissions', 	'sort' => false, 	'width' => 125 )
+		array( 'title' => 'Status', 			'sort' => 'status', 'width' => 135 ),
+		array( 'title' => 'View Submissions', 	'sort' => false, 	'width' => 135 )
 	);
 	
 	

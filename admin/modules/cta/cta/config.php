@@ -28,7 +28,7 @@
 	$columns = array(
 		array( 'title' => 'Name / Title',       'sort' => 'name', 	'width' => 0 ),
 		array( 'title' => 'Content / Subtitle', null,            	'width' => 0 ),
-		array( 'title' => 'Status',             'sort' => 'status', 'width' => 125 )
+		array( 'title' => 'Status',             'sort' => 'status', 'width' => 135 )
 	);
 	
 	

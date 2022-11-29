@@ -31,7 +31,7 @@
 		array( 'title' => 'Author', 		'sort' => 'author', 		'width' => 0 ),
 		array( 'title' => 'Organization', 	'sort' => 'organization', 	'width' => 0 ),
 		array( 'title' => 'Summary', 		'sort' => 'summary', 		'width' => 0 ),
-		array( 'title' => 'Status', 		'sort' => 'status', 		'width' => 125 )
+		array( 'title' => 'Status', 		'sort' => 'status', 		'width' => 135 )
 	);
 	
 	

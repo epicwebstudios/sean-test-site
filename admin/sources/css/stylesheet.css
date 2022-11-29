@@ -5,8 +5,12 @@
 }
 
 body {
-	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+	font-family: 'SF Pro Text', Helvetica, Arial, sans-serif;
 	font-size: 12px;
+    line-height: 1.47059;
+    letter-spacing: -.022em;
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 	background: rgb(200,227,248);
 	background: -webkit-linear-gradient(rgba(200,227,248,1) 0%, rgba(200,227,248,0) 100%);
 	background: -o-linear-gradient(rgba(200,227,248,1) 0%, rgba(200,227,248,0) 100%);
@@ -18,9 +22,15 @@ body.main {
 	min-width: 1000px;
 }
 
+b, strong {
+	font-weight: 600;
+}
+
 h1,
 h2,
 h3 {
+	font-family: 'SF Pro Display', Helvetica, Arial, sans-serif;
+    font-weight: 600;
 	margin: 0;
 	padding: 0;
 	color: #333;
@@ -182,7 +192,7 @@ input[disabled]:hover {
 	margin-left: 10px;
 	padding-bottom: 0;
 	color: #000;
-	font-weight: 700;
+	font-weight: 600;
 }
 
 
@@ -217,7 +227,7 @@ input[disabled]:hover {
 
 .header .top .website {
 	font-size: 16px;
-	font-weight: bold;
+	font-weight: 600;
 }
 
 .header .top .website a .fa {
@@ -232,7 +242,7 @@ input[disabled]:hover {
 .header .top .version {
 	font-size: 11px;
 	font-style: italic;
-	font-weight: bold;
+	font-weight: 600;
 	opacity: .5;
 }
 
@@ -305,7 +315,7 @@ input[disabled]:hover {
 .navigation_menu a {
 	display: block;
 	text-decoration: none;
-	font-weight: 700;
+	font-weight: 600;
 }
 
 .navigation_menu a.level_0 {
@@ -373,7 +383,7 @@ input[disabled]:hover {
 	text-shadow: 1px 1px 3px rgba(0,0,0,.25);
 	line-height: 35px;
 	padding: 0 10px;
-	font-weight: bold;
+	font-weight: 600;
 	color: #FFF;
 	font-size: 14px;
 }
@@ -427,7 +437,7 @@ input[disabled]:hover {
 .form td.category {
 	padding: 10px 12px;
 	background-color: #EFF3F6;
-	font-weight: bold;
+	font-weight: 600;
 }
 
 .table tr.category td img,
@@ -453,9 +463,9 @@ input[disabled]:hover {
 }
 
 .form tbody .left {
-	width: 150px;
+	width: 175px;
 	text-align: right;
-	font-weight: bold;
+	font-weight: 600;
 	padding: 5px;
 	padding-top: 8px;
 	vertical-align: top;
@@ -536,7 +546,7 @@ input[disabled]:hover {
 
 .page_nav .right {
 	text-align: right;
-	font-weight: bold;
+	font-weight: 600;
 }
 
 

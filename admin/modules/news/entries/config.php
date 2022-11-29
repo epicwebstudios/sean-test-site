@@ -29,7 +29,7 @@
 		array( 'title' => 'Title', 		'sort' => 'name', 		'width' => 0 ),
 		array( 'title' => 'Category', 	'sort' => 'category', 	'width' => 300 ),
 		array( 'title' => 'Post Date', 	'sort' => 'date', 		'width' => 150 ),
-		array( 'title' => 'Status', 	'sort' => 'status', 	'width' => 125 )
+		array( 'title' => 'Status', 	'sort' => 'status', 	'width' => 135 )
 	);
 	
 	

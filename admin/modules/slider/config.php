@@ -29,7 +29,7 @@
 		array( 'title' => 'Image', 		'sort' => 'photo', 	'width' => 100 ),
 		array( 'title' => 'Name', 		'sort' => 'name', 	'width' => 0 ),
 		array( 'title' => 'Links To', 	'sort' => false, 	'width' => 0 ),
-		array( 'title' => 'Status', 	'sort' => 'status', 'width' => 125 )
+		array( 'title' => 'Status', 	'sort' => 'status', 'width' => 135 )
 	);
 	
 	

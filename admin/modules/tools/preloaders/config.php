@@ -27,7 +27,7 @@
 	// - 'width' = The specific width of the column in the listing table. For automatic sizing, use 'false', '0', or omit from record.
 	$columns = array(
 		array( 'title' => 'File', 	'sort' => 'name', 	'width' => 0 ),
-		array( 'title' => 'Status', 'sort' => 'status', 'width' => 125 )
+		array( 'title' => 'Status', 'sort' => 'status', 'width' => 135 )
 	);
 	
 	

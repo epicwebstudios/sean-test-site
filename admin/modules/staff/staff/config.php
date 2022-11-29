@@ -30,7 +30,7 @@
 		array( 'title' => 'Last Name', 	'sort' => 'last', 		'width' => 0 ),
 		array( 'title' => 'Position', 	'sort' => 'position', 	'width' => 0 ),
 		array( 'title' => 'Department', 'sort' => 'department', 'width' => 0 ),
-		array( 'title' => 'Status', 	'sort' => 'status', 	'width' => 125 )
+		array( 'title' => 'Status', 	'sort' => 'status', 	'width' => 135 )
 	);
 	
 	

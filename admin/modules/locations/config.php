@@ -32,7 +32,7 @@
 		array( 'title' => 'State', 			'sort' => 'state', 		'width' => 0 ),
 		array( 'title' => 'Zip Code', 		'sort' => 'zip', 		'width' => 75 ),
 		array( 'title' => 'Phone Number', 	'sort' => 'phone', 		'width' => 150 ),
-		array( 'title' => 'Status', 		'sort' => 'status', 	'width' => 125 )
+		array( 'title' => 'Status', 		'sort' => 'status', 	'width' => 135 )
 	);
 	
 	

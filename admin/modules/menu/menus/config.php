@@ -28,7 +28,7 @@
 	$columns = array(
 		array( 'title' => 'Name', 			    'sort' => 'name', 			'width' => 200 ),
 		array( 'title' => 'Description', 	    'sort' => 'description', 	'width' => 0 ),
-		array( 'title' => 'Status', 		    'sort' => 'status', 		'width' => 125 ),
+		array( 'title' => 'Status', 		    'sort' => 'status', 		'width' => 135 ),
 		array( 'title' => 'Edit Menu Items', 	'sort' => false, 	        'width' => 125 ),
 	);
 	

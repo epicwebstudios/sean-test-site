@@ -29,7 +29,7 @@
 		array( 'title' => 'Name', 		'sort' => 'name', 		'width' => 0 ),
 		array( 'title' => 'Start Date', 'sort' => 'date_start', 'width' => 150 ),
 		array( 'title' => 'End Date', 	'sort' => 'date_end', 	'width' => 150 ),
-		array( 'title' => 'Status', 	'sort' => 'status', 	'width' => 125 )
+		array( 'title' => 'Status', 	'sort' => 'status', 	'width' => 135 )
 	);
 	
 	

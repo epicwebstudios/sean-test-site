@@ -29,7 +29,7 @@
 		array( 'title' => 'Username', 		'sort' => 'username', 	'width' => 200 ),
 		array( 'title' => 'Real Name', 		'sort' => 'first', 		'width' => 0 ),
 		array( 'title' => 'Level', 			'sort' => 'level', 		'width' => 0 ),
-		array( 'title' => 'Status', 		'sort' => 'status', 	'width' => 125 ),
+		array( 'title' => 'Status', 		'sort' => 'status', 	'width' => 135 ),
 		array( 'title' => 'Action Logs', 	'sort' => false, 		'width' => 125 ),
 	);
 	

@@ -30,7 +30,7 @@
 		array( 'title' => 'Type', 				'sort' => 'type', 	'width' => 125 ),
 		array( 'title' => 'Tag', 				'sort' => 'tag', 	'width' => 250 ),
 		array( 'title' => 'Reference Table', 	'sort' => 'table', 	'width' => 0 ),
-		array( 'title' => 'Status', 			'sort' => 'status', 'width' => 125 )
+		array( 'title' => 'Status', 			'sort' => 'status', 'width' => 135 )
 	);
 	
 	

@@ -30,7 +30,7 @@
 		array( 'title' => 'Category', 	'sort' => 'category', 	'width' => 275 ),
 		array( 'title' => 'File / URL', 'sort' => false, 		'width' => 0 ),
 		array( 'title' => 'Date', 		'sort' => 'date', 		'width' => 175 ),
-		array( 'title' => 'Status', 	'sort' => 'status', 	'width' => 125 )
+		array( 'title' => 'Status', 	'sort' => 'status', 	'width' => 135 )
 	);
 	
 	
