@@ -9,3 +9,5 @@ docker-compose.yml
 _notes/
 /DEVMACHINE
 error_log
+sources/init/db.config.php
+sources/php/db.config.php
