@@ -1,0 +1,181 @@
+body {
+	background: #222;
+}
+
+h1, h2, h3, h4, h5 {
+	color: #FFF !important;
+}
+
+h1 {
+	text-shadow: #000 1px 1px 1px;
+}
+
+h3 {
+	text-shadow: #000 1px 1px 1px;
+}
+
+.notify-success h4 { color: #5CB85C !important; }
+.notify-warning h4 { color: #F0AD4E !important; }
+.notify-error h4 { color: #D9534F !important; }
+
+.content {
+	color: #FFF;
+}
+
+
+
+/* Header */
+
+.header .top {
+	background-image: none;
+	background-color: rgba(24,67,102,.5);
+}
+
+.header .bottom {
+	background-color: #184366;
+}
+
+
+/* Tables */
+
+.table,
+.form {
+	background-color: rgba(255,255,255,.05);
+	color: #FFF;
+	box-shadow: 0 0 10px rgba(0,0,0,.2);
+}
+
+.table a,
+.form a {
+	color: #81B0C7;
+}
+
+.table thead td,
+.form thead td {
+	background-color: #184366;
+}
+
+.table tbody tr:hover {
+	background-color: rgba(0,0,0,.1) !important;
+}
+
+.table tbody td {
+	border-top: 1px solid rgba(255,255,255,.1);
+}
+
+.table .category,
+.table .category td,
+.table tbody tr.category:hover,
+.table tr.category td,
+.form tr.category td,
+.table td.category,
+.form td.category {
+	background-color: #222 !important;
+}
+
+.table tbody tr.inactive td {
+    background-color: rgba( 255, 204, 204, .1);
+}
+
+.form tbody .right.black,
+.form tbody .right .black {
+	color: #FFF;
+}
+
+.table tbody .no_hover:hover {
+	background-color: transparent;
+}
+
+table.body {
+	color: #FFF;
+}
+
+
+/* Buttons */
+
+thead input[type="submit"], 
+thead input[type="button"] {
+    color:#1d4464;
+}
+
+input[type="submit"], 
+input[type="button"], 
+.page_nav input[type="submit"], 
+.page_nav input[type="button"],
+.linksnotes .action a {
+    background-color:#1d4464;
+    border-color:#1d4464;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.page_nav input[type="submit"]:hover,
+.page_nav input[type="button"]:hover {
+    border: 1px solid #FFF;
+	background-color: transparent;
+    color: #FFF;
+}
+
+.page_nav td {
+	color: rgba(255,255,255,.8);
+}
+
+input[type="submit"]:disabled,
+input[type="button"]:disabled,
+input[disabled],
+input[type="submit"]:disabled:hover,
+input[type="button"]:disabled:hover,
+input[disabled]:hover {
+	background-color: transparent;
+	border-color: rgba(255,255,255,.25);
+	color: rgba(255,255,255,.25);
+}
+
+
+/* Fields */
+
+input[type="text"],
+select,
+textarea {
+	background-color: rgba(255,255,255,.125);
+	border-color: rgba(255,255,255,.125);
+	color: #FFF;
+}
+
+select option {
+	color: #000 !important;
+}
+
+.select2-container--default .select2-selection--single {
+	background-color: rgba(255,255,255,.125) !important;
+	border-color: rgba(255,255,255,.125) !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+	color: #FFF !important;
+}
+
+.select2-container--open .select2-dropdown--below {
+	background-color: #333 !important;
+    border-color: #555 !important;
+    color: #FFF;
+}
+
+.select2-container--default .select2-results__option[aria-selected=true],
+.select2-container--default .select2-results__option--selected {
+	background-color: #222;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected=true] {
+	background-color: #5897fb !important;	
+}
+
+
+/* Filters Specific */
+
+.filters {
+	background-color: rgba(0,0,0,.2) !important;
+    border: 1px solid rgba(0,0,0,.2) !important;
+	color: #FFF !important;
+}
+
