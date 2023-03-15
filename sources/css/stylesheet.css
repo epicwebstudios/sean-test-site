@@ -54,23 +54,46 @@ input[type="button"]:hover {
     box-shadow: 0 1px 0 rgba(0,0,0,.1);
     z-index: 99999;
 	padding-block: 10px;
+	border-bottom: 3px solid rgb(10, 71, 121);
 }
 
 .header .wrapper{
 	display: flex;
-	align-items: center;
+	align-items: flex-end;
 	justify-content: space-between;
 }
 
 .header .wrapper .logo{
-	width:300px; 
+	width:200px; 
 	float:left;
 }
 .header .wrapper .logo img{
 	width:100%; 
+	-webkit-filter: drop-shadow(5px 5px 5px rgb(10, 71, 121));
+	filter: drop-shadow(5px 5px 5px rgb(10, 71, 121));
 }
 
+.menu_module {
+	color: #fff;
+	font-weight: bolder;
+}
 
+.menu_module.menu_1 div {
+	padding: 15px;
+}
+
+.menu_module.menu_1 a{
+	color: #fff;
+	text-decoration: none;
+	font-weight: bolder;
+	font-size: 1.5rem;
+}
+
+.menu_module .dropdown {
+	background-color: #2da8f0;
+	padding-block: 15px;
+	border-radius: 15px;
+}
 
 /* Page */
 
@@ -93,6 +116,7 @@ input[type="button"]:hover {
 .footer {
 	background-color: rgb(10, 71, 121);
 	color: #fff;
+	border-top: 3px solid #2da8f0;
 }
 
 
