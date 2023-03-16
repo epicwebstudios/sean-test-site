@@ -3,14 +3,13 @@
 .idea/workspace.xml
 robots.txt
 sitemap.xml
-sources/init/db.config.php
-sources/php/db.config.php
+# sources/init/db.config.php
+# sources/php/db.config.php
 docker-compose.yml
 _notes/
 /DEVMACHINE
 error_log
 init/temple_sean_db.sql
-robots.txt
 php_errorlog
 error_log
 /init
@@ -19,8 +18,8 @@ error_log
 /Dockerfile
 /config.ini
 /image/cache
-/uploads
-/.htaccess
+# /uploads
+# /.htaccess
 /.logs
 /admin/filemanager/thumbs
 /portal/uploads
