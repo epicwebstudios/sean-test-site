@@ -5,9 +5,9 @@ services:
     restart: always
     container_name: database_sts
     environment:
-      MYSQL_DATABASE: sean_db
-      MYSQL_USER: sean_db
-      MYSQL_PASSWORD: testing123
+      MYSQL_DATABASE: temple_sean_db
+      MYSQL_USER: temple_user
+      MYSQL_PASSWORD: Cw4hA-9RZgf)
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
     command: mysqld --sql_mode=""
     volumes:
