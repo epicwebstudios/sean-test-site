@@ -95,6 +95,10 @@ input[type="button"]:hover {
 	border-radius: 15px;
 }
 
+.menu_module.mobile {
+	background-color: #2da8f0;
+}
+
 /* Page */
 
 /* .page {

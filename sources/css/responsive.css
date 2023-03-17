@@ -10,10 +10,14 @@
 	.wrapper { width: auto; padding: 0 20px; }
 }
 
+@media screen and (max-width: 701px){
+	.toggle_mobile_menu { display: block; }
+}
+
 @media screen and (max-width: 550px){
 	.menu_module.horizontal,
 	.menu_module.vertical { display: none; }
-	.toggle_mobile_menu { display: block; }
+	/* .toggle_mobile_menu { display: block; } */
 
 	.grid .grid_box { width:100%; }
 	.grid .grid_box .p_a { padding:15px 0; }
