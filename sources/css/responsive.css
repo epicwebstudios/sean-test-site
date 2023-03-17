@@ -14,6 +14,12 @@
 	.toggle_mobile_menu { display: block; }
 	.menu_module.horizontal,
 	.menu_module.vertical { display: none; }
+	.header .wrapper .logo img{
+		width:50%; 
+	}
+	.fa {
+		font-size: 40px;
+	}
 }
 
 @media screen and (max-width: 550px){

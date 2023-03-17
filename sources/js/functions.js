@@ -7,9 +7,11 @@ function size_footer(){
 function toggle_mobile_menu(){
 	if( $( '.menu_module.mobile' ).css( 'display' ) == 'block' ){
 		$( 'body' ).css( 'overflow', 'auto' );
+		$( '.header' ).css( 'display', 'block' );
 		$( '.menu_module.mobile' ).fadeOut( 'fast' );
 	} else {
 		$( 'body' ).css( 'overflow', 'hidden' );
+		$( '.header' ).css( 'display', 'none' );
 		$( '.menu_module.mobile' ).fadeIn( 'fast' );
 	}
 }
