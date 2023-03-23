@@ -93,6 +93,7 @@ input[type="button"]:hover {
 	text-decoration: none;
 	font-weight: bolder;
 	font-size: 1.5rem;
+	transition: 0.3s ease-in-out;
 }
 
 .menu_module .dropdown {
@@ -105,16 +106,19 @@ input[type="button"]:hover {
 	background-color: #2da8f0;
 }
 
-/* .menu_module.menu_2 ,
-.menu_module.menu_3 {
-
-} */
-
 .menu_module.menu_2 a,
 .menu_module.menu_3 a{
 	color: #fff;
 	text-decoration: none;
 	font-weight: bolder;
+	transition: 0.3s ease-in-out;
+}
+
+.menu_module.menu_1 div a:hover,
+.menu_module.menu_2 div a:hover,
+.menu_module.menu_3 div a:hover{
+	color: aqua;
+	transition: 0.3s ease-in-out;
 }
 
 .menu_module.menu_2 .item,
