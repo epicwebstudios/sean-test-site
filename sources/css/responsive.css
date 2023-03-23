@@ -20,6 +20,9 @@
 	.fa {
 		font-size: 40px;
 	}
+	.header .wrapper{
+		align-items: center;
+	}
 }
 
 @media screen and (max-width: 550px){
