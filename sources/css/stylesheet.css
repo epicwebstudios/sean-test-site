@@ -97,9 +97,12 @@ input[type="button"]:hover {
 }
 
 .menu_module .dropdown {
-	background-color: #379dd9;
+	background-color: #2da8f0;
 	padding-block: 15px;
 	border-radius: 15px;
+	border-bottom: 3px solid rgb(10, 71, 121);
+	border-left: 3px solid rgb(10, 71, 121);
+	border-right: 3px solid rgb(10, 71, 121);
 }
 
 .menu_module.mobile {

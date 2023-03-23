@@ -23,6 +23,10 @@
 	.header .wrapper{
 		align-items: center;
 	}
+	.menu_module .dropdown {
+		background-color: #2180b8;
+		border: none;
+	}
 }
 
 @media screen and (max-width: 550px){
