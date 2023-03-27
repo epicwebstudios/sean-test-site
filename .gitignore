@@ -26,3 +26,4 @@ error_log
 /sitemap.xml
 /DEVMACHINE
 _notes/
+sources/php/db.config.php
