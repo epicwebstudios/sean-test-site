@@ -81,7 +81,7 @@
 				}
 				
 				require BASE_DIR.'/templates/modules/news/listing.php';
-				$latest_count++
+				$latest_count++;
 			}
 		} else {
 			while( $r = mysql_fetch_assoc($query) ){
