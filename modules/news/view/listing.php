@@ -64,24 +64,25 @@
 
 		$query = mysql_query( $stmt );
 		$latest_count = 0;
-		if ($_GET['news_type'] && $_GET['news_type'] == 'latest') {
-			while( $r = mysql_fetch_assoc($query) && $latest_count < 4 ){
-
-				$id			= $r['id'];
-				$title 		= $r['name'];
-				$link		= $page_url.'/'.$r['permalink'];
-				$date		= $r['date'];
-				$summary	= $r['summary'];
-				$photo		= false;
-				
-				$default	= mysql_fetch_assoc( mysql_query( "SELECT * FROM `m_news_photos` WHERE `entry` = '".$r['id']."' ORDER BY `order` ASC LIMIT 1" ) );
-				
-				if( $default['filename'] ){
-					$photo	= '/news/'.$default['filename'];
+		if ($news_latest == 1) {
+			while( $r = mysql_fetch_assoc($query)){
+				if ($latest_count < 3) {
+					$id			= $r['id'];
+					$title 		= $r['name'];
+					$link		= $page_url.'/'.$r['permalink'];
+					$date		= $r['date'];
+					$summary	= $r['summary'];
+					$photo		= false;
+					
+					$default	= mysql_fetch_assoc( mysql_query( "SELECT * FROM `m_news_photos` WHERE `entry` = '".$r['id']."' ORDER BY `order` ASC LIMIT 1" ) );
+					
+					if( $default['filename'] ){
+						$photo	= '/news/'.$default['filename'];
+					}
+					
+					require BASE_DIR.'/templates/modules/news/listing.php';
+					$latest_count++;
 				}
-				
-				require BASE_DIR.'/templates/modules/news/listing.php';
-				$latest_count++;
 			}
 		} else {
 			while( $r = mysql_fetch_assoc($query) ){
