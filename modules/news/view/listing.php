@@ -69,7 +69,7 @@
 				if ($latest_count < 3) {
 					$id			= $r['id'];
 					$title 		= $r['name'];
-					$link		= $page_url.'/'.$r['permalink'];
+					$link		= $page_url.'/news/'.$r['permalink'];
 					$date		= $r['date'];
 					$summary	= $r['summary'];
 					$photo		= false;
