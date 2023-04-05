@@ -153,3 +153,16 @@ $( document ).ready( function(){
 		return false;
 	});
 });
+
+$( document ).ready(function() {
+	$('#video_type').change(function() {
+		var data = $(this).val();
+			if (data == "1") {
+				$('#youtube_info').hide();
+				$('#native_info').show();
+			} else {
+				$('#youtube_info').show();
+				$('#native_info').hide();
+		}
+	});
+});
