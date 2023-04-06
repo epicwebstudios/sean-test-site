@@ -1,6 +1,6 @@
 <div class="pagination">
     
-    Page <b><? echo $pagination['current']; ?></b> of <b><? echo $pagination['count']; ?></b>
+    <!-- Page <b><? echo $pagination['current']; ?></b> of <b><? echo $pagination['count']; ?></b> -->
 	
     <? if( $pagination['prev'] ){ ?>
         <div class="prev">

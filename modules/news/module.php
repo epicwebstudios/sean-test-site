@@ -2,7 +2,7 @@
 
 
 	global $settings, $page, $request;
-    require BASE_DIR.'/sources/php/share.class.php';
+    // require BASE_DIR.'/sources/php/share.class.php';
 	
 	$page_url 			= get_page_url( $page['id'] );
 	$module_settings 	= mysql_fetch_assoc( mysql_query( "SELECT * FROM `m_news_settings` WHERE `id` = '1' LIMIT 1" ) );

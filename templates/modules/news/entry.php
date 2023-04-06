@@ -50,8 +50,8 @@
 
     <div class="share_box">
         <?
-            $share = new Share();
-            $share->view_share_button(returnURL().$_SERVER['REQUEST_URI']);
+            // $share = new Share();
+            // $share->view_share_button(returnURL().$_SERVER['REQUEST_URI']);
         ?>
     </div>
     

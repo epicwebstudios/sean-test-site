@@ -10,10 +10,29 @@
 	.wrapper { width: auto; padding: 0 20px; }
 }
 
-@media screen and (max-width: 550px){
+@media screen and (max-width: 701px){
+	.toggle_mobile_menu { display: block; }
 	.menu_module.horizontal,
 	.menu_module.vertical { display: none; }
-	.toggle_mobile_menu { display: block; }
+	.header .wrapper .logo img{
+		width:50%; 
+	}
+	.fa {
+		font-size: 40px;
+	}
+	.header .wrapper{
+		align-items: center;
+	}
+	.menu_module .dropdown {
+		background-color: #2180b8;
+		border: none;
+	}
+}
+
+@media screen and (max-width: 550px){
+	/* .menu_module.horizontal,
+	.menu_module.vertical { display: none; } */
+	/* .toggle_mobile_menu { display: block; } */
 
 	.grid .grid_box { width:100%; }
 	.grid .grid_box .p_a { padding:15px 0; }

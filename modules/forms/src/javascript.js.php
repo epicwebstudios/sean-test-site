@@ -121,7 +121,7 @@
 	}
 	
 
-	jQuery_defer( function(){
+	s( function(){
 		$( '.form_module' ).find( 'input' ).focus( function(){ form_lead( $(this).attr('data-form-id') ); } );
 		$( '.form_module' ).find( 'select' ).focus( function(){ form_lead( $(this).attr('data-form-id') ); } );
 		$( '.form_module' ).find( 'textarea' ).focus( function(){ form_lead( $(this).attr('data-form-id') ); } );

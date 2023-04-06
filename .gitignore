@@ -1,16 +1,15 @@
-#IDEA files
+# IDEA files
 *.idea
 .idea/workspace.xml
 robots.txt
 sitemap.xml
 sources/init/db.config.php
 sources/php/db.config.php
-docker-compose.yml
+/portal/docker-compose.yml
 _notes/
 /DEVMACHINE
 error_log
 init/temple_sean_db.sql
-robots.txt
 php_errorlog
 error_log
 /init
@@ -27,3 +26,4 @@ error_log
 /sitemap.xml
 /DEVMACHINE
 _notes/
+sources/php/db.config.php
