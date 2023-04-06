@@ -19,6 +19,7 @@
 			'youtube_link'			=> $_POST['youtube_link'],
 			'order'					=> $_POST['order'],
 			'description'			=> $_POST['description'],
+			'vid_cat'				=> $_POST['vid_cat'],
 		);
 
 	}

@@ -28,6 +28,21 @@
 		</thead>
 		<tbody>
 			<tr>
+				<td class="left">Video Category:</td>
+				<td class="right">
+					<select name="vid_cat">
+						<?
+							$query_cat = mysql_query("SELECT * FROM `m_videos_categories` WHERE `status` = 1");
+							$vc_count = 0;
+							while($p = mysql_fetch_assoc($query_cat)) {
+								echo '<option value="'.$vc_count.'" '.(($info['vid_cat'] == $vc_count)?'selected="selected"':"").'>'.$p['name'].'</option>';;
+								$vc_count++;
+							}
+						?>
+					</select>
+				</td>
+			</tr>
+			<tr>
 				<td class="left">Name:</td>
 				<td class="right"><input type="text" name="name" value="<? echo $info['name']; ?>"/></td>
 			</tr>
