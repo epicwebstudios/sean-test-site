@@ -113,7 +113,7 @@
 <script>
 		$( document ).ready(function() {
 			$('#youtube_info').hide();
-			$('#native_info').hide();
+			$('#native_info').show();
 		});
 
 		jQuery_defer(function() {
