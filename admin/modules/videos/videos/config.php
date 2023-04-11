@@ -26,8 +26,9 @@
 	// - 'sort' = Column name of the database table to sort by. To disallow/disable sorting, use 'false', '0', or omit from record.
 	// - 'width' = The specific width of the column in the listing table. For automatic sizing, use 'false', '0', or omit from record.
 	$columns = array(
-		array( 'title' => 'Name', 	'sort' => 'name', 	'width' => 0 ),
-		array( 'title' => 'Status', 'sort' => 'status', 'width' => 135 )
+		array( 'title' => 'Name', 	        'sort' => 'name', 	'width' => 0 ),
+		array( 'title' => 'Video Type', 	'sort' => 'name', 	'width' => 100 ),
+		array( 'title' => 'Status',         'sort' => 'status', 'width' => 135 )
 	);
 	
 	
