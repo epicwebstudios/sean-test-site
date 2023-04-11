@@ -49,6 +49,13 @@
                     </td>
                     
                     <td>
+                        <?
+							if( $info['video_type'] == '1' ){ echo '<b>Native</b>'; }
+                        	if( $info['video_type'] == '0' ){ echo '<b>Youtube</b>'; }
+						?>
+                    </td>
+
+                    <td>
                     	<?
 							if( $info['status'] == '1' ){ echo '<b class="tc_green">Active / Enabled</b>'; }
                         	if( $info['status'] == '0' ){ echo '<b class="tc_red">Inactive / Disabled</b>'; }

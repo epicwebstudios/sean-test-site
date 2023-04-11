@@ -1,7 +1,7 @@
 <?
-
+	
 	$r = mysql_fetch_assoc( mysql_query( "SELECT * FROM `m_news_entries` WHERE `permalink` = '".$request[1]."' LIMIT 1" ) );
-
+	
 	if( ($r['status'] != '1') || ($r['date'] > time()) ){
 		redirect( $page_url );
 		die();
@@ -49,5 +49,6 @@
 	echo '<div class="news_module full_entry">';
 		require BASE_DIR.'/templates/modules/news/entry.php';
 	echo '</div>';
+	
 
 

@@ -33,7 +33,7 @@
 					<select name="vid_cat">
 						<?
 							$query_cat = mysql_query("SELECT * FROM `m_videos_categories` WHERE `status` = 1");
-							$vc_count = 0;
+							$vc_count = 1;
 							while($p = mysql_fetch_assoc($query_cat)) {
 								echo '<option value="'.$vc_count.'" '.(($info['vid_cat'] == $vc_count)?'selected="selected"':"").'>'.$p['name'].'</option>';;
 								$vc_count++;
@@ -112,8 +112,14 @@
 
 <script>
 		$( document ).ready(function() {
-			$('#youtube_info').hide();
-			$('#native_info').show();
+			var vt = $('#video_type').val();
+				if (vt == "1") {
+					$('#youtube_info').hide();
+					$('#native_info').show();
+				} else {
+					$('#youtube_info').show();
+					$('#native_info').hide();
+				}
 		});
 
 		jQuery_defer(function() {
@@ -125,7 +131,7 @@
 					} else {
 						$('#youtube_info').show();
 						$('#native_info').hide();
-				}
+					}
 			});
 		});
 </script>
