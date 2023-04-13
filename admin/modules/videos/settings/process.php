@@ -29,7 +29,7 @@
 		
 		
 		$set = query_build_set( $values );
-			
+		
 		mysql_query( "UPDATE `".$database[0]."` ".$set." WHERE `id` = '".$id."' LIMIT 1" );
 			
 		log_action( 'Edited '.$item );

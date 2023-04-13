@@ -58,13 +58,13 @@
 	}
 	
 		
-	echo '<div class="news_module listing" data-id="'.$category_id.'">';
+	echo '<div class="news_module listing" data-id="'.$video_category_id.'">';
 			
-		require BASE_DIR.'/templates/modules/news/pagination.php';
+		require BASE_DIR.'/templates/modules/videos/pagination.php';
 
 		$query = mysql_query( $stmt );
 		$latest_count = 0;
-		if ($vids_latest == 1) {
+		if ($videos_latest == 1) {
 			while( $r = mysql_fetch_assoc($query)){
 				if ($latest_count < 3) {
 					$id			= $r['id'];
@@ -72,8 +72,13 @@
 					$link		= $page_url.'/videos/'.$r['permalink'];
 					$summary	= $r['banner_subtitle'];
 					$photo		= false;
+					$vt         = $r['video_type'];
 					
-					$default	= mysql_fetch_assoc( mysql_query( "SELECT * FROM `m_videos` WHERE `entry` = '".$r['id']."' ORDER BY `order` ASC LIMIT 1" ) );
+					if ($vt == 1) {
+						$default	= mysql_fetch_assoc( mysql_query( "SELECT * FROM `m_videos` WHERE `video_upload` = '".$r['id']."' ORDER BY `order` ASC LIMIT 1" ) );
+					} else {
+						$default	= mysql_fetch_assoc( mysql_query( "SELECT * FROM `m_videos` WHERE `youtube_link` = '".$r['id']."' ORDER BY `order` ASC LIMIT 1" ) );
+					}
 					
 					if( $default['filename'] ){
 						$photo	= '/videos/'.$default['filename'];
@@ -88,22 +93,27 @@
 		
 				$id			= $r['id'];
 				$title 		= $r['name'];
-				$link		= $page_url.'/videos/'.$r['permalink'];
+				$link		= $page_url.'/'.$r['permalink'];
 				$summary	= $r['banner_subtitle'];
 				$photo		= false;
+				$vt         = $r['video_type'];
 				
-				$default	= mysql_fetch_assoc( mysql_query( "SELECT * FROM `m_videos` WHERE `entry` = '".$r['id']."' ORDER BY `order` ASC LIMIT 1" ) );
+				if ($vt == 1) {
+					$default	= mysql_fetch_assoc( mysql_query( "SELECT * FROM `m_videos` WHERE `video_upload` = '".$r['id']."' ORDER BY `order` ASC LIMIT 1" ) );
+				} else {
+					$default	= mysql_fetch_assoc( mysql_query( "SELECT * FROM `m_videos` WHERE `youtube_link` = '".$r['id']."' ORDER BY `order` ASC LIMIT 1" ) );
+				}
 				
 				if( $default['filename'] ){
 					$photo	= '/videos/'.$default['filename'];
 				}
 				
-				require BASE_DIR.'/templates/modules/news/listing.php';
+				require BASE_DIR.'/templates/modules/videos/listing.php';
 			
 			}
 		}
 		
-		require BASE_DIR.'/templates/modules/news/pagination.php';
+		require BASE_DIR.'/templates/modules/videos/pagination.php';
 		
 	echo '</div>';
 
