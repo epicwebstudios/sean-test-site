@@ -38,6 +38,12 @@
 				'logo_footer'          	=> process_file( 'logo_footer', '/layout/' ),
 				'timezone'				=> $_POST['timezone'],
 				'email_settings'		=> $_POST['email_settings'],
+				'header_button_txt'		=> $_POST['header_button_txt'],
+				'header_button_url'		=> $_POST['header_button_url'],
+				'bam_button_txt'		=> $_POST['bam_button_txt'],
+				'bam_button_url'		=> $_POST['bam_button_url'],
+				'footer_button_txt'		=> $_POST['footer_button_txt'],
+				'footer_button_url'		=> $_POST['footer_button_url'],
 			);
 
 

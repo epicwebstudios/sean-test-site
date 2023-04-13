@@ -44,18 +44,26 @@
 			</tr>
 			<tr>
 				<td class="left">Name:</td>
-				<td class="right"><input type="text" name="name" value="<? echo $info['name']; ?>"/></td>
+				<td class="right">
+                	<? field_text( 'name', $info['name'] ); ?>
+                </td>
+			</tr>
+			<tr>
+				<td class="left">Permalink:</td>
+				<td class="right">
+                	<? field_permalink( 'permalink', $info['permalink'], 'name' ); ?>
+                </td>
 			</tr>
             <tr>
                 <td class="left">Banner Title:</td>
                 <td class="right">
-                    <input type="text" name="banner_title" value="<? echo $info['banner_title']; ?>"/>
+					<? field_text( 'banner_title', $info['banner_title'] ); ?>
                 </td>
             </tr>
             <tr>
                 <td class="left">Banner Subtitle:</td>
                 <td class="right">
-                    <input type="text" name="banner_subtitle" value="<? echo $info['banner_subtitle']; ?>"/>
+					<? field_text( 'banner_subtitle', $info['banner_subtitle'] ); ?>
                 </td>
             </tr>
 			<tr>
@@ -70,15 +78,15 @@
 			<tr id="native_info">
 				<td class="left">Upload Video:</td>
 				<td class="right">
-                	<? field_image( 'video_upload', $info['video_upload'], '/videos/' ); ?>
+                	<? field_file('video_upload', $info['video_upload'], '/videos/' ); ?>
                     <div>Upload your Native Videos here. Recommends keeping videos under <b>100mb</b>.</div>
                 </td>
 			</tr>
 			<tr id="youtube_info">
-				<td class="left">YouTube URL/ID:</td>
+				<td class="left">YouTube Embed:</td>
 				<td class="right">
-					<textarea name="youtube_link"><? echo $info['youtube_link']; ?></textarea>
-					<div>The full URL or ID of the YouTube video you wish to add if not Native Video</div>
+					<? field_textarea( 'youtube_link', $info['youtube_link'], 'width: 25%;' ); ?>
+					<div>Make sure to add <b>full embed</b> of Youtube video, not just the URL</div>
 				</td>
 			</tr>
 			<tr>

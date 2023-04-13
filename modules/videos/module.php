@@ -5,8 +5,8 @@
     // require BASE_DIR.'/sources/php/share.class.php';
 	
 	$page_url 			= get_page_url( $page['id'] );
-	$module_settings 	= mysql_fetch_assoc( mysql_query( "SELECT * FROM `m_video_settings` WHERE `id` = '1' LIMIT 1" ) );
-	$category_id 		= $_GET['video_category_id'];
+	$module_settings 	= mysql_fetch_assoc( mysql_query( "SELECT * FROM `m_videos_settings` WHERE `id` = '1' LIMIT 1" ) );
+	$category_id 	= $_GET['video_category_id'];
 	
 	
 	if( $category_id ){

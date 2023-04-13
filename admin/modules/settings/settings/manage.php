@@ -333,7 +333,72 @@
             </tr>
         </tbody>
     </table>
-	
+	&nbsp;
+
+	<table class="form">
+		<thead>
+			<tr>
+				<td colspan="2">Header and Footer Buttons</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="left">Header Button Text:</td>
+				<td class="right">
+					<? field_text( 'header_button_txt', $info['header_button_txt']); ?>
+					<div>
+						Displays text within the Header button
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">Header Button URL:</td>
+				<td class="right">
+					<? field_text( 'header_button_url', $info['header_button_url']); ?>
+					<div>
+						Where the Header button links
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">Become a Member Text:</td>
+				<td class="right">
+					<? field_text( 'bam_button_txt', $info['bam_button_txt']); ?>
+					<div>
+						Displays text within Become a Member
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">Become a Member URL:</td>
+				<td class="right">
+					<? field_text( 'bam_button_url', $info['bam_button_url']); ?>
+					<div>
+						Where Become a Member links
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">Footer Button Text:</td>
+				<td class="right">
+					<? field_text( 'footer_button_txt', $info['footer_button_txt']); ?>
+					<div>
+						Displays Footer text within the button
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">Footer Button URL:</td>
+				<td class="right">
+					<? field_text( 'footer_button_url', $info['footer_button_url']); ?>
+					<div>
+						Where the Footer button links
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
 	&nbsp;
     
 	<? $file_browser = json_decode( $info['file_browser'], true ); ?>
