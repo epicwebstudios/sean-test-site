@@ -6,11 +6,13 @@
 	
 	$page_url 			= get_page_url( $page['id'] );
 	$module_settings 	= mysql_fetch_assoc( mysql_query( "SELECT * FROM `m_videos_settings` WHERE `id` = '1' LIMIT 1" ) );
-	$category_id 	= $_GET['video_category_id'];
+	$category_id 	    = $_GET['video_category_id'];
 	
 	
 	if( $category_id ){
 		$category = mysql_fetch_assoc( mysql_query( "SELECT * FROM `m_videos_categories` WHERE `id` = '".$category_id."' LIMIT 1" ) );
+	} else {
+		$category = array('status' => 1);
 	}
 	
 	
