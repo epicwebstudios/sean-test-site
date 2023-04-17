@@ -201,7 +201,7 @@ input[type="button"]:hover {
 
 .news_module.listing .entry {
 	padding: 35px;
-	width: 275px;
+	width: 200px;
 	box-shadow: 2px 2px rgb(10, 71, 121), -.05em -0.1em .2em #2da8f0;
 }
 
