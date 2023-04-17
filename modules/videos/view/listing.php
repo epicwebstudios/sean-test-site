@@ -60,7 +60,7 @@
 		
 	echo '<div class="news_module listing" data-id="'.$video_category_id.'">';
 			
-	if ($videos_latest)
+		if (!$videos_latest)
 		require BASE_DIR.'/templates/modules/videos/pagination.php';
 
 		$query = mysql_query( $stmt );
@@ -113,7 +113,7 @@
 			
 			}
 		}
-		if ($videos_latest)
+		if (!$videos_latest)
 		require BASE_DIR.'/templates/modules/videos/pagination.php';
 		
 	echo '</div>';
