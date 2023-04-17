@@ -10,6 +10,8 @@
 	
 	if( $category_id ){
 		$category = mysql_fetch_assoc( mysql_query( "SELECT * FROM `m_news_categories` WHERE `id` = '".$category_id."' LIMIT 1" ) );
+	} else {
+		$category = array('status' => 1);
 	}
 	
 	
