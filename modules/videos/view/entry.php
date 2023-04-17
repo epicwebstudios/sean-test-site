@@ -8,7 +8,11 @@
 	}
 	
 	if ( $r['video_type'] == 1 ) {
-		$video = $r['video_upload'];
+		$vid_type = substr($r['video_upload'], -3);
+		$video = '<video width="300" height="150" style="display: block; margin-left: auto; margin-right: auto;" preload="auto"
+					controls="controls" data-mce-fragment="1" id="'.$r['id'].'">
+					<source src="../uploads/videos/'.$r['video_upload'].'" type="video/'.$vid_type.'">
+				</video>';
 	} else {
 		$video = $r['youtube_link'];
 	}
