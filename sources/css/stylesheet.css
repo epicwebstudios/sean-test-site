@@ -276,12 +276,12 @@ input[type="button"]:hover {
 	height: 100%;
   }
 
-  .native_video {
+  .video_native {
 	position: relative;
 	padding-bottom: 56.25%; /* 16:9 */
 	height: 0;
   }
-  .native_video video {
+  .video_native video {
 	position: absolute;
 	top: 0;
 	left: 0;
