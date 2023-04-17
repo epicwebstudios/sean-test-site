@@ -9,7 +9,7 @@
 	
 	if ( $r['video_type'] == 1 ) {
 		$vid_type = substr($r['video_upload'], -3);
-		$video = '<video width="100%" height="auto" style="display: block; margin-left: auto; margin-right: auto;" preload="auto"
+		$video = '<video width="auto" height="600px" style="display: block; margin-left: auto; margin-right: auto;" preload="auto"
 					controls="controls" data-mce-fragment="1" id="'.$r['id'].'">
 					<source src="../uploads/videos/'.$r['video_upload'].'" type="video/'.$vid_type.'">
 				</video>';
