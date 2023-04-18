@@ -193,7 +193,7 @@
 
 .news_module .pagination .prev,
 .news_module .pagination .next {
-	position: absolute;
+	position: relative;
 	top: 0;
 }
 
@@ -201,12 +201,8 @@
 	left: 0;
 }
 
-.news_module .pagination .next:nth-child(1) {
+.news_module .pagination .next {
 	right: 0;
-}
-
-.news_module .pagination .next:nth-child(2) {
-	float: right;
 }
 
 .news_module.listing .entry {
