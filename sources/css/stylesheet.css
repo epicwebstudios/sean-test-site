@@ -241,6 +241,14 @@ input[type="button"]:hover {
 	text-align: center;
 }
 
+.news.module.listing .pagination .next {
+	float: left;
+}
+
+.ca.entry .pagination .next {
+	float: right;
+}
+
 /* FAQ */
 
 .faq_module {
