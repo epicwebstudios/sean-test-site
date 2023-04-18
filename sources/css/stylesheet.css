@@ -222,10 +222,11 @@ input[type="button"]:hover {
 .news_module.listing {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
+	justify-content: center;
 }
 
 .news_module.listing .entry {
+	margin-inline: 15px;
 	padding: 35px;
 	width: 200px;
 	box-shadow: 2px 2px rgb(10, 71, 121), -.05em -0.1em .2em #2da8f0;
