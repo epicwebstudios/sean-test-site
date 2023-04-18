@@ -205,6 +205,10 @@
 	right: 0;
 }
 
+.news_module .pagination .next:nth-last-child() {
+	float: right;
+}
+
 .news_module.listing .entry {
 	margin: 25px 0;
 }
