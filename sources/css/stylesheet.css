@@ -241,7 +241,7 @@ input[type="button"]:hover {
 	text-align: center;
 }
 
-.news.module.listing .pagination .next {
+.news.module .pagination .next {
 	float: left;
 }
 
