@@ -201,7 +201,7 @@
 	left: 0;
 }
 
-.news_module .pagination .next {
+.news_module .pagination .next:first-child {
 	right: 0;
 }
 
