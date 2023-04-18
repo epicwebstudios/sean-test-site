@@ -201,11 +201,11 @@
 	left: 0;
 }
 
-.news_module .pagination .next:first-child {
+.news_module .pagination .next:nth-child(1) {
 	right: 0;
 }
 
-.news_module .pagination .next:nth-last-child() {
+.news_module .pagination .next:nth-child(2) {
 	float: right;
 }
 
