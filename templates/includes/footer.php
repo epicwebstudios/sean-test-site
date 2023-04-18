@@ -1,6 +1,10 @@
 <footer class="footer">
     <div class="wrapper">
         <div class="w_50">
+            <div id="search_div">
+                <input type="text" placeholder="Search...">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </div>
             <div class="logo">
                 <a href="<?= returnURL(0); ?>"><img src="<?= returnURL(). '/uploads/layout/'. $settings['logo_footer']; ?>"/></a>
             </div>    
