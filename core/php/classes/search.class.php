@@ -30,10 +30,15 @@ class Search{
 
     private function do_fulltext_search(){
 
-        $stmt = "SELECT * FROM `".$this->table."`
-                    WHERE MATCH (content)
-                        AGAINST ('".$this->keyword."' 
-                            IN BOOLEAN MODE)";
+        // $stmt = "SELECT * FROM `".$this->table."`
+        //             WHERE MATCH (content)
+        //                 AGAINST ('".$this->keyword."' 
+        //                     IN BOOLEAN MODE)";
+        
+        $stmt = "SELECT * FROM `".$this->table."` 
+                    WHERE `content` 
+                        LIKE '%".$this->keyword."%' 
+                            AND `status` = 1";
 
         $result = $this->execute( $stmt );
         $this->set_search_result($result);

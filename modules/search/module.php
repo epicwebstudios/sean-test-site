@@ -1,5 +1,5 @@
 <?
-    require BASE_DIR."/sources/php/search.class.php";
+    // require CORE_DIR."/sources/php/search.class.php";
 
 	if( isset($_POST['search']) ){
 	

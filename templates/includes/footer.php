@@ -2,11 +2,12 @@
     <div class="wrapper">
         <div class="w_50">
             <div id="search_div">
-                <form action="https://www.google.com/search" method="get" target="_blank">
-                    <input type="text" placeholder="Search..." name="q">
+                <form action="#search_div" method="post">
+                    <input type="text" placeholder="Search..." name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
+            <? require_once BASE_DIR.'/modules/search/module.php'; ?>
             <div class="logo">
                 <a href="<?= returnURL(0); ?>"><img src="<?= returnURL(). '/uploads/layout/'. $settings['logo_footer']; ?>"/></a>
             </div>    

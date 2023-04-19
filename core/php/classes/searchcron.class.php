@@ -22,6 +22,14 @@ class SearchCron{
                 'pre_link'  => 'news/',
                 'ref_id'    => 'id',
                 'status'    => 'status'
+            ),
+            array(
+                'table'     => 'm_videos',
+                'content'   => 'description',
+                'link'      => 'permalink',
+                'pre_link'  => 'videos/',
+                'ref_id'    => 'id',
+                'status'    => 'status'
             )
         );
         $this->register_search();
