@@ -194,7 +194,7 @@
 .news_module .pagination .prev,
 .news_module .pagination .next {
 	position: relative;
-	top: 0;
+	top: 100px;
 }
 
 .news_module .pagination .prev {

@@ -160,7 +160,7 @@ input[type="button"]:hover {
 
 
 
-/* Footer */
+/** Footer */
 
 .footer {
 	background-color: rgb(10, 71, 121);
@@ -178,26 +178,36 @@ input[type="button"]:hover {
 #search_div {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	margin-top: 25px;
+	background-color: rgba(255,255,255,.2);
+	width: 50%;
+	border-radius: 60px;
 }
 
 #search_div input {
 	padding: 6px 10px;
-	margin-top: 8px;
+	flex: 1;
+	border: 0;
+	outline: none;
 	font-size: 17px;
-	width: 25%;
-	margin-right: 0;
+	color: #fff;
+	background: transparent;
+}
+
+::placeholder {
+	color: #fff;
 }
 
 #search_div button {
-	margin-left: 0;
+	margin-left: 15px;
 	padding: 6px 10px;
-	margin-top: 8px;
-	margin-right: 16px;
 	background: #ddd;
 	font-size: 17px;
 	border: none;
 	cursor: pointer;
+	background-color: rgba(0,0,0,.1);
+	border-radius: 75px;
 }
 
 .footer .wrapper {
@@ -215,14 +225,15 @@ input[type="button"]:hover {
 	color:  #2da8f0;
 }
 
-/* Navigation */
+/** Navigation */
 
-/* News */
+/** News */
 
 .news_module.listing {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .news_module.listing .entry {
@@ -249,7 +260,7 @@ input[type="button"]:hover {
 	float: right;
 }
 
-/* FAQ */
+/** FAQ */
 
 .faq_module {
 	width: 500px;
@@ -275,7 +286,7 @@ input[type="button"]:hover {
     color: #2da8f0;
 }
 
-/* Staff */
+/** Staff */
 
 .staff_module.listing {
 	display: flex;
