@@ -2,8 +2,10 @@
     <div class="wrapper">
         <div class="w_50">
             <div id="search_div">
-                <input type="text" placeholder="Search...">
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <form action="https://www.google.com/search" method="get" target="_blank">
+                    <input type="text" placeholder="Search..." name="q">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
             </div>
             <div class="logo">
                 <a href="<?= returnURL(0); ?>"><img src="<?= returnURL(). '/uploads/layout/'. $settings['logo_footer']; ?>"/></a>
@@ -12,12 +14,12 @@
             
         </div>
         <div class="w_50 footer_nav">
-            <div class="w_33">
+            <div class="w_33" id="footer_nav1">
                 <h5>Navigation</h5>
                 <? vertical_menu( 2 ); ?>
             </div>
             <div class="w_33">
-                <h5>Galleries</h5>
+                <h5 id="gallery_header">Galleries</h5>
                 <? vertical_menu( 3 ); ?>
             </div>
             <div class="w_33">

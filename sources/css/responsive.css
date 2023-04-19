@@ -12,8 +12,7 @@
 
 @media screen and (max-width: 701px){
 	.toggle_mobile_menu { display: block; }
-	.menu_module.horizontal,
-	.menu_module.vertical { display: none; }
+	.menu_module.horizontal, .menu_3, #gallery_header { display: none; }
 	.header .wrapper .logo img{
 		width:50%; 
 	}
@@ -26,6 +25,12 @@
 	.menu_module .dropdown {
 		background-color: #2180b8;
 		border: none;
+	}
+}
+
+@media screen and (min-width:470px) and (max-width:701px) {
+	#footer_nav1 {
+		padding-left: 50px;
 	}
 }
 
