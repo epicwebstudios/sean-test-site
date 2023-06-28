@@ -1,4 +1,4 @@
-<? $info = get_item( 1, $database[0] ); ?> 
+<? $info = get_item( 1, $database[0] );var_dump($info); ?> 
 
 
 <div class="ca title_box">
