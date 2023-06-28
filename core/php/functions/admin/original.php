@@ -165,7 +165,9 @@
 	function get_item( $id, $table ){
 		$query = mysql_query("SELECT * FROM `".$table."` WHERE `id` = '".$id."' LIMIT 1");
 		$info = mysql_fetch_assoc($query);
+		echo "<h2>This is info: ".$info."</h2>";
 		return $info;
+		
 	}
 
 	
