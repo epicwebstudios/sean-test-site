@@ -16,6 +16,7 @@
 			if( move_uploaded_file($_FILES['package']['tmp_name'], $target) ){
 				
 				$zip 	= new ZipArchive;
+				var_dump($zip);
 				$open 	= $zip->open( $target );
 				if( $open === true ){
 						
